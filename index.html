@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NovaEntomo - پلاتفۆڕمی زانستی مێرووناسی</title>
+    <title>NovaEntomo</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
     <style>
         /* ==========================================================================
-           1. رێکخستنی بنچینەیی و ڕەنگە زانستییەکان
+           1. ڕەنگەکان و بنچینەی ماڵپەڕەکە
            ========================================================================== */
         :root[data-theme="light"] {
             --bg-main: #f8f6f2;
@@ -18,13 +18,11 @@
             --text-primary: #2c1a11;
             --text-secondary: #5e473c;
             --accent-color: #2e7d32; 
-            --accent-glow: rgba(46, 125, 50, 0.2);
             --navbar-bg: #142b20; 
             --navbar-text: #ffffff;
             --sidebar-bg: #110805;
             --sidebar-text: #e2e8f0;
             --card-border: rgba(93, 64, 55, 0.08);
-            --wave-opacity: 0.7;
         }
 
         :root[data-theme="dark"] {
@@ -33,13 +31,11 @@
             --text-primary: #e5d8d2;
             --text-secondary: #b59e95;
             --accent-color: #81c784;
-            --accent-glow: rgba(129, 199, 132, 0.3);
             --navbar-bg: #09140f;
             --navbar-text: #e2e8f0;
             --sidebar-bg: #050201;
             --sidebar-text: #cbd5e1;
             --card-border: rgba(255, 255, 255, 0.05);
-            --wave-opacity: 0.3;
         }
 
         * {
@@ -59,7 +55,7 @@
         .hidden { display: none !important; }
 
         /* ==========================================================================
-           2. ناڤباری ماڵپەڕەکە
+           2. ناڤباری مۆدێرن و ڕیسپۆنسڤ (گونجاو بۆ مۆبایل)
            ========================================================================== */
         .navbar {
             position: fixed; top: 0; left: 0; width: 100%; height: 80px;
@@ -68,268 +64,179 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.08); z-index: 1000;
         }
 
-        .nav-right-group { display: flex; align-items: center; gap: 20px; }
-        .menu-toggle-btn { background: none; border: none; font-size: 28px; color: var(--navbar-text); cursor: pointer; }
-        .logo h2 { font-size: 24px; font-weight: 700; color: var(--navbar-text); letter-spacing: 0.5px; }
+        .nav-right-group { display: flex; align-items: center; gap: 15px; }
+        .menu-toggle-btn { background: none; border: none; font-size: 26px; color: var(--navbar-text); cursor: pointer; }
+        .logo h2 { font-size: 22px; font-weight: 700; color: var(--navbar-text); }
         .logo h2 span { color: var(--accent-color); }
 
-        .controls { display: flex; align-items: center; gap: 20px; }
-        .lang-links-wrapper { display: flex; gap: 5px; background: rgba(255, 255, 255, 0.08); padding: 4px; border-radius: 30px; }
-        .lang-btn { background: none; border: none; padding: 6px 16px; font-size: 13px; font-weight: 600; border-radius: 20px; cursor: pointer; color: rgba(255, 255, 255, 0.7); font-family: inherit; }
+        .controls { display: flex; align-items: center; gap: 15px; }
+        .lang-links-wrapper { display: flex; gap: 3px; background: rgba(255, 255, 255, 0.08); padding: 3px; border-radius: 30px; }
+        .lang-btn { background: none; border: none; padding: 6px 12px; font-size: 12px; font-weight: 600; border-radius: 20px; cursor: pointer; color: rgba(255, 255, 255, 0.6); font-family: inherit; }
         .lang-btn.active { background: var(--accent-color); color: white !important; }
 
-        .theme-switch { display: inline-block; height: 28px; position: relative; width: 52px; }
+        /* بەشی سویچی تاریک و ڕووناک لەگەڵ نووسین */
+        .theme-controller-wrapper { display: flex; align-items: center; gap: 8px; color: var(--navbar-text); font-size: 13px; font-weight: 600; }
+        .theme-switch { display: inline-block; height: 24px; position: relative; width: 46px; }
         .theme-switch input { display: none; }
         .slider { background-color: rgba(255,255,255,0.2); bottom: 0; cursor: pointer; left: 0; position: absolute; right: 0; top: 0; transition: .4s; border-radius: 34px; }
-        .slider:before { background-color: #fff; bottom: 3px; content: ""; height: 22px; left: 4px; position: absolute; width: 22px; transition: .4s; border-radius: 50%; }
+        .slider:before { background-color: #fff; bottom: 3px; content: ""; height: 18px; left: 4px; position: absolute; width: 18px; transition: .4s; border-radius: 50%; }
         input:checked + .slider { background-color: var(--accent-color); }
-        input:checked + .slider:before { transform: translateX(22px); }
+        input:checked + .slider:before { transform: translateX(20px); }
 
         /* ==========================================================================
-           3. بەشی هێرۆ (تەواو ناوەڕاستکراو + باکگراوندی مێرووناسی و مۆشن)
+           3. بەشی هێرۆ (تەواو ناوەڕاستکراو بە مۆشنی دەرکەوتن)
            ========================================================================== */
-        .hero-section-wrapper {
-            padding: 120px 40px 40px 40px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
+        .hero-section-wrapper { padding: 120px 40px 40px 40px; max-width: 1400px; margin: 0 auto; }
+        
         .hero-curved-container {
-            position: relative;
-            width: 100%;
-            min-height: 75vh;
-            border-radius: 32px;
-            overflow: hidden;
-            border: 5px solid rgba(255, 255, 255, 0.75);
-            box-shadow: 0 25px 55px rgba(0, 0, 0, 0.2);
-            
-            /* جێگرتنەوەی وێنەی کۆن بە وێنەیەکی کوالیتی بەرزی ماکرۆ مێرووناسی و پەپوولە */
+            position: relative; width: 100%; min-height: 70vh; border-radius: 32px; overflow: hidden;
+            border: 5px solid rgba(255, 255, 255, 0.75); box-shadow: 0 25px 55px rgba(0, 0, 0, 0.2);
             background-image: linear-gradient(to top, rgba(12, 26, 19, 0.92), rgba(20, 43, 32, 0.75)), 
                               url('https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=1600&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center; /* ناوەڕاستکردنی ئاسۆیی */
-            text-align: center; /* ناوەڕاستکردنی دەقەکان */
-            padding: 40px;
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px;
         }
 
-        .hero-content {
-            max-width: 800px;
-            z-index: 5;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+        .hero-content { max-width: 800px; z-index: 5; color: #ffffff; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 
-        /* مۆشنی دەرکەوتنی پیتاوپیتی نووسینی سەرەکی */
         .hero-main-title {
-            font-size: 76px;
-            font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -1px;
-            margin-bottom: 20px;
-            color: #ffffff;
-            font-family: 'Poppins', sans-serif;
-            opacity: 0;
-            transform: translateY(30px);
+            font-size: 68px; font-weight: 800; line-height: 1.2; margin-bottom: 20px; color: #ffffff;
+            opacity: 0; transform: translateY(30px);
             animation: heroFadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.2s;
         }
-        .hero-main-title span {
-            color: var(--accent-color);
-        }
+        .hero-main-title span { color: var(--accent-color); }
 
         .hero-desc {
-            font-size: 20px;
-            line-height: 1.8;
-            margin-bottom: 35px;
-            color: rgba(255, 255, 255, 0.85);
-            max-width: 650px;
-            opacity: 0;
-            transform: translateY(30px);
+            font-size: 19px; line-height: 1.8; margin-bottom: 35px; color: rgba(255, 255, 255, 0.85); max-width: 650px;
+            opacity: 0; transform: translateY(30px);
             animation: heroFadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.4s;
         }
 
         .hero-btn {
-            display: inline-flex; align-items: center; gap: 10px;
-            padding: 15px 36px; background-color: var(--accent-color);
-            color: white; text-decoration: none; font-weight: 600;
-            border-radius: 50px; box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
-            font-size: 16px;
-            opacity: 0;
-            transform: translateY(30px);
+            display: inline-flex; align-items: center; gap: 10px; padding: 14px 34px; background-color: var(--accent-color);
+            color: white; text-decoration: none; font-weight: 600; border-radius: 50px; box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
+            font-size: 15px; opacity: 0; transform: translateY(30px);
             animation: heroFadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.6s;
         }
-        .hero-btn:hover { 
-            transform: translateY(-4px); 
-            box-shadow: 0 12px 30px rgba(46, 125, 50, 0.6);
-        }
+        .hero-btn:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(46, 125, 50, 0.6); }
 
-        @keyframes heroFadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes heroFadeInUp { to { opacity: 1; transform: translateY(0); } }
 
         /* ==========================================================================
-           4. سایدیاری درۆوەر (تەواوی ٩ چاپتەرەکە)
+           4. سایدباری درۆوەر (لیستی زمانی چاپتەرەکان)
            ========================================================================== */
         .sidebar {
             position: fixed; top: 0; right: -320px; width: 310px; height: 100vh;
             background-color: var(--sidebar-bg); color: var(--sidebar-text);
             padding: 30px 20px; box-shadow: -5px 0 30px rgba(0,0,0,0.3); z-index: 2000;
-            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow-y: auto;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); overflow-y: auto;
         }
         html[dir="ltr"] .sidebar { left: -320px; right: auto; transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
         .sidebar.open { right: 0; }
         html[dir="ltr"] .sidebar.open { left: 0; right: auto; }
         
         .sidebar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .close-sidebar-btn { background: none; border: none; color: white; font-size: 26px; cursor: pointer; }
-        
+        .close-sidebar-btn { background: none; border: none; color: white; font-size: 24px; cursor: pointer; }
         .sidebar-links { list-style: none; }
         .sidebar-links li { margin-bottom: 5px; }
-        .sidebar-links a {
-            display: flex; align-items: center; gap: 10px; color: var(--sidebar-text);
-            text-decoration: none; padding: 10px 12px; border-radius: 8px; font-size: 14px; font-weight: 500;
-        }
+        .sidebar-links a { display: flex; align-items: center; gap: 10px; color: var(--sidebar-text); text-decoration: none; padding: 10px 12px; border-radius: 8px; font-size: 14px; font-weight: 500; }
         .sidebar-links li.active a, .sidebar-links a:hover { background-color: var(--accent-color); color: white; }
         .sidebar-subtitle { font-size: 12px; text-transform: uppercase; color: var(--accent-color); margin: 20px 12px 10px 12px; font-weight: 700; letter-spacing: 1px; }
-
         .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 1999; display: none; }
         .sidebar-overlay.show { display: block; }
 
         /* ==========================================================================
-           5. سێکیشنی چاپتەرەکان (مۆشن و شۆڕکردنەوەی کارتە سپییەکان)
+           5. سێکیشنی چاپتەرەکان (مۆشن و کارتی نزمکراوە)
            ========================================================================== */
         .chapters-section { padding: 80px 40px; max-width: 1400px; margin: 0 auto; }
-        .section-title { font-size: 34px; font-weight: 700; text-align: center; margin-bottom: 60px; }
+        .section-title { font-size: 32px; font-weight: 700; text-align: center; margin-bottom: 60px; }
         .section-title span { color: var(--accent-color); }
-
         .chapters-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
 
         .chapter-card {
             position: relative; height: 440px; border-radius: 26px; overflow: hidden;
             box-shadow: 0 10px 35px rgba(0,0,0,0.03); display: flex; flex-direction: column;
-            justify-content: flex-end; background: #161616;
-            opacity: 0; transform: translateY(30px);
+            justify-content: flex-end; background: #161616; opacity: 0; transform: translateY(30px);
             animation: cardScrollIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
+        .chapter-card:hover { transform: translateY(-10px) scale(1.025); box-shadow: 0 25px 50px rgba(46, 125, 50, 0.18); }
 
-        /* مۆشنی کارتەکان لەکاتی بردنی ماوس (3D Elevation Motion) */
-        .chapter-card:hover {
-            transform: translateY(-10px) scale(1.025);
-            box-shadow: 0 25px 50px rgba(46, 125, 50, 0.18);
-        }
-
-        .card-img-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 85%;
-            background-size: cover; background-position: center; z-index: 1;
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-        }
+        .card-img-bg { position: absolute; top: 0; left: 0; width: 100%; height: 85%; background-size: cover; background-position: center; z-index: 1; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
         .chapter-card:hover .card-img-bg { transform: scale(1.06); }
 
-        .chapter-badge {
-            position: absolute; top: 20px; left: 20px; background: rgba(15, 23, 42, 0.85);
-            color: #81c784; padding: 6px 14px; font-size: 13px; font-weight: 700;
-            border-radius: 20px; backdrop-filter: blur(5px); z-index: 3;
-        }
+        .chapter-badge { position: absolute; top: 20px; left: 20px; background: rgba(15, 23, 42, 0.85); color: #81c784; padding: 6px 14px; font-size: 13px; font-weight: 700; border-radius: 20px; backdrop-filter: blur(5px); z-index: 3; }
         html[dir="ltr"] .chapter-badge { left: auto; right: 20px; }
 
-        /* کارتە سپییەکە کەمێک هێنراوەتە خوارتر بەپێی داواکارییەکەت تا باکگراوندەکە زۆرتر دیاربێت */
         .chapter-info-box {
-            position: relative; background: var(--bg-card); border-radius: 22px;
-            padding: 24px 20px; margin: 0 16px 16px 16px; z-index: 2;
-            box-shadow: 0 -5px 25px rgba(0,0,0,0.04); text-align: center;
-            border: 1px solid var(--card-border);
-            transform: translateY(12px); /* شۆڕکردنەوەی زیاتر بۆ خوارەوە */
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative; background: var(--bg-card); border-radius: 22px; padding: 24px 20px; margin: 0 16px 16px 16px; z-index: 2;
+            box-shadow: 0 -5px 25px rgba(0,0,0,0.04); text-align: center; border: 1px solid var(--card-border);
+            transform: translateY(15px); /* هێنانە خوارەوەی کارتە سپییەکە */
+            transition: transform 0.4s ease;
         }
-        .chapter-card:hover .chapter-info-box {
-            transform: translateY(0px); /* مۆشنی بەرزبوونەوە لەکاتی هۆڤەردا */
-        }
-
-        .chapter-info-box h3 { font-size: 19px; font-weight: 700; margin-bottom: 12px; color: var(--text-primary); }
-        .chapter-info-box p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 18px; }
-        
-        .chapter-btn {
-            display: inline-flex; align-items: center; background: none; border: 1px solid var(--card-border);
-            padding: 7px 22px; border-radius: 30px; color: var(--accent-color); font-weight: 700; font-size: 13px; text-decoration: none;
-        }
+        .chapter-card:hover .chapter-info-box { transform: translateY(0px); }
+        .chapter-info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--text-primary); }
+        .chapter-info-box p { font-size: 13.5px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 18px; }
+        .chapter-btn { display: inline-flex; align-items: center; background: none; border: 1px solid var(--card-border); padding: 7px 22px; border-radius: 30px; color: var(--accent-color); font-weight: 700; font-size: 13px; text-decoration: none; }
         .chapter-btn:hover { background: var(--accent-color); color: white; }
 
+        @keyframes cardScrollIn { to { opacity: 1; transform: translateY(0); } }
+
         /* ==========================================================================
-           6. فووتەر بە شەپۆلی جوڵاوی زیندوو (Live CSS Animated Waves)
+           6. فووتەر بە شەپۆلی جوڵاوی لایڤ (Moving Waves)
            ========================================================================== */
-        .footer-section {
-            position: relative;
-            background: #0f1f18;
-            padding-top: 100px;
-            padding-bottom: 40px;
-            text-align: center;
-            color: #ffffff;
-            margin-top: 120px;
-        }
-
-        /* کۆنتێنەری وێڤی مۆشن */
-        .waves-container {
-            position: absolute; top: -1px; left: 0; width: 100%; height: 110px;
-            margin-bottom: -7px; min-height: 100px; max-height: 150px;
-            transform: rotate(180deg);
-        }
-
-        /* ئەنیمەیشنی جوڵەی شەپۆلەکان */
-        .parallax > use {
-            animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
-        }
+        .footer-section { position: relative; background: #0f1f18; padding-top: 100px; padding-bottom: 40px; text-align: center; color: #ffffff; margin-top: 120px; }
+        .waves-container { position: absolute; top: -1px; left: 0; width: 100%; height: 110px; margin-bottom: -7px; min-height: 100px; max-height: 150px; transform: rotate(180deg); }
+        
+        .parallax > use { animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite; }
         .parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s; fill: var(--bg-main); opacity: 0.7; }
         .parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; fill: var(--bg-main); opacity: 0.5; }
         .parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; fill: var(--bg-main); opacity: 0.3; }
         .parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 20s; fill: var(--bg-main); }
 
-        @keyframes move-forever {
-            0% { transform: translate3d(-90px, 0, 0); }
-            100% { transform: translate3d(85px, 0, 0); }
-        }
+        @keyframes move-forever { 0% { transform: translate3d(-90px, 0, 0); } 100% { transform: translate3d(85px, 0, 0); } }
 
         .footer-content { max-width: 1200px; margin: 0 auto; position: relative; z-index: 10; }
-        .footer-info-block { line-height: 2; margin-bottom: 25px; }
-        .footer-info-block h3 { font-size: 26px; font-weight: 700; color: #81c784; }
-        .footer-info-block p { font-size: 16px; opacity: 0.9; }
+        .footer-info-block { line-height: 1.8; margin-bottom: 25px; }
+        .footer-info-block h3 { font-size: 26px; font-weight: 700; color: #81c784; margin-bottom: 5px; }
+        .footer-info-block p { font-size: 15px; opacity: 0.9; }
+        .bionova-mention { font-size: 14px; color: #a5d6a7; font-weight: 600; margin-top: 5px; }
 
-        .footer-visitor-box {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: rgba(255, 255, 255, 0.06); padding: 8px 24px;
-            border-radius: 30px; margin-bottom: 25px; font-size: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+        .footer-visitor-box { display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.06); padding: 8px 24px; border-radius: 30px; margin-bottom: 25px; font-size: 14px; border: 1px solid rgba(255, 255, 255, 0.1); }
         .footer-visitor-box i { color: #81c784; }
-
         .copyright { font-size: 13.5px; opacity: 0.5; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); }
 
         /* ==========================================================================
-           7. سیستەمی ڕیسپۆنسڤ (Responsive Optimization)
+           7. مۆبایل و شاشە بچووکەکان (چارەسەری تەواوی درێژی ناڤبار)
            ========================================================================== */
         @media (max-width: 1024px) {
             .chapters-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
-            .hero-main-title { font-size: 58px; }
+            .hero-main-title { font-size: 52px; }
         }
 
         @media (max-width: 768px) {
-            .navbar { padding: 0 20px; }
-            .hero-section-wrapper { padding: 100px 15px 20px 15px; }
-            .hero-curved-container { padding: 40px 20px; min-height: 60vh; }
-            .hero-main-title { font-size: 42px; }
-            .hero-desc { font-size: 16px; }
-            .chapters-section { padding: 40px 15px; }
-            .chapters-grid { grid-template-columns: 1fr; gap: 30px; }
-            .chapter-card { height: 440px; }
-        }
+            .navbar { padding: 0 15px; height: 70px; }
+            .logo h2 { font-size: 18px; }
+            .menu-toggle-btn { font-size: 22px; }
+            .lang-btn { padding: 5px 8px; font-size: 11px; }
+            .theme-controller-wrapper { font-size: 11px; gap: 4px; }
+            .theme-switch { width: 38px; height: 20px; }
+            .slider:before { height: 14px; width: 14px; bottom: 3px; left: 3px; }
+            input:checked + .slider:before { transform: translateX(18px); }
 
-        @keyframes cardScrollIn {
-            to { opacity: 1; transform: translateY(0); }
+            .hero-section-wrapper { padding: 90px 15px 20px 15px; }
+            .hero-curved-container { padding: 30px 15px; min-height: 55vh; border-radius: 20px; }
+            .hero-main-title { font-size: 34px; }
+            .hero-desc { font-size: 15px; margin-bottom: 25px; }
+            .hero-btn { padding: 12px 28px; font-size: 14px; }
+
+            .chapters-section { padding: 40px 15px; }
+            .section-title { font-size: 26px; margin-bottom: 40px; }
+            .chapters-grid { grid-template-columns: 1fr; gap: 25px; }
+            .chapter-card { height: 420px; border-radius: 20px; }
+            .chapter-info-box { margin: 0 12px 12px 12px; padding: 20px 15px; }
+            
+            .waves-container { height: 70px; }
+            .footer-section { padding-top: 60px; }
         }
     </style>
 </head>
@@ -354,7 +261,8 @@
                 <button class="lang-btn" data-lang="ar">العربية</button>
             </div>
     
-            <div class="theme-switch-wrapper">
+            <div class="theme-controller-wrapper">
+                <span id="theme-status-text">ڕووناک</span>
                 <label class="theme-switch" for="checkbox">
                     <input type="checkbox" id="checkbox" />
                     <div class="slider"></div>
@@ -366,11 +274,9 @@
     <div class="hero-section-wrapper">
         <main class="hero-curved-container">
             <div class="hero-content">
-                <h1 class="hero-main-title">NovaEntomo<br><span>زانستی مێرووناسی</span></h1>
-                <p class="hero-desc lang-ku">پلاتفۆرمی زانستی و ئەکادیمی پێشکەوتوو بۆ توێژینەوە، پۆلێنکردن و ناسینەوەی خێزانی مێرووەکان بە تەکنەلۆژیای زیرەک.</p>
-                <p class="hero-desc lang-en hidden">Advanced scientific and academic platform for entomological research, classification, and taxonomy.</p>
-                <p class="hero-desc lang-ar hidden">منصة علمية وأكاديمية متقدمة لأبحاث علم الحشرات والتصنيف والتعريف الذكي.</p>
-                <a href="#chapters" class="hero-btn lang-ku">دەستپێکردنی گەشتەکە <i class="ph ph-arrow-down"></i></a>
+                <h1 class="hero-main-title" id="hero-title">NovaEntomo<br><span>زانستی مێرووناسی</span></h1>
+                <p class="hero-desc" id="hero-desc">پلاتفۆرمی زانستی و ئەکادیمی پێشکەوتوو بۆ توێژینەوە، پۆلێنکردن و ناسینەوەی خێزانی مێرووەکان بە تەکنەلۆژیای زیرەک.</p>
+                <a href="#chapters" class="hero-btn" id="hero-btn-text">دەستپێکردنی گەشتەکە <i class="ph ph-arrow-down"></i></a>
             </div>
         </main>
     </div>
@@ -381,117 +287,27 @@
             <button class="close-sidebar-btn" id="close-sidebar"><i class="ph ph-x"></i></button>
         </div>
         <ul class="sidebar-links">
-            <li class="active"><a href="#"><i class="ph ph-house"></i><span class="lang-ku">سەرەکی</span><span class="lang-en hidden">Home</span><span class="lang-ar hidden">الرئيسية</span></a></li>
-            
-            <div class="sidebar-subtitle">چاپتەرەکان</div>
-            <li><a href="#ch1"><i class="ph ph-book-open"></i><span>١. زانیاری زیادە</span></a></li>
-            <li><a href="#ch2"><i class="ph ph-book-open"></i><span>٢. دەستپێکێک بۆ مێرووناسی</span></a></li>
-            <li><a href="#ch3"><i class="ph ph-book-open"></i><span>٣. پۆلێنکردن و ناسینەوە</span></a></li>
-            <li><a href="#ch4"><i class="ph ph-book-open"></i><span>٤. مێرووە بەسوودەکان</span></a></li>
-            <li><a href="#ch5"><i class="ph ph-book-open"></i><span>٥. مێرووە زیانبەخشەکان</span></a></li>
-            <li><a href="#ch6"><i class="ph ph-book-open"></i><span>٦. ستراتیژیەکانی کۆنتڕۆڵکردن</span></a></li>
-            <li><a href="#ch7"><i class="ph ph-book-open"></i><span>٧. تەکنیکە تاقیگەیەکان</span></a></li>
-            <li><a href="#ch8"><i class="ph ph-book-open"></i><span>٨. ڕوونکردنەوەی ڤیدیۆیی</span></a></li>
-            <li><a href="#ch9"><i class="ph ph-book-open"></i><span>٩. کویز</span></a></li>
+            <li class="active" id="sidebar-home-li">
+                <a href="#"><i class="ph ph-house"></i><span id="sb-home">سەرەکی</span></a>
+            </li >
+            <div class="sidebar-subtitle" id="sb-title-ch">چاپتەرەکان</div>
+            <li><a href="#ch1"><i class="ph ph-book-open"></i><span id="sb-ch1">١. زانیاری زیادە</span></a></li>
+            <li><a href="#ch2"><i class="ph ph-book-open"></i><span id="sb-ch2">٢. دەستپێکێک بۆ مێرووناسی</span></a></li>
+            <li><a href="#ch3"><i class="ph ph-book-open"></i><span id="sb-ch3">٣. پۆلێنکردن و ناسینەوە</span></a></li>
+            <li><a href="#ch4"><i class="ph ph-book-open"></i><span id="sb-ch4">٤. مێرووە بەسوودەکان</span></a></li>
+            <li><a href="#ch5"><i class="ph ph-book-open"></i><span id="sb-ch5">٥. مێرووە زیانبەخشەکان</span></a></li>
+            <li><a href="#ch6"><i class="ph ph-book-open"></i><span id="sb-ch6">٦. ستراتیژیەکانی کۆنتڕۆڵکردن</span></a></li>
+            <li><a href="#ch7"><i class="ph ph-book-open"></i><span id="sb-ch7">٧. تەکنیکە تاقیگەیەکان</span></a></li>
+            <li><a href="#ch8"><i class="ph ph-book-open"></i><span id="sb-ch8">٨. ڕوونکردنەوەی ڤیدیۆیی</span></a></li>
+            <li><a href="#ch9"><i class="ph ph-book-open"></i><span id="sb-ch9">٩. کویز</span></a></li>
         </ul>
     </aside>
 
     <section class="chapters-section" id="chapters">
-        <h2 class="section-title lang-ku">چاپتەرەکانی <span>پڕۆگرامەکە</span></h2>
+        <h2 class="section-title" id="section-main-title">چاپتەرەکانی <span>پڕۆگرامەکە</span></h2>
 
-        <div class="chapters-grid">
-            
-            <div class="chapter-card" id="ch1" style="animation-delay: 0.1s;">
-                <span class="chapter-badge">CH 01</span>
-                <div class="card-img-bg" style="background-image: url('https://images.unsplash.com/photo-1470246973918-29a93221c455?q=80&w=600&auto=format&fit=crop');"></div>
-                <div class="chapter-info-box">
-                    <h3>زانیاری زیادە</h3>
-                    <p>مێژوو و سەرچاوە زانستییە جیهانییەکانی تایبەت بە پەرەپێدانی زانستی مێرووناسی.</p>
-                    <a href="#" class="chapter-btn">خوێندنەوەی زیاتر</a>
-                </div>
+        <div class="chapters-grid" id="chapters-container">
             </div>
-
-            <div class="chapter-card" id="ch2" style="animation-delay: 0.15s;">
-                <span class="chapter-badge">CH 02</span>
-                <div class="card-img-bg" style="background-image: url('https://images.unsplash.com/photo-1541689592655-f5f52827a3b4?q=80&w=600&auto=format&fit=crop');"></div>
-                <div class="chapter-info-box">
-                    <h3>دەستپێکێک بۆ مێرووناسی</h3>
-                    <p>تێڕوانینێکی گشتی لەسەر جیهانی مێرووەکان و پێکهاتە بایۆلۆجییە سەرەتاییەکانیان.</p>
-                    <a href="#" class="chapter-btn">خوێندنەوەی زیاتر</a>
-                </div>
-            </div>
-
-            <div class="chapter-card" id="ch3" style="animation-delay: 0.2s;">
-                <span class="chapter-badge">CH 03</span>
-                <div class="card-img-bg" style="background-image: url('https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop');"></div>
-                <div class="chapter-info-box">
-                    <h3>پۆلێنکردن و ناسینەوە</h3>
-                    <p>چۆنیەتی جیاکردنەوە، ناسینەوە و پۆلێنکردنی خێزانە جیاوازەکانی مێرووەکان.</p>
-                    <a href="#" class="chapter-btn">خوێندنەوەی زیاتر</a>
-                </div>
-            </div>
-
-            <div class="chapter-card" id="ch4" style="animation-delay: 0.25s;">
-                <span class="chapter-badge">CH 04</span>
-                <div class="card-img-bg" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600&auto=format&fit=crop');"></div>
-                <div class="chapter-info-box">
-                    <h3>مێرووە بەسوودەکان</h3>
-                    <p>ڕۆڵی مێرووەکان لە پرۆسەی گەردەپشکنینی ڕووەک و پاراستنی هاوسەنگی سروشت.</p>
-                    <a href="#" class="chapter-btn">خوێندنەوەی زیاتر</a>
-                </div>
-            </div>
-
-            <div class="chapter-card" id="ch5" style="animation-delay: 0.3s;">
-                <span class="chapter-badge">CH 05</span>
-                <div class="card-img-bg" style="background-image: url('https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?q=80&w=600&auto=format&fit=crop');"></div>
-                <div class="chapter-info-box">
-                    <h3>مێرووە زیانبەخشەکان</h3>
-                    <p>ناسینی ئەو ئافاتانەی زیان بە بەرهەمە کشتوکاڵییەکان و تەندروستی مرۆڤ دەگەیەنن.</p>
-                    <a href="#" class="chapter-btn">خوێندنەوەی زیاتر</a>
-                </div>
-            </div>
-
-            <div class="chapter-card" id="ch6" style="animation-delay: 0.35s;">
-                <span class="chapter-badge">CH 06</span>
-                <div class="card-img-bg" style="background-image: url('https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?q=80&w=600&auto=format&fit=crop');"></div>
-                <div class="chapter-info-box">
-                    <h3>ستراتیژیەکانی کۆنتڕۆڵکردن</h3>
-                    <p>شێوازە مۆدێرن، کیمیایی و بایۆلۆجییەکان بۆ قڕکردن و کۆنتڕۆڵی ئافاتە زیانبەخشەکان.</p>
-                    <a href="#" class="chapter-btn">خوێندنەوەی زیاتر</a>
-                </div>
-            </div>
-
-            <div class="chapter-card" id="ch7" style="animation-delay: 0.4s;">
-                <span class="chapter-badge">CH 07</span>
-                <div class="card-img-bg" style="background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop');"></div>
-                <div class="chapter-info-box">
-                    <h3>تەکنیکە تاقیگەیەکان</h3>
-                    <p>شیکردنەوەی تاقیگەیی ورد بۆ ناسینەوەی ئاستی سوود و زیانی مێرووە جیاوازەکان.</p>
-                    <a href="#" class="chapter-btn">خوێندنەوەی زیاتر</a>
-                </div>
-            </div>
-
-            <div class="chapter-card" id="ch8" style="animation-delay: 0.45s;">
-                <span class="chapter-badge">CH 08</span>
-                <div class="card-img-bg" style="background-image: url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=600&auto=format&fit=crop');"></div>
-                <div class="chapter-info-box">
-                    <h3>ڕوونکردنەوەی ڤیدیۆیی</h3>
-                    <p>مایکرۆسکۆپی دیجیتاڵی و پشکنینی پراکتیکی ڕاستەوخۆ لەناو تاقیگە بە ڤیدیۆ.</p>
-                    <a href="#" class="chapter-btn">سەیرکردن</a>
-                </div>
-            </div>
-
-            <div class="chapter-card" id="ch9" style="animation-delay: 0.5s;">
-                <span class="chapter-badge">CH 09</span>
-                <div class="card-img-bg" style="background-image: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600&auto=format&fit=crop');"></div>
-                <div class="chapter-info-box">
-                    <h3>کویز و تاقیکردنەوە</h3>
-                    <p>خۆت هەڵسەنگێنە لە ڕێگەی پرسیار و وەڵامی زانستی و ئەزموونی ئاستی زانیاریت.</p>
-                    <a href="#" class="chapter-btn">دەستپێکردن</a>
-                </div>
-            </div>
-
-        </div>
     </section>
 
     <footer class="footer-section">
@@ -512,91 +328,254 @@
 
         <div class="footer-content">
             <div class="footer-info-block">
-                <h3>NovaEntomo Website</h3>
-                <p>پلاتفۆڕمی زانستی مێرووناسی</p>
-                <p>بەشی بایۆلۆجی - کۆلێژی زانست - زانکۆی ڕاپەڕین</p>
+                <h3>NovaEntomo</h3>
+                <p id="f-p1">پلاتفۆڕمی زانستی مێرووناسی</p>
+                <p id="f-p2">بەشی بایۆلۆجی - کۆلێژی زانست - زانکۆی ڕاپەڕین</p>
+                <p id="f-bionova" class="bionova-mention">ئەم پلاتفۆرمە گەشەی پێدراوە لە لایەن تیمی BioNova</p>
             </div>
 
             <div class="footer-visitor-box">
                 <i class="ph ph-eye"></i>
-                <span>بینەری گشتی: <b id="visitor-count">124</b> کەس</span>
+                <span><span id="f-vtext">بینەری گشتی:</span> <b id="visitor-count">0</b></span>
             </div>
             
-            <p class="copyright">
+            <p class="copyright" id="f-copy">
                 سەرجەم مافەکانی پارێزراوە 2026 &copy; NovaEntomo
             </p>
         </div>
     </footer>
 
     <script>
-        const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-        const htmlTag = document.getElementById('html-tag');
-        const langBtns = document.querySelectorAll('.lang-btn');
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('overlay');
-        const openSidebarBtn = document.getElementById('open-sidebar');
-        const closeSidebarBtn = document.getElementById('close-sidebar');
-
-        /* ١. بەڕێوەبردنی هۆشمەندی بینەر (تەنها بە گۆڕینی سێشن یان سەردانی نوێ زیاد دەکات، نەک ڕیفرێش) */
-        let sessionView = sessionStorage.getItem('has_visited');
-        let currentViews = localStorage.getItem('total_entomo_views');
-        
-        if (!currentViews) {
-            currentViews = 124; // ژمارەیەکی بنچینەیی سەرەتایی ناوازە
-            localStorage.setItem('total_entomo_views', currentViews);
-        }
-
-        if (!sessionView) {
-            // ئەگەر سەردانی نوێ بێت و تابەکە تازە کرابێتەوە زیاد دەکات
-            currentViews = parseInt(currentViews) + 1;
-            localStorage.setItem('total_entomo_views', currentViews);
-            sessionStorage.setItem('has_visited', 'true');
-        }
-
-        document.getElementById('visitor-count').innerText = parseInt(currentViews).toLocaleString('ku-IQ');
-
-        /* ٢. کۆنتڕۆڵی لایت/دارک مۆد */
-        function switchTheme(e) {
-            if (e.target.checked) {
-                htmlTag.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                htmlTag.setAttribute('data-theme', 'light');
-                localStorage.setItem('theme', 'light');
+        /* داتابەیسی زمانەکان بۆ تەواوی نووسینەکانی ماڵپەڕەکە */
+        const translations = {
+            ku: {
+                title: "NovaEntomo<br><span>زانستی مێرووناسی</span>",
+                desc: "پلاتفۆرمی زانستی و ئەکادیمی پێشکەوتوو بۆ توێژینەوە، پۆلێنکردن و ناسینەوەی خێزانی مێرووەکان بە تەکنەلۆژیای زیرەک.",
+                btnText: "دەستپێکردنی گەشتەکە",
+                sbHome: "سەرەکی",
+                sbTitleCh: "چاپتەرەکان",
+                secTitle: "چاپتەرەکانی <span>پڕۆگرامەکە</span>",
+                fP1: "پلاتفۆڕمی زانستی مێرووناسی",
+                fP2: "بەشی بایۆلۆجی - کۆلێژی زانست - زانکۆی ڕاپەڕین",
+                fBio: "ئەم پلاتفۆرمە گەشەی پێدراوە لە لایەن تیمی BioNova",
+                fVtext: "بینەری گشتی:",
+                fCopy: "سەرجەم مافەکانی پارێزراوە 2026 &copy; NovaEntomo",
+                readMore: "خوێندنەوەی زیاتر",
+                viewBtn: "سەیرکردن",
+                startBtn: "دەستپێکردن",
+                light: "ڕووناک",
+                dark: "تاریک",
+                chapters: [
+                    { title: "١. زانیاری زیادە", desc: "مێژوو و سەرچاوە زانستییە جیهانییەکانی تایبەت بە زانستی مێرووناسی." },
+                    { title: "٢. دەستپێکێک بۆ مێرووناسی", desc: "تێڕوانینێکی گشتی لەسەر جیهانی مێرووەکان و پێکهاتە بایۆلۆجییەکانیان." },
+                    { title: "٣. پۆلێنکردن و ناسینەوە", desc: "چۆنیەتی جیاکردنەوە، ناسینەوە و پۆلێنکردنی خێزانە جیاوازەکانی مێرووەکان." },
+                    { title: "٤. مێرووە بەسوودەکان", desc: "ڕۆڵی مێرووەکان لە پرۆسەی گەردەپشکنینی ڕووەک و هاوسەنگی سروشت." },
+                    { title: "٥. مێرووە زیانبەخشەکان", desc: "ناسینی ئەو ئافاتانەی زیان بە بەرهەمە کشتوکاڵییەکان دەگەیەنن." },
+                    { title: "٦. ستراتیژیەکانی کۆنتڕۆڵکردن", desc: "شێوازە مۆدێرنەکان بۆ قڕکردن و کۆنتڕۆڵی ئافاتە زیانبەخشەکان." },
+                    { title: "٧. تەکنیکە تاقیگەیەکان", desc: "شیکردنەوەی تاقیگەیی ورد بۆ ناسینەوەی مێرووە جیاوازەکان." },
+                    { title: "٨. ڕوونکردنەوەی ڤیدیۆیی", desc: "مایکرۆسکۆپی دیجیتاڵی و پشکنینی پراکتیکی لەناو تاقیگە بە ڤیدیۆ." },
+                    { title: "٩. کویز", desc: "خۆت هەڵسەنگێنە لە ڕێگەی پرسیار و وەڵامی زانستی مێرووناسی." }
+                ]
+            },
+            en: {
+                title: "NovaEntomo<br><span>Entomology Science</span>",
+                desc: "Advanced scientific and academic platform for entomological research, classification, and smart insect identification.",
+                btnText: "Start the Journey",
+                sbHome: "Home",
+                sbTitleCh: "Chapters",
+                secTitle: "Program <span>Chapters</span>",
+                fP1: "Scientific Platform for Entomology",
+                fP2: "Department of Biology - College of Science - University of Raparin",
+                fBio: "This platform was developed by BioNova Team",
+                fVtext: "Total Views:",
+                fCopy: "All Rights Reserved 2026 &copy; NovaEntomo",
+                readMore: "Read More",
+                viewBtn: "Watch Now",
+                startBtn: "Start Quiz",
+                light: "Light",
+                dark: "Dark",
+                chapters: [
+                    { title: "1. Extra Information", desc: "History and global scientific sources for the development of entomology." },
+                    { title: "2. Introduction to Entomology", desc: "An overview of the insect world and their basic biological structures." },
+                    { title: "3. Classification & Identification", desc: "How to differentiate, identify, and classify different insect families." },
+                    { title: "4. Beneficial Insects", desc: "The crucial role of insects in plant pollination and ecological balance." },
+                    { title: "5. Harmful Insects", desc: "Identifying pests that damage agricultural products and human health." },
+                    { title: "6. Control Strategies", desc: "Modern, chemical, and biological methods for pest management." },
+                    { title: "7. Laboratory Techniques", desc: "Detailed laboratory analysis and preservation methods for insects." },
+                    { title: "8. Video Explanations", desc: "Digital microscopy and practical live laboratory examinations via video." },
+                    { title: "9. Quiz", desc: "Evaluate your knowledge through scientific questions and answers." }
+                ]
+            },
+            ar: {
+                title: "NovaEntomo<br><span>علم الحشرات</span>",
+                desc: "منصة علمية وأكاديمية متقدمة لأبحاث علم الحشرات، التصنيف، والتعريف الذكي للأنظمة البيئية الحشرية.",
+                btnText: "ابدأ الرحلة",
+                sbHome: "الرئيسية",
+                sbTitleCh: "الفصول",
+                secTitle: "فصول <span>البرنامج</span>",
+                fP1: "المنصة العلمية لعلم الحشرات",
+                fP2: "قسم الأحياء - كلية العلوم - جامعة رابرين",
+                fBio: "تم تطوير هذه المنصة بواسطة فريق BioNova",
+                fVtext: "المشاهدات العامة:",
+                fCopy: "جميع الحقوق محفوظة 2026 &copy; NovaEntomo",
+                readMore: "اقرأ المزيد",
+                viewBtn: "مشاهدة الآن",
+                startBtn: "ابدأ الآن",
+                light: "مضيء",
+                dark: "مظلم",
+                chapters: [
+                    { title: "١. معلومات إضافية", desc: "التاريخ والمصادر العلمية العالمية الخاصة بتطوير علم الحشرات." },
+                    { title: "٢. مقدمة في علم الحشرات", desc: "نظرة عامة على عالم الحشرات وهياكلها البيولوجية الأساسية." },
+                    { title: "٣. التصنيف والتعريف", desc: "كيفية التمييز والتعرف وتصنيف العائلات المختلفة للحشرات." },
+                    { title: "٤. الحشرات المفيدة", desc: "دور الحشرات في عملية تلقيح النباتات والحفاظ على التوازن البيئي." },
+                    { title: "٥. الحشرات الضارة", desc: "التعرف على الآفات التي تضر بالمنتجات الزراعية وصحة الإنسان." },
+                    { title: "٦. استراتيجيات المكافحة", desc: "الطرق الحديثة والكيميائية والبيولوجية لمكافحة الآفات الضارة." },
+                    { title: "٧. التقنيات المختبرية", desc: "التحليل المختبري الدقيق للتعرف على الحشرات المختلفة." },
+                    { title: "٨. شروحات الفيديو", desc: "الفحص المجهري الرقمي والاختبارات العملية المباشرة بالفيديو." },
+                    { title: "٩. الاختبار", desc: "قيم نفسك من خلال الأسئلة والأجوبة العلمية في علم الحشرات." }
+                ]
             }
-        }
-        toggleSwitch.addEventListener('change', switchTheme, false);
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        htmlTag.setAttribute('data-theme', currentTheme);
-        if (currentTheme === 'dark') { toggleSwitch.checked = true; }
+        };
 
-        /* ٣. سیستەمی گۆڕینی زمانەکان */
-        langBtns.forEach(btn => {
+        const images = [
+            'https://images.unsplash.com/photo-1470246973918-29a93221c455?q=80&w=600&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1541689592655-f5f52827a3b4?q=80&w=600&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?q=80&w=600&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?q=80&w=600&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=600&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600&auto=format&fit=crop'
+        ];
+
+        const htmlTag = document.getElementById('html-tag');
+        const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+        const themeStatusText = document.getElementById('theme-status-text');
+        const chaptersContainer = document.getElementById('chapters-container');
+
+        /* ١. بەڕێوەبردنی سیستەمی زمانی گشتگیر */
+        function applyLanguage(lang) {
+            const data = translations[lang];
+            
+            // وەرگێڕانی بەشی هێرۆ و ناڤبار
+            document.getElementById('hero-title').innerHTML = data.title;
+            document.getElementById('hero-desc').innerText = data.desc;
+            document.getElementById('hero-btn-text').innerHTML = `${data.btnText} <i class="ph ph-arrow-down"></i>`;
+            document.getElementById('sb-home').innerText = data.sbHome;
+            document.getElementById('sb-title-ch').innerText = data.sbTitleCh;
+            document.getElementById('section-main-title').innerHTML = data.secTitle;
+            
+            // وەرگێڕانی سایدبار یەک بە یەک
+            for(let i=1; i<=9; i++) {
+                document.getElementById(`sb-ch${i}`).innerText = data.chapters[i-1].title;
+            }
+
+            // وەرگێڕانی فووتەر
+            document.getElementById('f-p1').innerText = data.fP1;
+            document.getElementById('f-p2').innerText = data.fP2;
+            document.getElementById('f-bionova').innerText = data.fBio;
+            document.getElementById('f-vtext').innerText = data.fVtext;
+            document.getElementById('f-copy').innerHTML = data.fCopy;
+
+            // گۆڕینی دۆخی سویچی لایت و دارک بەپێی زمان
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            themeStatusText.innerText = data[currentTheme];
+
+            // دروستکردن و وەرگێڕانی کارتەکانی چاپتەر
+            chaptersContainer.innerHTML = '';
+            data.chapters.forEach((ch, index) => {
+                let btnLabel = data.readMore;
+                if(index === 7) btnLabel = data.viewBtn;
+                if(index === 8) btnLabel = data.startBtn;
+
+                const cardHtml = `
+                    <div class="chapter-card" id="ch${index+1}" style="animation-delay: ${0.1 + (index*0.05)}s;">
+                        <span class="chapter-badge">CH 0${index+1}</span>
+                        <div class="card-img-bg" style="background-image: url('${images[index]}');"></div>
+                        <div class="chapter-info-box">
+                            <h3>${ch.title}</h3>
+                            <p>${ch.desc}</p>
+                            <a href="#" class="chapter-btn">${btnLabel}</a>
+                        </div>
+                    </div>
+                `;
+                chaptersContainer.insertAdjacentHTML('beforeend', cardHtml);
+            });
+        }
+
+        // چالاککردنی دوگمەکانی گۆڕینی زمان
+        document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', function() {
-                langBtns.forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-                
                 const selectedLang = this.getAttribute('data-lang');
+                
                 if (selectedLang === 'en') {
                     htmlTag.setAttribute('dir', 'ltr');
-                    htmlTag.setAttribute('lang', 'en');
                 } else {
                     htmlTag.setAttribute('dir', 'rtl');
-                    htmlTag.setAttribute('lang', selectedLang);
                 }
-
-                document.querySelectorAll('.lang-ku, .lang-en, .lang-ar').forEach(el => {
-                    if (el.classList.contains(`lang-${selectedLang}`)) {
-                        el.classList.remove('hidden');
-                    } else {
-                        el.classList.add('hidden');
-                    }
-                });
+                htmlTag.setAttribute('lang', selectedLang);
+                localStorage.setItem('preferred_lang', selectedLang);
+                applyLanguage(selectedLang);
             });
         });
 
-        /* ٤. سایدبار */
-        openSidebarBtn.addEventListener('click', () => {
+        /* ٢. لۆژیکی بینەری گشتی واقیعی (لە 0 دەستپێدەکات و بە ڕیفرێش زیاد ناکات) */
+        let sessionView = sessionStorage.getItem('nova_session_active');
+        let totalViews = localStorage.getItem('nova_total_views');
+        
+        if (totalViews === null) {
+            totalViews = 0; // بە تەواوی لە 0 دەست پێ دەکات
+            localStorage.setItem('nova_total_views', totalViews);
+        }
+
+        if (!sessionView) {
+            // تەنها ئەگەر بەکارهێنەرەکە تازە هاتبێتە ناو ماڵپەڕەکە زیاد دەکات
+            totalViews = parseInt(totalViews) + 1;
+            localStorage.setItem('nova_total_views', totalViews);
+            sessionStorage.setItem('nova_session_active', 'true');
+        }
+
+        const currentLang = localStorage.getItem('preferred_lang') || 'ku';
+        const numLocale = currentLang === 'en' ? 'en-US' : (currentLang === 'ar' ? 'ar-EG' : 'ku-IQ');
+        document.getElementById('visitor-count').innerText = parseInt(totalViews).toLocaleString(numLocale);
+
+        /* ٣. لۆژیکی سویچی لایت مۆد و دارک مۆد */
+        function switchTheme(e) {
+            const activeLang = htmlTag.getAttribute('lang') || 'ku';
+            if (e.target.checked) {
+                htmlTag.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeStatusText.innerText = translations[activeLang].dark;
+            } else {
+                htmlTag.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                themeStatusText.innerText = translations[activeLang].light;
+            }
+        }
+        toggleSwitch.addEventListener('change', switchTheme, false);
+        
+        /* ٤. بارکردنی سەرەتایی ماڵپەڕەکە */
+        const initialTheme = localStorage.getItem('theme') || 'light';
+        htmlTag.setAttribute('data-theme', initialTheme);
+        if (initialTheme === 'dark') { toggleSwitch.checked = true; }
+        
+        const initialLang = localStorage.getItem('preferred_lang') || 'ku';
+        document.querySelectorAll('.lang-btn').forEach(b => {
+            if(b.getAttribute('data-lang') === initialLang) b.classList.add('active');
+            else b.classList.remove('active');
+        });
+        if (initialLang === 'en') htmlTag.setAttribute('dir', 'ltr');
+        htmlTag.setAttribute('lang', initialLang);
+        applyLanguage(initialLang);
+
+        /* ٥. لۆژیکی سایدبار */
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        
+        document.getElementById('open-sidebar').addEventListener('click', () => {
             sidebar.classList.add('open');
             overlay.classList.add('show');
         });
@@ -605,11 +584,13 @@
             sidebar.classList.remove('open');
             overlay.classList.remove('show');
         }
-        closeSidebarBtn.addEventListener('click', closeSidebar);
+        document.getElementById('close-sidebar').addEventListener('click', closeSidebar);
         overlay.addEventListener('click', closeSidebar);
         
-        document.querySelectorAll('.sidebar-links a').forEach(link => {
-            link.addEventListener('click', closeSidebar);
+        document.addEventListener('click', function(e) {
+            if(e.target.closest('.sidebar-links a')) {
+                closeSidebar();
+            }
         });
     </script>
 </body>
