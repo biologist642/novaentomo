@@ -3,17 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NovaEntomo ئەتڵەسی مێروولەزانی</title>
+    <title>NovaEntomo زانستی مێرووناسی</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;600;700&family=Poppins:wght@300;400;600;700&display=swap"
     rel="stylesheet">
 
-    <style>
-         /* 🎨 گۆڕاوە سەرەکییەکان */
-         :root {
-            --by-main: #F7F1DE
-            --by-navbar: rgba (15, 43, 29, 0.80);
-            --border-nav:
-         }
-    </style>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+</head>
+    <header class="navbar">
+        <div class="logo">
+            <h2>Nova<span>Entomo</span></h2>
+        </div>
+    
+        <nav class="nav-links">
+            <a href="#home" class="lang-ku">سەرەکی</a>
+            <a href="#home" class="lang-en hidden">Home</a>
+            <a href="#home" class="lang-ar hidden">الرئيسية</a>
+    
+            <a href="#sections" class="lang-ku">بەشەکان</a>
+            <a href="#sections" class="lang-en hidden">Sections</a>
+            <a href="#sections" class="lang-ar hidden">الأقسام</a>
+    
+            <a href="#about" class="lang-ku">دەربارە</a>
+            <a href="#about" class="lang-en hidden">About</a>
+            <a href="#about" class="lang-ar hidden">حول</a>
+        </nav>
+    
+        <div class="controls">
+            <select id="lang-switcher">
+                <option value="ku">Kurdî</option>
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+            </select>
+    
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider round">
+                        <span class="stars"></span>
+                        <span class="moon"></span>
+                    </div>
+                </label>
+            </div>
+        </div>
+    </header>
 </head>
 </html>
