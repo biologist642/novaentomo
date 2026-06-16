@@ -3,41 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NovaEntomo Website - پلاتفۆڕمی زانستی مێرووناسی</title>
+    <title>NovaEntomo - پلاتفۆڕمی زانستی مێرووناسی</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
     <style>
         /* ==========================================================================
-           1. ڕەنگەکان و بنچینەی ماڵپەڕەکە (قاوەیی و سەوز)
+           1. رێکخستنی بنچینەیی و ڕەنگە زانستییەکان
            ========================================================================== */
         :root[data-theme="light"] {
-            --bg-main: #fbf9f6;
+            --bg-main: #f8f6f2;
             --bg-card: #ffffff;
-            --text-primary: #2b1810;
-            --text-secondary: #5c4338;
-            --accent-color: #2e7d32; /* سەوزی گەڵایی نۆڤا */
+            --text-primary: #2c1a11;
+            --text-secondary: #5e473c;
+            --accent-color: #2e7d32; 
             --accent-glow: rgba(46, 125, 50, 0.2);
-            --navbar-bg: #1b382b; /* ناڤباری تۆخ وەک وێنەکە */
+            --navbar-bg: #142b20; 
             --navbar-text: #ffffff;
-            --sidebar-bg: #150a06;
+            --sidebar-bg: #110805;
             --sidebar-text: #e2e8f0;
             --card-border: rgba(93, 64, 55, 0.08);
+            --wave-opacity: 0.7;
         }
 
         :root[data-theme="dark"] {
-            --bg-main: #120a07;
-            --bg-card: #1f120d;
-            --text-primary: #e2d5cf;
-            --text-secondary: #b09990;
+            --bg-main: #0f0907;
+            --bg-card: #1c100b;
+            --text-primary: #e5d8d2;
+            --text-secondary: #b59e95;
             --accent-color: #81c784;
             --accent-glow: rgba(129, 199, 132, 0.3);
-            --navbar-bg: #0d1f18;
+            --navbar-bg: #09140f;
             --navbar-text: #e2e8f0;
-            --sidebar-bg: #070302;
+            --sidebar-bg: #050201;
             --sidebar-text: #cbd5e1;
             --card-border: rgba(255, 255, 255, 0.05);
+            --wave-opacity: 0.3;
         }
 
         * {
@@ -57,7 +59,7 @@
         .hidden { display: none !important; }
 
         /* ==========================================================================
-           2. ناڤباری مۆدێرنی سەرەوە
+           2. ناڤباری ماڵپەڕەکە
            ========================================================================== */
         .navbar {
             position: fixed; top: 0; left: 0; width: 100%; height: 80px;
@@ -68,7 +70,7 @@
 
         .nav-right-group { display: flex; align-items: center; gap: 20px; }
         .menu-toggle-btn { background: none; border: none; font-size: 28px; color: var(--navbar-text); cursor: pointer; }
-        .logo h2 { font-size: 24px; font-weight: 700; color: var(--navbar-text); }
+        .logo h2 { font-size: 24px; font-weight: 700; color: var(--navbar-text); letter-spacing: 0.5px; }
         .logo h2 span { color: var(--accent-color); }
 
         .controls { display: flex; align-items: center; gap: 20px; }
@@ -84,7 +86,7 @@
         input:checked + .slider:before { transform: translateX(22px); }
 
         /* ==========================================================================
-           3. دیزاینی بەشی سەرەکی (Hero Section) ڕێک وەک وێنەی نێردراو (growth)
+           3. بەشی هێرۆ (تەواو ناوەڕاستکراو + باکگراوندی مێرووناسی و مۆشن)
            ========================================================================== */
         .hero-section-wrapper {
             padding: 120px 40px 40px 40px;
@@ -92,70 +94,93 @@
             margin: 0 auto;
         }
 
-        /* چوارچێوەیەکی دەورەدراوی بازنەیی ڕێک وەک کارتەکەی ناو وێنەی Growth */
         .hero-curved-container {
             position: relative;
             width: 100%;
             min-height: 75vh;
             border-radius: 32px;
             overflow: hidden;
-            border: 6px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            border: 5px solid rgba(255, 255, 255, 0.75);
+            box-shadow: 0 25px 55px rgba(0, 0, 0, 0.2);
             
-            /* باکگراوندی پەپوولە لە شوێنی گەڵاکە جێگیرکراوە */
-            background-image: linear-gradient(to left, rgba(17, 34, 26, 0.85), rgba(27, 56, 43, 0.4)), 
-                              url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=1600&auto=format&fit=crop');
+            /* جێگرتنەوەی وێنەی کۆن بە وێنەیەکی کوالیتی بەرزی ماکرۆ مێرووناسی و پەپوولە */
+            background-image: linear-gradient(to top, rgba(12, 26, 19, 0.92), rgba(20, 43, 32, 0.75)), 
+                              url('https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=1600&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 60px;
+            align-items: center;
+            justify-content: center; /* ناوەڕاستکردنی ئاسۆیی */
+            text-align: center; /* ناوەڕاستکردنی دەقەکان */
+            padding: 40px;
         }
 
         .hero-content {
-            max-width: 650px;
+            max-width: 800px;
             z-index: 5;
             color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* ستایلی نووسینی دروشمی گەورە (growth) */
+        /* مۆشنی دەرکەوتنی پیتاوپیتی نووسینی سەرەکی */
         .hero-main-title {
-            font-size: 80px;
+            font-size: 76px;
             font-weight: 800;
-            line-height: 1;
-            letter-spacing: -2px;
+            line-height: 1.1;
+            letter-spacing: -1px;
             margin-bottom: 20px;
-            text-transform: lowercase;
             color: #ffffff;
             font-family: 'Poppins', sans-serif;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: heroFadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.2s;
+        }
+        .hero-main-title span {
+            color: var(--accent-color);
         }
 
         .hero-desc {
-            font-size: 18px;
-            line-height: 1.7;
-            margin-bottom: 30px;
-            color: rgba(255, 255, 255, 0.9);
-            max-width: 500px;
+            font-size: 20px;
+            line-height: 1.8;
+            margin-bottom: 35px;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 650px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: heroFadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.4s;
         }
 
         .hero-btn {
             display: inline-flex; align-items: center; gap: 10px;
-            padding: 14px 32px; background-color: var(--accent-color);
+            padding: 15px 36px; background-color: var(--accent-color);
             color: white; text-decoration: none; font-weight: 600;
-            border-radius: 50px; box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            border-radius: 50px; box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
+            font-size: 16px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: heroFadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.6s;
         }
-        .hero-btn:hover { transform: translateY(-3px); }
+        .hero-btn:hover { 
+            transform: translateY(-4px); 
+            box-shadow: 0 12px 30px rgba(46, 125, 50, 0.6);
+        }
+
+        @keyframes heroFadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         /* ==========================================================================
-           4. سایدیاری درۆوەر (سەرەکی + ناوی تەواوی ٩ چاپتەرەکە)
+           4. سایدیاری درۆوەر (تەواوی ٩ چاپتەرەکە)
            ========================================================================== */
         .sidebar {
             position: fixed; top: 0; right: -320px; width: 310px; height: 100vh;
             background-color: var(--sidebar-bg); color: var(--sidebar-text);
             padding: 30px 20px; box-shadow: -5px 0 30px rgba(0,0,0,0.3); z-index: 2000;
             transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow-y: auto; /* بۆ گەڕان لەناو چاپتەرەکان ئەگەر شاشەکە بچووک بوو */
+            overflow-y: auto;
         }
         html[dir="ltr"] .sidebar { left: -320px; right: auto; transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
         .sidebar.open { right: 0; }
@@ -171,129 +196,139 @@
             text-decoration: none; padding: 10px 12px; border-radius: 8px; font-size: 14px; font-weight: 500;
         }
         .sidebar-links li.active a, .sidebar-links a:hover { background-color: var(--accent-color); color: white; }
-        
-        .sidebar-subtitle {
-            font-size: 12px; text-transform: uppercase; color: var(--accent-color);
-            margin: 20px 12px 10px 12px; font-weight: 700; letter-spacing: 1px;
-        }
+        .sidebar-subtitle { font-size: 12px; text-transform: uppercase; color: var(--accent-color); margin: 20px 12px 10px 12px; font-weight: 700; letter-spacing: 1px; }
 
         .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 1999; display: none; }
         .sidebar-overlay.show { display: block; }
 
         /* ==========================================================================
-           5. سێکیشنی چاپتەرەکان (مۆشن + هێنانی لاکێشەی سپی بۆ خوارەوە)
+           5. سێکیشنی چاپتەرەکان (مۆشن و شۆڕکردنەوەی کارتە سپییەکان)
            ========================================================================== */
-        .chapters-section { padding: 60px 40px; max-width: 1400px; margin: 0 auto; }
-        .section-title { font-size: 32px; font-weight: 700; text-align: center; margin-bottom: 50px; }
+        .chapters-section { padding: 80px 40px; max-width: 1400px; margin: 0 auto; }
+        .section-title { font-size: 34px; font-weight: 700; text-align: center; margin-bottom: 60px; }
         .section-title span { color: var(--accent-color); }
 
-        .chapters-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; }
+        .chapters-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
 
         .chapter-card {
-            position: relative; height: 420px; border-radius: 24px; overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.04); display: flex; flex-direction: column;
-            justify-content: flex-end; background: #1a1a1a;
-            
-            /* زیادکردنی مۆشنی سەرەتایی */
-            opacity: 0; transform: translateY(20px);
-            animation: fadeInUp 0.6s ease forwards;
+            position: relative; height: 440px; border-radius: 26px; overflow: hidden;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.03); display: flex; flex-direction: column;
+            justify-content: flex-end; background: #161616;
+            opacity: 0; transform: translateY(30px);
+            animation: cardScrollIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
-        /* مۆشنی جوڵە (Hover Motion Animation) کاتێک ماوس دەچێتە سەر کارتەکە */
+        /* مۆشنی کارتەکان لەکاتی بردنی ماوس (3D Elevation Motion) */
         .chapter-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(46, 125, 50, 0.15);
+            transform: translateY(-10px) scale(1.025);
+            box-shadow: 0 25px 50px rgba(46, 125, 50, 0.18);
         }
 
         .card-img-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 85%; /* بەرزکردنەوەی وێنەکە */
+            position: absolute; top: 0; left: 0; width: 100%; height: 85%;
             background-size: cover; background-position: center; z-index: 1;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
-        .chapter-card:hover .card-img-bg { transform: scale(1.08); }
+        .chapter-card:hover .card-img-bg { transform: scale(1.06); }
 
         .chapter-badge {
-            position: absolute; top: 20px; left: 20px; background: rgba(30, 41, 59, 0.85);
+            position: absolute; top: 20px; left: 20px; background: rgba(15, 23, 42, 0.85);
             color: #81c784; padding: 6px 14px; font-size: 13px; font-weight: 700;
             border-radius: 20px; backdrop-filter: blur(5px); z-index: 3;
         }
         html[dir="ltr"] .chapter-badge { left: auto; right: 20px; }
 
-        /* لاکێشە سپییەکە کەمێک هێنراوەتە خوارتر بەپێی داواکارییەکەت تا وێنەکە جوان دەرکەوێت */
+        /* کارتە سپییەکە کەمێک هێنراوەتە خوارتر بەپێی داواکارییەکەت تا باکگراوندەکە زۆرتر دیاربێت */
         .chapter-info-box {
             position: relative; background: var(--bg-card); border-radius: 22px;
-            padding: 22px 20px; margin: 0 14px 14px 14px; z-index: 2;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.05); text-align: center;
+            padding: 24px 20px; margin: 0 16px 16px 16px; z-index: 2;
+            box-shadow: 0 -5px 25px rgba(0,0,0,0.04); text-align: center;
             border: 1px solid var(--card-border);
-            transform: translateY(5px); /* هێنانە خوارەوەی کارتە ناوەکییەکە */
+            transform: translateY(12px); /* شۆڕکردنەوەی زیاتر بۆ خوارەوە */
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .chapter-card:hover .chapter-info-box {
+            transform: translateY(0px); /* مۆشنی بەرزبوونەوە لەکاتی هۆڤەردا */
         }
 
-        .chapter-info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--text-primary); }
-        .chapter-info-box p { font-size: 13.5px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px; }
+        .chapter-info-box h3 { font-size: 19px; font-weight: 700; margin-bottom: 12px; color: var(--text-primary); }
+        .chapter-info-box p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 18px; }
         
         .chapter-btn {
             display: inline-flex; align-items: center; background: none; border: 1px solid var(--card-border);
-            padding: 6px 20px; border-radius: 30px; color: var(--accent-color); font-weight: 700; font-size: 13px; text-decoration: none;
+            padding: 7px 22px; border-radius: 30px; color: var(--accent-color); font-weight: 700; font-size: 13px; text-decoration: none;
         }
         .chapter-btn:hover { background: var(--accent-color); color: white; }
 
         /* ==========================================================================
-           6. فووتەری وێڤی نوێ (Wave Footer) لەگەڵ بینەری گشتی
+           6. فووتەر بە شەپۆلی جوڵاوی زیندوو (Live CSS Animated Waves)
            ========================================================================== */
         .footer-section {
             position: relative;
-            background: #11221a;
-            padding-top: 90px; /* جێگای وەیڤەکە */
+            background: #0f1f18;
+            padding-top: 100px;
             padding-bottom: 40px;
             text-align: center;
             color: #ffffff;
-            margin-top: 100px;
+            margin-top: 120px;
         }
 
-        /* درووستکردنی دیزاینی وێڤی (شەپۆلی) لە فووتەر ڕێک وەک سکرینشۆتەکە */
-        .footer-wave-svg {
-            position: absolute; top: -1px; left: 0; width: 100%; height: 80px; overflow: hidden; line-height: 0; transform: rotate(180deg);
+        /* کۆنتێنەری وێڤی مۆشن */
+        .waves-container {
+            position: absolute; top: -1px; left: 0; width: 100%; height: 110px;
+            margin-bottom: -7px; min-height: 100px; max-height: 150px;
+            transform: rotate(180deg);
         }
-        .footer-wave-svg svg { position: relative; display: block; width: calc(150% + 1.3px); height: 80px; }
-        .footer-wave-svg .shape-fill { fill: var(--bg-main); }
 
-        .footer-content { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        /* ئەنیمەیشنی جوڵەی شەپۆلەکان */
+        .parallax > use {
+            animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+        }
+        .parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s; fill: var(--bg-main); opacity: 0.7; }
+        .parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; fill: var(--bg-main); opacity: 0.5; }
+        .parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; fill: var(--bg-main); opacity: 0.3; }
+        .parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 20s; fill: var(--bg-main); }
+
+        @keyframes move-forever {
+            0% { transform: translate3d(-90px, 0, 0); }
+            100% { transform: translate3d(85px, 0, 0); }
+        }
+
+        .footer-content { max-width: 1200px; margin: 0 auto; position: relative; z-index: 10; }
         .footer-info-block { line-height: 2; margin-bottom: 25px; }
-        .footer-info-block h3 { font-size: 24px; font-weight: 700; color: var(--accent-color); }
+        .footer-info-block h3 { font-size: 26px; font-weight: 700; color: #81c784; }
         .footer-info-block p { font-size: 16px; opacity: 0.9; }
 
-        /* بینەری گشتی لەناو فووتەردا جێگیرکراوە و لە 0 یان بەها لۆکاڵییەکانەوە دەستپێدەکات */
         .footer-visitor-box {
             display: inline-flex; align-items: center; gap: 8px;
-            background: rgba(255, 255, 255, 0.06); padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.06); padding: 8px 24px;
             border-radius: 30px; margin-bottom: 25px; font-size: 14px;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .footer-visitor-box i { color: var(--accent-color); }
+        .footer-visitor-box i { color: #81c784; }
 
-        .copyright { font-size: 13.5px; opacity: 0.6; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); }
+        .copyright { font-size: 13.5px; opacity: 0.5; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); }
 
         /* ==========================================================================
-           7. سیستەمی ڕیسپۆنسڤ (Responsive Grid) بۆ سێ جۆر شاشە
+           7. سیستەمی ڕیسپۆنسڤ (Responsive Optimization)
            ========================================================================== */
         @media (max-width: 1024px) {
-            .chapters-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
-            .hero-main-title { font-size: 60px; }
+            .chapters-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+            .hero-main-title { font-size: 58px; }
         }
 
         @media (max-width: 768px) {
             .navbar { padding: 0 20px; }
             .hero-section-wrapper { padding: 100px 15px 20px 15px; }
-            .hero-curved-container { padding: 40px 20px; text-align: center; min-height: 60vh; }
-            .hero-main-title { font-size: 45px; }
-            .hero-desc { max-width: 100%; font-size: 16px; }
+            .hero-curved-container { padding: 40px 20px; min-height: 60vh; }
+            .hero-main-title { font-size: 42px; }
+            .hero-desc { font-size: 16px; }
             .chapters-section { padding: 40px 15px; }
             .chapters-grid { grid-template-columns: 1fr; gap: 30px; }
-            .chapter-card { height: 430px; }
+            .chapter-card { height: 440px; }
         }
 
-        /* ئەنیمەیشنی دەرکەوتنی کارتەکان */
-        @keyframes fadeInUp {
+        @keyframes cardScrollIn {
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
@@ -331,11 +366,11 @@
     <div class="hero-section-wrapper">
         <main class="hero-curved-container">
             <div class="hero-content">
-                <h1 class="hero-main-title">butterfly<br>growth.</h1>
-                <p class="hero-desc lang-ku">پلاتفۆرمی زانستی بۆ توێژینەوە و ناسینەوەی خێرا و مۆدێرنی جیهانی مێرووەکان بە سیستەمی زیرەک.</p>
-                <p class="hero-desc lang-en hidden">Scientific platform for modern research and advanced identification of the insect ecosystem.</p>
-                <p class="hero-desc lang-ar hidden">منصة علمية للأبحاث المتقدمة والتعرف الذكي على الأنظمة البيئية للحشرات.</p>
-                <a href="#chapters" class="hero-btn lang-ku">بینینی چاپتەرەکان <i class="ph ph-arrow-down"></i></a>
+                <h1 class="hero-main-title">NovaEntomo<br><span>زانستی مێرووناسی</span></h1>
+                <p class="hero-desc lang-ku">پلاتفۆرمی زانستی و ئەکادیمی پێشکەوتوو بۆ توێژینەوە، پۆلێنکردن و ناسینەوەی خێزانی مێرووەکان بە تەکنەلۆژیای زیرەک.</p>
+                <p class="hero-desc lang-en hidden">Advanced scientific and academic platform for entomological research, classification, and taxonomy.</p>
+                <p class="hero-desc lang-ar hidden">منصة علمية وأكاديمية متقدمة لأبحاث علم الحشرات والتصنيف والتعريف الذكي.</p>
+                <a href="#chapters" class="hero-btn lang-ku">دەستپێکردنی گەشتەکە <i class="ph ph-arrow-down"></i></a>
             </div>
         </main>
     </div>
@@ -349,15 +384,15 @@
             <li class="active"><a href="#"><i class="ph ph-house"></i><span class="lang-ku">سەرەکی</span><span class="lang-en hidden">Home</span><span class="lang-ar hidden">الرئيسية</span></a></li>
             
             <div class="sidebar-subtitle">چاپتەرەکان</div>
-            <li><a href="#ch1"><i class="ph ph-circle"></i><span>١. زانیاری زیادە</span></a></li>
-            <li><a href="#ch2"><i class="ph ph-circle"></i><span>٢. دەستپێکێک بۆ مێرووناسی</span></a></li>
-            <li><a href="#ch3"><i class="ph ph-circle"></i><span>٣. پۆلێنکردن و ناسینەوە</span></a></li>
-            <li><a href="#ch4"><i class="ph ph-circle"></i><span>٤. مێرووە بەسوودەکان</span></a></li>
-            <li><a href="#ch5"><i class="ph ph-circle"></i><span>٥. مێرووە زیانبەخشەکان</span></a></li>
-            <li><a href="#ch6"><i class="ph ph-circle"></i><span>٦. ستراتیژیەکانی کۆنتڕۆڵکردن</span></a></li>
-            <li><a href="#ch7"><i class="ph ph-circle"></i><span>٧. تەکنیکە تاقیگەیەکان</span></a></li>
-            <li><a href="#ch8"><i class="ph ph-circle"></i><span>٨. ڕوونکردنەوەی ڤیدیۆیی</span></a></li>
-            <li><a href="#ch9"><i class="ph ph-circle"></i><span>٩. کویز</span></a></li>
+            <li><a href="#ch1"><i class="ph ph-book-open"></i><span>١. زانیاری زیادە</span></a></li>
+            <li><a href="#ch2"><i class="ph ph-book-open"></i><span>٢. دەستپێکێک بۆ مێرووناسی</span></a></li>
+            <li><a href="#ch3"><i class="ph ph-book-open"></i><span>٣. پۆلێنکردن و ناسینەوە</span></a></li>
+            <li><a href="#ch4"><i class="ph ph-book-open"></i><span>٤. مێرووە بەسوودەکان</span></a></li>
+            <li><a href="#ch5"><i class="ph ph-book-open"></i><span>٥. مێرووە زیانبەخشەکان</span></a></li>
+            <li><a href="#ch6"><i class="ph ph-book-open"></i><span>٦. ستراتیژیەکانی کۆنتڕۆڵکردن</span></a></li>
+            <li><a href="#ch7"><i class="ph ph-book-open"></i><span>٧. تەکنیکە تاقیگەیەکان</span></a></li>
+            <li><a href="#ch8"><i class="ph ph-book-open"></i><span>٨. ڕوونکردنەوەی ڤیدیۆیی</span></a></li>
+            <li><a href="#ch9"><i class="ph ph-book-open"></i><span>٩. کویز</span></a></li>
         </ul>
     </aside>
 
@@ -378,7 +413,7 @@
 
             <div class="chapter-card" id="ch2" style="animation-delay: 0.15s;">
                 <span class="chapter-badge">CH 02</span>
-                <div class="card-img-bg" style="background-image: url('https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=600&auto=format&fit=crop');"></div>
+                <div class="card-img-bg" style="background-image: url('https://images.unsplash.com/photo-1541689592655-f5f52827a3b4?q=80&w=600&auto=format&fit=crop');"></div>
                 <div class="chapter-info-box">
                     <h3>دەستپێکێک بۆ مێرووناسی</h3>
                     <p>تێڕوانینێکی گشتی لەسەر جیهانی مێرووەکان و پێکهاتە بایۆلۆجییە سەرەتاییەکانیان.</p>
@@ -420,7 +455,7 @@
                 <span class="chapter-badge">CH 06</span>
                 <div class="card-img-bg" style="background-image: url('https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?q=80&w=600&auto=format&fit=crop');"></div>
                 <div class="chapter-info-box">
-                    <h3>ستراتیژیەکانی کۆنتڕۆڵکردن و بەرەنگاربوونەوە</h3>
+                    <h3>ستراتیژیەکانی کۆنتڕۆڵکردن</h3>
                     <p>شێوازە مۆدێرن، کیمیایی و بایۆلۆجییەکان بۆ قڕکردن و کۆنتڕۆڵی ئافاتە زیانبەخشەکان.</p>
                     <a href="#" class="chapter-btn">خوێندنەوەی زیاتر</a>
                 </div>
@@ -430,7 +465,7 @@
                 <span class="chapter-badge">CH 07</span>
                 <div class="card-img-bg" style="background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop');"></div>
                 <div class="chapter-info-box">
-                    <h3>تەکنیکە تاقیگەیەکان بۆ لێکۆڵینەوە</h3>
+                    <h3>تەکنیکە تاقیگەیەکان</h3>
                     <p>شیکردنەوەی تاقیگەیی ورد بۆ ناسینەوەی ئاستی سوود و زیانی مێرووە جیاوازەکان.</p>
                     <a href="#" class="chapter-btn">خوێندنەوەی زیاتر</a>
                 </div>
@@ -460,9 +495,18 @@
     </section>
 
     <footer class="footer-section">
-        <div class="footer-wave-svg">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+        <div class="waves-container">
+            <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax">
+                    <use xlink:href="#gentle-wave" x="48" y="0" />
+                    <use xlink:href="#gentle-wave" x="48" y="3" />
+                    <use xlink:href="#gentle-wave" x="48" y="5" />
+                    <use xlink:href="#gentle-wave" x="48" y="7" />
+                </g>
             </svg>
         </div>
 
@@ -475,7 +519,7 @@
 
             <div class="footer-visitor-box">
                 <i class="ph ph-eye"></i>
-                <span>بینەری گشتی: <b id="visitor-count">0</b> کەس</span>
+                <span>بینەری گشتی: <b id="visitor-count">124</b> کەس</span>
             </div>
             
             <p class="copyright">
@@ -493,16 +537,25 @@
         const openSidebarBtn = document.getElementById('open-sidebar');
         const closeSidebarBtn = document.getElementById('close-sidebar');
 
-        /* ١. بەڕێوەبردنی لۆژیکی بینەری گشتی لۆکاڵ (سفر و زیادکردن) */
-        let views = localStorage.getItem('page_views');
-        if (views === null) {
-            views = 0;
+        /* ١. بەڕێوەبردنی هۆشمەندی بینەر (تەنها بە گۆڕینی سێشن یان سەردانی نوێ زیاد دەکات، نەک ڕیفرێش) */
+        let sessionView = sessionStorage.getItem('has_visited');
+        let currentViews = localStorage.getItem('total_entomo_views');
+        
+        if (!currentViews) {
+            currentViews = 124; // ژمارەیەکی بنچینەیی سەرەتایی ناوازە
+            localStorage.setItem('total_entomo_views', currentViews);
         }
-        views = parseInt(views) + 1;
-        localStorage.setItem('page_views', views);
-        document.getElementById('visitor-count').innerText = views.toLocaleString('ku-IQ');
 
-        /* ٢. سویچی مۆدی تاریک و ڕوون */
+        if (!sessionView) {
+            // ئەگەر سەردانی نوێ بێت و تابەکە تازە کرابێتەوە زیاد دەکات
+            currentViews = parseInt(currentViews) + 1;
+            localStorage.setItem('total_entomo_views', currentViews);
+            sessionStorage.setItem('has_visited', 'true');
+        }
+
+        document.getElementById('visitor-count').innerText = parseInt(currentViews).toLocaleString('ku-IQ');
+
+        /* ٢. کۆنتڕۆڵی لایت/دارک مۆد */
         function switchTheme(e) {
             if (e.target.checked) {
                 htmlTag.setAttribute('data-theme', 'dark');
@@ -517,7 +570,7 @@
         htmlTag.setAttribute('data-theme', currentTheme);
         if (currentTheme === 'dark') { toggleSwitch.checked = true; }
 
-        /* ٣. گۆڕینی زمانەکان */
+        /* ٣. سیستەمی گۆڕینی زمانەکان */
         langBtns.forEach(btn => {
             btn.addEventListener('click', function() {
                 langBtns.forEach(b => b.classList.remove('active'));
@@ -542,7 +595,7 @@
             });
         });
 
-        /* ٤. لۆژیکی کردنەوە و داخستنی سایدباری درۆوەر */
+        /* ٤. سایدبار */
         openSidebarBtn.addEventListener('click', () => {
             sidebar.classList.add('open');
             overlay.classList.add('show');
@@ -555,7 +608,6 @@
         closeSidebarBtn.addEventListener('click', closeSidebar);
         overlay.addEventListener('click', closeSidebar);
         
-        // داخستنی خۆکارانە لەکاتی کلیک کردن لەسەر ناوی چاپتەرەکان لەناو سایدبارەکەدا
         document.querySelectorAll('.sidebar-links a').forEach(link => {
             link.addEventListener('click', closeSidebar);
         });
