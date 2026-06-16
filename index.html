@@ -10,33 +10,33 @@
     
     <style>
         /* ==========================================================================
-           1. ڕەنگە نوێیەکان (قاوەیی و سەوز) و بنچینەی ماڵپەڕەکە
+           1. ڕێکخستنی ڕەنگەکان (قاوەیی و سەوز)
            ========================================================================== */
         :root[data-theme="light"] {
-            --bg-main: #fcfaf7; /* قاوەیی زۆر کاڵ و سروشتی */
+            --bg-main: #fcfaf7;
             --bg-card: #ffffff;
-            --text-primary: #3e2723; /* قاوەیی تۆخی دارتاشی */
+            --text-primary: #3e2723;
             --text-secondary: #5d4037;
-            --accent-color: #2e7d32; /* سەوزی گەڵایی مێرووناسی */
-            --accent-glow: rgba(46, 125, 50, 0.2);
-            --navbar-bg: rgba(252, 250, 247, 0.85);
-            --sidebar-bg: #3e2723;
-            --sidebar-text: #f5f5f5;
-            --sidebar-active: #2e7d32;
-            --card-border: rgba(93, 64, 55, 0.1);
+            --accent-color: #2e7d32; /* سەوزی گەڵایی نۆڤا پلانت */
+            --accent-glow: rgba(46, 125, 50, 0.15);
+            --navbar-bg: #1b382b; /* سەوزی تۆخی دارستانی بۆ ناڤبار هاوشێوەی فۆتۆکە */
+            --navbar-text: #ffffff;
+            --sidebar-bg: #150a06;
+            --sidebar-text: #e0e0e0;
+            --card-border: rgba(93, 64, 55, 0.08);
         }
 
         :root[data-theme="dark"] {
-            --bg-main: #1c110c; /* قاوەیی تاریک */
-            --bg-card: #2d1b14;
-            --text-primary: #d7ccc8;
-            --text-secondary: #a1887f;
-            --accent-color: #81c784; /* سەوزی کاڵی گونجاو بۆ تاریکی */
-            --accent-glow: rgba(129, 199, 132, 0.3);
-            --navbar-bg: rgba(28, 17, 12, 0.9);
-            --sidebar-bg: #150a06;
-            --sidebar-text: #e0e0e0;
-            --sidebar-active: #81c784;
+            --bg-main: #140d0a;
+            --bg-card: #22140f;
+            --text-primary: #e0d4cf;
+            --text-secondary: #b59f98;
+            --accent-color: #81c784;
+            --accent-glow: rgba(129, 199, 132, 0.25);
+            --navbar-bg: #0f1f18;
+            --navbar-text: #e0e0e0;
+            --sidebar-bg: #0b0503;
+            --sidebar-text: #cbd5e1;
             --card-border: rgba(255, 255, 255, 0.05);
         }
 
@@ -54,12 +54,10 @@
             overflow-x: hidden;
         }
 
-        .hidden {
-            display: none !important;
-        }
+        .hidden { display: none !important; }
 
         /* ==========================================================================
-           2. نەڤبار (Navbar) و دوگمە نوێیەکان
+           2. ناڤبار و دوگمە ڕێکخراوەکانی سەرەوە
            ========================================================================== */
         .navbar {
             position: fixed;
@@ -72,47 +70,46 @@
             align-items: center;
             padding: 0 40px;
             background-color: var(--navbar-bg);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--card-border);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
             z-index: 1000;
         }
 
         .nav-right-group {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
         }
 
-        /* دوگمەی هەمبەرگەر بۆ کردنەوەی سایدیار */
         .menu-toggle-btn {
             background: none;
             border: none;
             font-size: 28px;
-            color: var(--text-primary);
+            color: var(--navbar-text);
             cursor: pointer;
             display: flex;
             align-items: center;
-            padding: 5px;
-            border-radius: 8px;
-        }
-        .menu-toggle-btn:hover {
-            background: var(--accent-glow);
-            color: var(--accent-color);
         }
 
         .logo h2 {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 700;
+            color: var(--navbar-text);
         }
         .logo h2 span {
             color: var(--accent-color);
         }
 
-        /* بەستەرەکانی زمان لە تەنیشت یەکتر */
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* دوگمەی زمانەکان لە تەنیشت یەک بە ستایلی ناو فۆتۆکە */
         .lang-links-wrapper {
             display: flex;
-            gap: 10px;
-            background: var(--card-border);
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.08);
             padding: 4px;
             border-radius: 30px;
         }
@@ -120,12 +117,12 @@
         .lang-btn {
             background: none;
             border: none;
-            padding: 6px 14px;
+            padding: 6px 16px;
             font-size: 13px;
             font-weight: 600;
             border-radius: 20px;
             cursor: pointer;
-            color: var(--text-secondary);
+            color: rgba(255, 255, 255, 0.7);
             font-family: inherit;
         }
 
@@ -134,15 +131,12 @@
             color: white !important;
         }
 
-        .theme-switch {
-            display: inline-block;
-            height: 28px;
-            position: relative;
-            width: 50px;
-        }
+        /* لۆژیکی لایت/دارک مۆدی مۆدێرن */
+        .theme-switch-wrapper { display: flex; align-items: center; }
+        .theme-switch { display: inline-block; height: 28px; position: relative; width: 52px; }
         .theme-switch input { display: none; }
         .slider {
-            background-color: #8d6e63;
+            background-color: rgba(255,255,255,0.2);
             bottom: 0; cursor: pointer; left: 0; position: absolute; right: 0; top: 0;
             transition: .4s; border-radius: 34px;
         }
@@ -150,14 +144,14 @@
             background-color: #fff; bottom: 3px; content: ""; height: 22px; left: 4px;
             position: absolute; width: 22px; transition: .4s; border-radius: 50%;
         }
-        input:checked + .slider { background-color: #2e7d32; }
-        input:checked + .slider:before { transform: translateX(20px); }
+        input:checked + .slider { background-color: var(--accent-color); }
+        input:checked + .slider:before { transform: translateX(22px); }
 
         /* ==========================================================================
            3. بەشی هێرۆ (Hero Section)
            ========================================================================== */
         .hero-container {
-            min-height: 75vh;
+            min-height: 70vh;
             padding: 140px 50px 40px 50px;
             display: flex;
             align-items: center;
@@ -166,15 +160,15 @@
         }
 
         .hero-content { flex: 1; max-width: 600px; }
-        .hero-title { font-size: 55px; font-weight: 800; line-height: 1.1; margin-bottom: 15px; }
-        .hero-title span { color: var(--accent-color); text-shadow: 0 0 15px var(--accent-glow); }
+        .hero-title { font-size: 55px; font-weight: 800; line-height: 1.1; margin-bottom: 15px; color: var(--text-primary); }
+        .hero-title span { color: var(--accent-color); }
         .hero-desc { font-size: 17px; color: var(--text-secondary); margin-bottom: 25px; line-height: 1.6; }
         
         .hero-btn {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 12px 26px;
+            padding: 12px 28px;
             background-color: var(--accent-color);
             color: white;
             text-decoration: none;
@@ -182,236 +176,203 @@
             border-radius: 50px;
             box-shadow: 0 6px 15px var(--accent-glow);
         }
-        .hero-btn:hover { transform: translateY(-2px); }
 
         .hero-visual { flex: 1; display: flex; justify-content: center; position: relative; }
         .animated-globe {
-            width: 260px;
-            height: 260px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--accent-color), #8d6e63);
+            width: 250px; height: 250px; border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent-color), #5d4037);
             display: flex; justify-content: center; align-items: center;
-            box-shadow: 0 0 40px var(--accent-glow);
             animation: floating 6s ease-in-out infinite;
         }
-        .globe-inner { position: absolute; width: 90%; height: 90%; border-radius: 50%; background: rgba(255,255,255,0.1); backdrop-filter: blur(5px); }
-        .insect-icon { font-size: 75px; color: white; z-index: 5; animation: pulse 3s ease-in-out infinite; }
+        .insect-icon { font-size: 70px; color: white; }
 
-        /* بینەری گشتی و سەردانیکەران هاوشێوەی Nova Plant */
+        /* بینەری گشتی ڕێک وەک وێنەکە */
         .visitor-counter {
-            position: absolute;
-            bottom: -10px;
+            position: absolute; bottom: -15px;
             background: var(--bg-card);
-            padding: 10px 18px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            padding: 12px 20px;
+            border-radius: 30px;
+            display: flex; align-items: center; gap: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             border: 1px solid var(--card-border);
-            font-size: 13px;
-            font-weight: 600;
+            font-size: 14px; font-weight: 600;
         }
-        .visitor-counter i { color: var(--accent-color); font-size: 18px; }
+        .visitor-counter i { color: var(--accent-color); font-size: 20px; }
 
         /* ==========================================================================
-           4. سایدیاری شاراوە (Drawer Sidebar)
-           ========================================================================== */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            right: -300px; /* شاردنەوە لە لای ڕاست لە حاڵەتی ڕەسەندا */
-            width: 280px;
-            height: 100vh;
-            background-color: var(--sidebar-bg);
-            color: var(--sidebar-text);
-            padding: 30px 20px;
-            box-shadow: -5px 0 25px rgba(0,0,0,0.15);
-            z-index: 2000;
-            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        html[dir="ltr"] .sidebar { left: -300px; right: auto; transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        
-        .sidebar.open { right: 0; }
-        html[dir="ltr"] .sidebar.open { left: 0; right: auto; }
-
-        .sidebar-header { display: flex; justify-content: space-between; align-items: center; }
-        .close-sidebar-btn { background: none; border: none; color: white; font-size: 24px; cursor: pointer; }
-
-        .sidebar-links { list-style: none; margin-top: 30px; }
-        .sidebar-links li { margin-bottom: 10px; }
-        .sidebar-links a {
-            display: flex; align-items: center; gap: 12px; color: var(--sidebar-text);
-            text-decoration: none; padding: 12px; border-radius: 10px; font-weight: 500;
-        }
-        .sidebar-links li.active a, .sidebar-links a:hover { background-color: var(--sidebar-active); color: white; }
-
-        /* پەردەی ڕەشی پشتەوە کاتێک سایدیار دەکرێتەوە */
-        .sidebar-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(0,0,0,0.4); z-index: 1999; display: none;
-        }
-        .sidebar-overlay.show { display: block; }
-
-        /* ==========================================================================
-           5. سێکیشنی چاپتەرەکان (Nova Plant Style Chapters Grid) - تەواو ڕیسپۆنسڤ
+           4. دیزاینی چاپتەرەکان دەرهێنراو لێکچوو لەگەڵ وێنەی پڕۆژەی (NovaPlant)
            ========================================================================== */
         .chapters-section {
             padding: 60px 50px;
-            max-width: 1300px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .section-title {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 35px;
-            text-align: center;
-            position: relative;
+            font-size: 32px; font-weight: 700; text-align: center; margin-bottom: 50px;
         }
-        .section-title::after {
-            content: ''; display: block; width: 60px; height: 3px; background: var(--accent-color); margin: 8px auto 0 auto; border-radius: 2px;
-        }
+        .section-title span { color: var(--accent-color); }
 
-        /* جێبەجێکردنی Grid ڕیسپۆنسڤ بۆ کۆمپیوتەر، تابلێت، و مۆبایل */
+        /* ڕێکخستنی Grid ڕیسپۆنسڤ بۆ ٣ شاشەی جیاواز */
         .chapters-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* کۆمپیوتەر: ٣ کارت لە هێڵێکدا */
-            gap: 25px;
+            grid-template-columns: repeat(3, 1fr); /* بۆ کۆمپیوتەر */
+            gap: 35px;
         }
 
-        /* ستایلی کارتەکان بە شێوازی مۆدێرنی Nova Plant */
+        /* کارت بە پێکهاتەی وێنە لە پشتەوە و دەق لە سەرەوە (Overlay Card Stacked) */
         .chapter-card {
-            background: var(--bg-card);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: 0 6px 18px rgba(93, 64, 55, 0.03);
             position: relative;
+            height: 380px;
+            border-radius: 24px;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            cursor: pointer;
-        }
-        .chapter-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(46, 125, 50, 0.08);
-            border-color: var(--accent-color);
+            justify-content: flex-end; /* پاڵنانی کارتی زانیاری بۆ خوارەوە */
+            background: #1a1a1a;
         }
 
+        /* ڕێکخستنی وێنەی باکگراوندی ناو کارتەکە */
+        .card-img-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 75%; /* وێنەکە زۆربەی کارتەکە دەگرێتەوە */
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+        
+        /* تەمومژێکی تاریک بۆ سەر وێنەکە تا دەقەکان بە ڕوونی دیار بن */
+        .card-img-bg::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4));
+        }
+
+        /* باجی بازنەیی ژمارەی چاپتەرەکان (ڕێک وەک کۆنەرەکەی فۆتۆکە) */
         .chapter-badge {
             position: absolute;
-            top: 0; left: 0;
-            background: var(--accent-color);
-            color: white;
-            padding: 4px 14px;
-            font-size: 12px;
-            font-weight: 700;
-            border-bottom-right-radius: 12px;
+            top: 20px; left: 20px;
+            background: rgba(30, 41, 59, 0.85);
+            color: #81c784;
+            padding: 6px 14px;
+            font-size: 13px; font-weight: 700;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            z-index: 3;
         }
-        html[dir="ltr"] .chapter-badge { left: auto; right: 0; border-bottom-left-radius: 12px; border-bottom-right-radius: 0; }
+        html[dir="ltr"] .chapter-badge { left: auto; right: 20px; }
 
-        .chapter-icon-box {
-            width: 50px; height: 50px;
-            background: var(--accent-glow);
-            color: var(--accent-color);
-            border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 24px; margin-top: 15px; margin-bottom: 15px;
+        /* کارتی دەقی ناوەکی سپی سەرکەوتوو (The Floating Info Block) */
+        .chapter-info-box {
+            position: relative;
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 25px 20px;
+            margin: 0 12px 12px 12px;
+            z-index: 2;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+            text-align: center;
+            border: 1px solid var(--card-border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        .chapter-card h3 {
-            font-size: 18px; font-weight: 700; margin-bottom: 10px; line-height: 1.4;
+        .chapter-info-box h3 {
+            font-size: 19px; font-weight: 700; margin-bottom: 12px; color: var(--text-primary);
         }
-        .chapter-card p {
-            font-size: 14px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 20px;
+        .chapter-info-box p {
+            font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 18px;
         }
 
-        .chapter-link {
-            font-size: 13px; font-weight: 700; color: var(--accent-color);
-            display: flex; align-items: center; gap: 5px; text-decoration: none;
+        /* دوگمەی خوێندنەوەی زیاتر لە ژێرەوەی کارتەکە */
+        .chapter-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: none; border: 1px solid var(--card-border);
+            padding: 8px 24px; border-radius: 30px;
+            color: var(--accent-color); font-weight: 700; font-size: 13px;
+            text-decoration: none;
+        }
+        .chapter-btn:hover {
+            background: var(--accent-color); color: white; border-color: var(--accent-color);
         }
 
         /* ==========================================================================
-           6. فووتەر و دەقە زانستییە داواکراوەکان
+           5. سایدیاری درۆوەر (Drawer Sidebar)
+           ========================================================================== */
+        .sidebar {
+            position: fixed; top: 0; right: -300px; width: 280px; height: 100vh;
+            background-color: var(--sidebar-bg); color: var(--sidebar-text);
+            padding: 30px 20px; box-shadow: -5px 0 25px rgba(0,0,0,0.2); z-index: 2000;
+            transition: right 0.4s ease;
+        }
+        html[dir="ltr"] .sidebar { left: -300px; right: auto; transition: left 0.4s ease; }
+        .sidebar.open { right: 0; }
+        html[dir="ltr"] .sidebar.open { left: 0; right: auto; }
+        .sidebar-header { display: flex; justify-content: space-between; align-items: center; }
+        .close-sidebar-btn { background: none; border: none; color: white; font-size: 26px; cursor: pointer; }
+        .sidebar-links { list-style: none; margin-top: 40px; }
+        .sidebar-links li { margin-bottom: 12px; }
+        .sidebar-links a {
+            display: flex; align-items: center; gap: 12px; color: var(--sidebar-text);
+            text-decoration: none; padding: 12px; border-radius: 10px; font-weight: 500;
+        }
+        .sidebar-links li.active a, .sidebar-links a:hover { background-color: var(--accent-color); color: white; }
+        .sidebar-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 1999; display: none; }
+        .sidebar-overlay.show { display: block; }
+
+        /* ==========================================================================
+           6. بەشی خوارەوە و فووتەر (Footer With Requested Text)
            ========================================================================== */
         .footer-section {
-            position: relative;
-            background: var(--accent-color);
-            padding-top: 80px;
-            margin-top: 80px;
+            background: #11221a;
+            padding: 50px 20px;
+            text-align: center;
+            color: #ffffff;
+            border-top: 4px solid var(--accent-color);
         }
 
-        .waves-container {
-            position: absolute; top: -1px; left: 0; width: 100%; overflow: hidden; line-height: 0; transform: rotate(180deg);
-        }
-        .waves { position: relative; width: 100%; height: 60px; }
-        .parallax > use { animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite; }
-        .parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s; }
-        .parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; }
-        .parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; }
-        .parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 20s; }
+        .footer-info-block { line-height: 2; margin-bottom: 25px; }
+        .footer-info-block h3 { font-size: 22px; font-weight: 700; letter-spacing: 0.5px; color: var(--accent-color); }
+        .footer-info-block p { font-size: 16px; opacity: 0.9; }
 
-        .footer-content {
-            max-width: 1200px; margin: 0 auto; padding: 30px 20px; text-align: center; color: white;
+        .copyright {
+            font-size: 14px; opacity: 0.7; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);
         }
-
-        /* نووسراوە فەرمییە داواکراوەکان لێرەن */
-        .footer-info-block {
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-        .footer-info-block h3 { font-size: 20px; font-weight: 700; margin-bottom: 5px; }
-        .footer-info-block p { font-size: 15px; opacity: 0.9; }
-
-        .copyright { font-size: 13px; opacity: 0.85; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 20px; }
 
         /* ==========================================================================
-           7. مێدیا کوێری بۆ شاشە جیاوازەکان (Responsive Breakpoints)
+           7. مێدیا کوێری نووسراو بۆ دیزاینی تەواو ڕیسپۆنسڤ (Responsive Breakpoints)
            ========================================================================== */
         
-        /* تابلێتەکان (Tablets - کەمتر لە 992px) */
-        @media (max-width: 992px) {
+        /* شاشەی تابلێت (Tablets - کەمتر لە 1024px) */
+        @media (max-width: 1024px) {
             .chapters-grid {
-                grid-template-columns: repeat(2, 1fr); /* نیشاندانی ٢ کارت لە هێڵێکدا */
+                grid-template-columns: repeat(2, 1fr); /* نیشاندانی ٢ کارت لە تەنیشت یەک */
+                gap: 25px;
             }
-            .hero-container { padding: 120px 40px 40px 40px; }
-            .hero-title { font-size: 48px; }
+            .hero-container { padding: 130px 30px 40px 30px; }
+            .hero-title { font-size: 46px; }
         }
 
-        /* مۆبایلەکان (Phones - کەمتر لە 768px) */
+        /* شاشەی مۆبایل (Mobile - کەمتر لە 768px) */
         @media (max-width: 768px) {
             .navbar { padding: 0 20px; }
-            .hero-container { flex-direction: column; text-align: center; padding: 110px 20px 30px 20px; gap: 30px; }
-            .hero-content { max-width: 100%; }
-            .hero-title { font-size: 36px; }
-            .hero-btn { justify-content: center; width: 100%; }
+            .hero-container { flex-direction: column; text-align: center; padding: 120px 20px 40px 20px; gap: 20px; }
+            .hero-title { font-size: 38px; }
+            .hero-btn { width: 100%; justify-content: center; }
             
-            .chapters-section { padding: 40px 20px; }
+            .chapters-section { padding: 40px 15px; }
             .chapters-grid {
-                grid-template-columns: 1fr; /* مۆبایل: تەنها ١ کارت لە سەر هێڵ */
-                gap: 20px;
+                grid-template-columns: 1fr; /* نیشاندانی تەنها ١ کارت بە شێوازی ستوونی */
+                gap: 25px;
             }
-            .footer-menu { flex-direction: column; gap: 15px; }
+            .chapter-card { height: 400px; }
         }
 
-        /* ==========================================================================
-           8. کلیلی ئەنیمەیشنەکان
-           ========================================================================== */
         @keyframes floating {
-            0% { transform: translateY(0px); }
+            0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-12px); }
-            100% { transform: translateY(0px); }
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.9; }
-            50% { transform: scale(1.06); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.9; }
-        }
-        @keyframes move-forever {
-            0% { transform: translate3d(-90px,0,0); }
-            100% { transform: translate3d(85px,0,0); }
         }
     </style>
 </head>
@@ -439,7 +400,7 @@
             <div class="theme-switch-wrapper">
                 <label class="theme-switch" for="checkbox">
                     <input type="checkbox" id="checkbox" />
-                    <div class="slider round"></div>
+                    <div class="slider"></div>
                 </label>
             </div>
         </div>
@@ -448,22 +409,16 @@
     <main class="hero-container">
         <div class="hero-content">
             <h1 class="hero-title">NOVA<br><span>ENTOMO.</span></h1>
-            
             <p class="hero-desc lang-ku">پلاتفۆرمی زانستی بۆ توێژینەوە و ناسینەوەی مێرووەکان بە زیرەکی دەستکرد.</p>
             <p class="hero-desc lang-en hidden">Scientific platform for insect research and AI-driven identification.</p>
             <p class="hero-desc lang-ar hidden">منصة علمية لأبحاث الحشرات والتعرف عليها بواسطة الذكاء الاصطناعي.</p>
-            
-            <a href="#chapters" class="hero-btn lang-ku">گەڕان لە چاپتەرەکان <i class="ph ph-arrow-left"></i></a>
-            <a href="#chapters" class="hero-btn lang-en hidden">Explore Chapters <i class="ph ph-arrow-right"></i></a>
-            <a href="#chapters" class="hero-btn lang-ar hidden">استكشف الفصول <i class="ph ph-arrow-left"></i></a>
+            <a href="#chapters" class="hero-btn lang-ku">بینینی چاپتەرەکان <i class="ph ph-arrow-down"></i></a>
         </div>
     
         <div class="hero-visual">
             <div class="animated-globe">
-                <div class="globe-inner"></div>
-                <i class="ph ph-bug insect-icon"></i>
+                <i class="ph ph-butterfly insect-icon"></i>
             </div>
-            
             <div class="visitor-counter">
                 <i class="ph ph-eye"></i>
                 <span class="lang-ku">بینەری گشتی: <b>١,٤٣٢</b> کەس</span>
@@ -476,11 +431,8 @@
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <h3>Nova<span>Menu</span></h3>
-            <button class="close-sidebar-btn" id="close-sidebar">
-                <i class="ph ph-x"></i>
-            </button>
+            <button class="close-sidebar-btn" id="close-sidebar"><i class="ph ph-x"></i></button>
         </div>
-        <div class="menu-separator"></div>
         <ul class="sidebar-links">
             <li class="active"><a href="#chapters"><i class="ph ph-book-open"></i><span class="lang-ku">چاپتەرەکان</span><span class="lang-en hidden">Chapters</span><span class="lang-ar hidden">الفصول</span></a></li>
             <li><a href="#ai-lab"><i class="ph ph-cpu"></i><span class="lang-ku">تاقیگەی AI</span><span class="lang-en hidden">AI Lab</span><span class="lang-ar hidden">مختبر الذكاء</span></a></li>
@@ -488,169 +440,148 @@
     </aside>
 
     <section class="chapters-section" id="chapters">
-        <h2 class="section-title lang-ku">چاپتەرەکانی پڕۆگرامەکە</h2>
-        <h2 class="section-title lang-en hidden">Program Chapters</h2>
-        <h2 class="section-title lang-ar hidden">فصول البرنامج</h2>
+        <h2 class="section-title lang-ku">چاپتەرەکانی <span>پڕۆگرامەکە</span></h2>
+        <h2 class="section-title lang-en hidden">Program <span>Chapters</span></h2>
+        <h2 class="section-title lang-ar hidden">فصول <span>البرنامج</span></h2>
 
         <div class="chapters-grid">
             
             <div class="chapter-card">
-                <span class="chapter-badge">CH 01</span>
-                <div class="chapter-icon-box"><i class="ph ph-info"></i></div>
-                <h3 class="lang-ku">زانیاری زیادە</h3>
-                <h3 class="lang-en hidden">Additional Info</h3>
-                <h3 class="lang-ar hidden">معلومات إضافية</h3>
-                <p class="lang-ku">مێژوو و سەرچاوە زانستییە جیهانییەکانی تایبەت بە پەرەپێدانی زانستەکە.</p>
-                <p class="lang-en hidden">History and global scientific references for domain development.</p>
-                <p class="lang-ar hidden">التاريخ والمراجع العلمية العالمية الخاصة بتطوير علم الحشرات.</p>
-                <span class="chapter-link lang-ku">خوێندنەوە <i class="ph ph-arrow-left"></i></span>
-                <span class="chapter-link lang-en hidden">Read More <i class="ph ph-arrow-right"></i></span>
-                <span class="chapter-link lang-ar hidden">قراءة المزيد <i class="ph ph-arrow-left"></i></span>
+                <span class="chapter-badge">چاپتەری 1</span>
+                <div class="card-img-bg" style="background-image: url('https://images.unsplash.com/photo-1470246973918-29a93221c455?q=80&w=600&auto=format&fit=crop');"></div>
+                <div class="chapter-info-box">
+                    <h3 class="lang-ku">زانیاری زیادە</h3>
+                    <h3 class="lang-en hidden">Additional Info</h3>
+                    <h3 class="lang-ar hidden">معلومات إضافية</h3>
+                    <p class="lang-ku">مێژوو و سەرچاوە زانستییە جیهانییەکانی تایبەت بە پەرەپێدانی زانستەکە.</p>
+                    <p class="lang-en hidden">Global scientific references for biological domain development.</p>
+                    <p class="lang-ar hidden">التاريخ والمراجع العلمية العالمية الخاصة بتطوير علم الحشرات.</p>
+                    <a href="#" class="chapter-btn lang-ku">خوێندنەوەی زیاتر</a>
+                </div>
             </div>
 
             <div class="chapter-card">
-                <span class="chapter-badge">CH 02</span>
-                <div class="chapter-icon-box"><i class="ph ph-magnifying-glass"></i></div>
-                <h3 class="lang-ku">دەستپێکێک بۆ مێرووناسی</h3>
-                <h3 class="lang-en hidden">Introduction to Entomology</h3>
-                <h3 class="lang-ar hidden">مقدمة في علم الحشرات</h3>
-                <p class="lang-ku">تێڕوانینێکی گشتی لەسەر جیهانی مێرووەکان و پێکهاتە سەرەتاییەکانیان.</p>
-                <p class="lang-en hidden">An overview of the insect world and their primitive biological structures.</p>
-                <p class="lang-ar hidden">نظرة عامة على عالم الحشرات وتراكيبها البيولوجية الأساسية.</p>
-                <span class="chapter-link lang-ku">خوێندنەوە <i class="ph ph-arrow-left"></i></span>
-                <span class="chapter-link lang-en hidden">Read More <i class="ph ph-arrow-right"></i></span>
-                <span class="chapter-link lang-ar hidden">قراءة المزيد <i class="ph ph-arrow-left"></i></span>
+                <span class="chapter-badge">چاپتەری 2</span>
+                <div class="card-img-bg" style="background-image: url('https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=600&auto=format&fit=crop');"></div>
+                <div class="chapter-info-box">
+                    <h3 class="lang-ku">دەستپێکێک بۆ مێرووناسی</h3>
+                    <h3 class="lang-en hidden">Introduction to Entomology</h3>
+                    <h3 class="lang-ar hidden">مقدمة في علم الحشرات</h3>
+                    <p class="lang-ku">تێڕوانینێکی گشتی لەسەر جیهانی مێرووەکان و پێکهاتە سەرەتاییەکانیان.</p>
+                    <p class="lang-en hidden">An overview of the insect world and their primitive biological structures.</p>
+                    <p class="lang-ar hidden">نظرة عامة على عالم الحشرات وتراكيبها البيولوجية الأساسية.</p>
+                    <a href="#" class="chapter-btn lang-ku">خوێندنەوەی زیاتر</a>
+                </div>
             </div>
 
             <div class="chapter-card">
-                <span class="chapter-badge">CH 03</span>
-                <div class="chapter-icon-box"><i class="ph ph-tree-structure"></i></div>
-                <h3 class="lang-ku">پۆلێنکردن و ناسینەوە</h3>
-                <h3 class="lang-en hidden">Classification & ID</h3>
-                <h3 class="lang-ar hidden">التصنيف والتعريف</h3>
-                <p class="lang-ku">چۆنیەتی جیاکردنەوە و پۆلێنکردنی خێزانە جیاوازەکانی مێرووەکان.</p>
-                <p class="lang-en hidden">How to distinguish and taxonomy different insect orders and families.</p>
-                <p class="lang-ar hidden">كيفية تمييز وتصنيف الرتب والعائلات المختلفة للحشرات.</p>
-                <span class="chapter-link lang-ku">خوێندنەوە <i class="ph ph-arrow-left"></i></span>
-                <span class="chapter-link lang-en hidden">Read More <i class="ph ph-arrow-right"></i></span>
-                <span class="chapter-link lang-ar hidden">قراءة المزيد <i class="ph ph-arrow-left"></i></span>
+                <span class="chapter-badge">چاپتەری 3</span>
+                <div class="card-img-bg" style="background-image: url('https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop');"></div>
+                <div class="chapter-info-box">
+                    <h3 class="lang-ku">پۆلێنکردن و ناسینەوە</h3>
+                    <h3 class="lang-en hidden">Classification & ID</h3>
+                    <h3 class="lang-ar hidden">التصنيف والتعريف</h3>
+                    <p class="lang-ku">چۆنیەتی جیاکردنەوە و پۆلێنکردنی خێزانە جیاوازەکانی مێرووەکان.</p>
+                    <p class="lang-en hidden">How to distinguish and taxonomy different insect orders and families.</p>
+                    <p class="lang-ar hidden">كيفية تمييز وتصنيف الرتب والعائلات المختلفة للحشرات.</p>
+                    <a href="#" class="chapter-btn lang-ku">خوێندنەوەی زیاتر</a>
+                </div>
             </div>
 
             <div class="chapter-card">
-                <span class="chapter-badge">CH 04</span>
-                <div class="chapter-icon-box"><i class="ph ph-flower"></i></div>
-                <h3 class="lang-ku">مێرووە بەسوودەکان</h3>
-                <h3 class="lang-en hidden">Beneficial Insects</h3>
-                <h3 class="lang-ar hidden">الحشرات النافعة</h3>
-                <p class="lang-ku">ڕۆڵی مێرووەکان لە گەردەپشکنینی ڕووەک و پاراستنی هاوسەنگی ژینگە.</p>
-                <p class="lang-en hidden">The role of insects in pollination and maintaining ecosystem balance.</p>
-                <p class="lang-ar hidden">دور الحشرات في تلقيح النباتات والحفاظ على التوازن البيئي.</p>
-                <span class="chapter-link lang-ku">خوێندنەوە <i class="ph ph-arrow-left"></i></span>
-                <span class="chapter-link lang-en hidden">Read More <i class="ph ph-arrow-right"></i></span>
-                <span class="chapter-link lang-ar hidden">قراءة المزيد <i class="ph ph-arrow-left"></i></span>
+                <span class="chapter-badge">چاپتەری 4</span>
+                <div class="card-img-bg" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600&auto=format&fit=crop');"></div>
+                <div class="chapter-info-box">
+                    <h3 class="lang-ku">مێرووە بەسوودەکان</h3>
+                    <h3 class="lang-en hidden">Beneficial Insects</h3>
+                    <h3 class="lang-ar hidden">الحشرات النافعة</h3>
+                    <p class="lang-ku">ڕۆڵی مێرووەکان لە گەردەپشکنینی ڕووەک و پاراستنی هاوسەنگی ژینگە.</p>
+                    <p class="lang-en hidden">The role of insects in pollination and maintaining ecosystem balance.</p>
+                    <p class="lang-ar hidden">دور الحشرات في تلقيح النباتات والحفاظ على التوازن البيئي.</p>
+                    <a href="#" class="chapter-btn lang-ku">خوێندنەوەی زیاتر</a>
+                </div>
             </div>
 
             <div class="chapter-card">
-                <span class="chapter-badge">CH 05</span>
-                <div class="chapter-icon-box"><i class="ph ph-skull"></i></div>
-                <h3 class="lang-ku">مێرووە زیانبەخشەکان</h3>
-                <h3 class="lang-en hidden">Harmful Insects</h3>
-                <h3 class="lang-ar hidden">الحشرات الضارة</h3>
-                <p class="lang-ku">ناسینی ئەو ئافاتانەی زیان بە کشتوکاڵ، ئابووری و تەندروستی دەگەیەنن.</p>
-                <p class="lang-en hidden">Identifying pests that damage agriculture, economics, and health.</p>
-                <p class="lang-ar hidden">التعرف على الآفات التي تضر بالزراعة والاقتصاد والصحة العامة.</p>
-                <span class="chapter-link lang-ku">خوێندنەوە <i class="ph ph-arrow-left"></i></span>
-                <span class="chapter-link lang-en hidden">Read More <i class="ph ph-arrow-right"></i></span>
-                <span class="chapter-link lang-ar hidden">قراءة المزيد <i class="ph ph-arrow-left"></i></span>
+                <span class="chapter-badge">چاپتەری 5</span>
+                <div class="card-img-bg" style="background-image: url('https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?q=80&w=600&auto=format&fit=crop');"></div>
+                <div class="chapter-info-box">
+                    <h3 class="lang-ku">مێرووە زیانبەخشەکان</h3>
+                    <h3 class="lang-en hidden">Harmful Insects</h3>
+                    <h3 class="lang-ar hidden">الحشرات الضارة</h3>
+                    <p class="lang-ku">ناسینی ئەو ئافاتانەی زیان بە کشتوکاڵ، ئابووری و تەندروستی دەگەیەنن.</p>
+                    <p class="lang-en hidden">Identifying pests that damage agriculture, economics, and health.</p>
+                    <p class="lang-ar hidden">التعرف على الآفات التي تضر بالزراعة والاقتصاد والصحة العامة.</p>
+                    <a href="#" class="chapter-btn lang-ku">خوێندنەوەی زیاتر</a>
+                </div>
             </div>
 
             <div class="chapter-card">
-                <span class="chapter-badge">CH 06</span>
-                <div class="chapter-icon-box"><i class="ph ph-shield-check"></i></div>
-                <h3 class="lang-ku">ستراتیژیەکانی کۆنتڕۆڵکردن</h3>
-                <h3 class="lang-en hidden">Control Strategies</h3>
-                <h3 class="lang-ar hidden">استراتيجيات المكافحة</h3>
-                <p class="lang-ku">شێوازە مۆدێرن و بایۆلۆجییەکان بۆ بەرەنگاربوونەوە و قڕکردنی ئافاتەکان.</p>
-                <p class="lang-en hidden">Modern and biological methods for pest management and mitigation.</p>
-                <p class="lang-ar hidden">الطرق الحديثة والبيولوجية لمكافحة الآفات وإدارة انتشارها.</p>
-                <span class="chapter-link lang-ku">خوێندنەوە <i class="ph ph-arrow-left"></i></span>
-                <span class="chapter-link lang-en hidden">Read More <i class="ph ph-arrow-right"></i></span>
-                <span class="chapter-link lang-ar hidden">قراءة المزيد <i class="ph ph-arrow-left"></i></span>
+                <span class="chapter-badge">چاپتەری 6</span>
+                <div class="card-img-bg" style="background-image: url('https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?q=80&w=600&auto=format&fit=crop');"></div>
+                <div class="chapter-info-box">
+                    <h3 class="lang-ku">ستراتیژیەکانی کۆنتڕۆڵکردن</h3>
+                    <h3 class="lang-en hidden">Control Strategies</h3>
+                    <h3 class="lang-ar hidden">استراتيجيات المكافحة</h3>
+                    <p class="lang-ku">شێوازە مۆدێرن و بایۆلۆجییەکان بۆ بەرەنگاربوونەوە و کۆنتڕۆڵی ئافاتەکان.</p>
+                    <p class="lang-en hidden">Modern and biological methods for pest management and mitigation.</p>
+                    <p class="lang-ar hidden">الطرق الحديثة والبيولوجية لمكافحة الآفات وإدارة انتشارها.</p>
+                    <a href="#" class="chapter-btn lang-ku">خوێندنەوەی زیاتر</a>
+                </div>
             </div>
 
             <div class="chapter-card">
-                <span class="chapter-badge">CH 07</span>
-                <div class="chapter-icon-box"><i class="ph ph-flask"></i></div>
-                <h3 class="lang-ku">تەکنیکە تاقیگەیەکان</h3>
-                <h3 class="lang-en hidden">Lab Techniques</h3>
-                <h3 class="lang-ar hidden">التقنيات المختبرية</h3>
-                <p class="lang-ku">تەکنیکەکانی شیکردنەوەی تاقیگەیی بۆ لێکۆڵینەوەی سوود و زیانی مێروو.</p>
-                <p class="lang-en hidden">Laboratory analysis techniques to investigate insect traits and effects.</p>
-                <p class="lang-ar hidden">تقنيات التحليل المختبري لبحث فوائد وأضرار الحشرات بدقة.</p>
-                <span class="chapter-link lang-ku">خوێندنەوە <i class="ph ph-arrow-left"></i></span>
-                <span class="chapter-link lang-en hidden">Read More <i class="ph ph-arrow-right"></i></span>
-                <span class="chapter-link lang-ar hidden">قراءة المزيد <i class="ph ph-arrow-left"></i></span>
+                <span class="chapter-badge">چاپتەری 7</span>
+                <div class="card-img-bg" style="background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop');"></div>
+                <div class="chapter-info-box">
+                    <h3 class="lang-ku">تەکنیکە تاقیگەیەکان</h3>
+                    <h3 class="lang-en hidden">Lab Techniques</h3>
+                    <h3 class="lang-ar hidden">التقنيات المختبرية</h3>
+                    <p class="lang-ku">تەکنیکەکانی شیکردنەوەی تاقیگەیی بۆ لێکۆڵینەوەی سوود و زیانی مێروو.</p>
+                    <p class="lang-en hidden">Laboratory analysis techniques to investigate insect traits and effects.</p>
+                    <p class="lang-ar hidden">تقنيات التحليل المختبري لبحث فوائد وأضرار الحشرات بدقة.</p>
+                    <a href="#" class="chapter-btn lang-ku">خوێندنەوەی زیاتر</a>
+                </div>
             </div>
 
             <div class="chapter-card">
-                <span class="chapter-badge">CH 08</span>
-                <div class="chapter-icon-box"><i class="ph ph-video-camera"></i></div>
-                <h3 class="lang-ku">ڕوونکردنەوەی ڤیدیۆیی</h3>
-                <h3 class="lang-en hidden">Video Tutorials</h3>
-                <h3 class="lang-ar hidden">شروحات مرئية</h3>
-                <p class="lang-ku">مایکرۆسکۆپی دیجیتاڵی و شێوازی پراکتیکی لەناو تاقیگە بە ڤیدیۆ.</p>
-                <p class="lang-en hidden">Digital microscopy and practical laboratory methods via videos.</p>
-                <p class="lang-ar hidden">المجهر الرقمي والطرق التطبيقية داخل المختبر عبر الفيديو.</p>
-                <span class="chapter-link lang-ku">سەیرکردن <i class="ph ph-arrow-left"></i></span>
-                <span class="chapter-link lang-en hidden">Watch <i class="ph ph-arrow-right"></i></span>
-                <span class="chapter-link lang-ar hidden">مشاهدة <i class="ph ph-arrow-left"></i></span>
+                <span class="chapter-badge">چاپتەری 8</span>
+                <div class="card-img-bg" style="background-image: url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=600&auto=format&fit=crop');"></div>
+                <div class="chapter-info-box">
+                    <h3 class="lang-ku">ڕوونکردنەوەی ڤیدیۆیی</h3>
+                    <h3 class="lang-en hidden">Video Tutorials</h3>
+                    <h3 class="lang-ar hidden">شروحات مرئية</h3>
+                    <p class="lang-ku">مایکرۆسکۆپی دیجیتاڵی و شێوازی پراکتیکی لەناو تاقیگە بە ڤیدیۆ.</p>
+                    <p class="lang-en hidden">Digital microscopy and practical laboratory methods via videos.</p>
+                    <p class="lang-ar hidden">المجهر الرقمي والطرق التطبيقية داخل المختبر عبر الفيديو.</p>
+                    <a href="#" class="chapter-btn lang-ku">سەیرکردن</a>
+                </div>
             </div>
 
             <div class="chapter-card">
-                <span class="chapter-badge">CH 09</span>
-                <div class="chapter-icon-box"><i class="ph ph-exam"></i></div>
-                <h3 class="lang-ku">کویز و تاقیکردنەوە</h3>
-                <h3 class="lang-en hidden">Quizzes & Tests</h3>
-                <h3 class="lang-ar hidden">الاختبارات</h3>
-                <p class="lang-ku">خۆت هەڵسەنگێنە لە ڕێگەی پرسیار و وەڵامی زانستی لەسەر مێرووەکان.</p>
-                <p class="lang-en hidden">Evaluate your knowledge through targeted interactive questions.</p>
-                <p class="lang-ar hidden">قيم معلوماتك العلمية من خلال الأسئلة والأجوبة التفاعلية.</p>
-                <span class="chapter-link lang-ku">دەستپێکردن <i class="ph ph-arrow-left"></i></span>
-                <span class="chapter-link lang-en hidden">Start <i class="ph ph-arrow-right"></i></span>
-                <span class="chapter-link lang-ar hidden">ابدأ الاختبار <i class="ph ph-arrow-left"></i></span>
+                <span class="chapter-badge">چاپتەری 9</span>
+                <div class="card-img-bg" style="background-image: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600&auto=format&fit=crop');"></div>
+                <div class="chapter-info-box">
+                    <h3 class="lang-ku">کویز و تاقیکردنەوە</h3>
+                    <h3 class="lang-en hidden">Quizzes & Tests</h3>
+                    <h3 class="lang-ar hidden">الاختبارات</h3>
+                    <p class="lang-ku">خۆت هەڵسەنگێنە لە ڕێگەی پرسیار و وەڵامی زانستی لەسەر مێرووەکان.</p>
+                    <p class="lang-en hidden">Evaluate your knowledge through targeted interactive questions.</p>
+                    <p class="lang-ar hidden">قيم معلوماتك العلمية من خلال الأسئلة والأجوبة التفاعلية.</p>
+                    <a href="#" class="chapter-btn lang-ku">دەستپێکردن</a>
+                </div>
             </div>
 
         </div>
     </section>
 
     <footer class="footer-section">
-        <div class="waves-container">
-            <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-                <defs>
-                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z" />
-                </defs>
-                <g class="parallax">
-                    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255, 255, 255, 0.6)" />
-                    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255, 255, 255, 0.4)" />
-                    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255, 255, 255, 0.2)" />
-                    <use xlink:href="#gentle-wave" x="48" y="7" fill="var(--bg-main)" />
-                </g>
-            </svg>
-        </div>
-    
         <div class="footer-content">
             <div class="footer-info-block">
                 <h3>NovaEntomo Website</h3>
                 <p>پلاتفۆڕمی زانستی مێرووناسی</p>
                 <p>بەشی بایۆلۆجی - کۆلێژی زانست - زانکۆی ڕاپەڕین</p>
             </div>
-
-            <div class="social-icons">
-                <a href="#"><i class="ph ph-facebook-logo"></i></a>
-                <a href="#"><i class="ph ph-linkedin-logo"></i></a>
-                <a href="#"><i class="ph ph-globe"></i></a>
-            </div>
-    
             <p class="copyright">
                 سەرجەم مافەکانی پارێزراوە 2026 &copy; NovaEntomo
             </p>
@@ -666,7 +597,7 @@
         const openSidebarBtn = document.getElementById('open-sidebar');
         const closeSidebarBtn = document.getElementById('close-sidebar');
 
-        /* ١. کۆنتڕۆڵکردنی مۆدی تاریک و ڕوون */
+        /* ١. سویچی لایت/دارک مۆد */
         function switchTheme(e) {
             if (e.target.checked) {
                 htmlTag.setAttribute('data-theme', 'dark');
@@ -677,19 +608,17 @@
             }
         }
         toggleSwitch.addEventListener('change', switchTheme, false);
-
         const currentTheme = localStorage.getItem('theme') || 'light';
         htmlTag.setAttribute('data-theme', currentTheme);
         if (currentTheme === 'dark') { toggleSwitch.checked = true; }
 
-        /* ٢. کۆنتڕۆڵکردنی زمانەکان (لە پاڵ یەک) */
+        /* ٢. کۆنتڕۆڵی زمانەکان بە دوگمەی تەنیشت یەک */
         langBtns.forEach(btn => {
             btn.addEventListener('click', function() {
                 langBtns.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
                 
                 const selectedLang = this.getAttribute('data-lang');
-                
                 if (selectedLang === 'en') {
                     htmlTag.setAttribute('dir', 'ltr');
                     htmlTag.setAttribute('lang', 'en');
@@ -698,7 +627,6 @@
                     htmlTag.setAttribute('lang', selectedLang);
                 }
 
-                // شاردنەوە و پیشاندانی نووسینەکان
                 document.querySelectorAll('.lang-ku, .lang-en, .lang-ar').forEach(el => {
                     if (el.classList.contains(`lang-${selectedLang}`)) {
                         el.classList.remove('hidden');
@@ -709,7 +637,7 @@
             });
         });
 
-        /* ٣. لۆژیکی سایدیاری تەنها بە کلیک (Drawer Trigger) */
+        /* ٣. لۆژیکی سایدیاری درۆوەر (تەنها بە کلیک دەکرێتەوە) */
         openSidebarBtn.addEventListener('click', () => {
             sidebar.classList.add('open');
             overlay.classList.add('show');
@@ -719,7 +647,6 @@
             sidebar.classList.remove('open');
             overlay.classList.remove('show');
         }
-
         closeSidebarBtn.addEventListener('click', closeSidebar);
         overlay.addEventListener('click', closeSidebar);
     </script>
