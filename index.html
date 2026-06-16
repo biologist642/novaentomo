@@ -88,10 +88,14 @@
             color: var(--accent-color);
         }
 
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
         .nav-links a {
             text-decoration: none;
             color: var(--text-primary);
-            margin: 0 20px;
             font-weight: 600;
             font-size: 15px;
             position: relative;
@@ -119,12 +123,14 @@
         }
 
         #lang-switcher {
-            padding: 5px 10px;
-            border-radius: 5px;
+            padding: 6px 12px;
+            border-radius: 8px;
             background: var(--bg-card);
             color: var(--text-primary);
             border: 1px solid var(--text-secondary);
             cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
         }
 
         /* ==========================================================================
@@ -179,6 +185,7 @@
         input:checked + .slider:before {
             transform: translateX(23px);
             background-color: #f6e05e;
+            box-shadow: 0 0 10px #f6e05e;
         }
 
         /* ==========================================================================
@@ -283,10 +290,11 @@
             align-items: center;
             gap: 12px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         /* ==========================================================================
-           6. ستایلی سایدیار و ڕێکخستنی لاینەکان (Sidebar Layout)
+           6. ستایلی سایدیار و کانتێنەر (Sidebar Layout)
            ========================================================================== */
         .main-layout {
             display: flex;
@@ -301,6 +309,7 @@
             border-radius: 20px;
             padding: 25px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            height: fit-content;
         }
 
         .sidebar-header {
@@ -342,6 +351,7 @@
         .sidebar-links li.active a, .sidebar-links a:hover {
             background-color: var(--sidebar-active);
             color: white;
+            transform: scale(1.03);
         }
 
         .content-area {
@@ -351,6 +361,7 @@
             padding: 30px;
             min-height: 300px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
         /* ==========================================================================
@@ -421,6 +432,11 @@
             font-weight: 500;
         }
 
+        .copyright {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
         /* ==========================================================================
            8. ئەنیمەیشنەکان (Keyframes)
            ========================================================================== */
@@ -439,6 +455,17 @@
         @keyframes move-forever {
             0% { transform: translate3d(-90px,0,0); }
             100% { transform: translate3d(85px,0,0); }
+        }
+
+        /* گونجاندن لەگەڵ شاشەی مۆبایل */
+        @media (max-width: 768px) {
+            .hero-container, .main-layout {
+                flex-direction: column;
+                padding: 100px 20px 20px 20px;
+            }
+            .sidebar { width: 100%; }
+            .hero-title { font-size: 45px; }
+            .navbar { padding: 0 20px; }
         }
     </style>
 </head>
@@ -610,5 +637,65 @@
         </div>
     </footer>
 
+    <script>
+        // دۆکۆمێنت و کلیلەکان
+        const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+        const htmlTag = document.getElementById('html-tag');
+        const langSwitcher = document.getElementById('lang-switcher');
+
+        /* A. لۆژیکی گۆڕینی لایت مۆد و دارک مۆد */
+        function switchTheme(e) {
+            if (e.target.checked) {
+                htmlTag.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                htmlTag.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        toggleSwitch.addEventListener('change', switchTheme, false);
+
+        // پشکنینی مۆدی پێشوو لە ناو بیرگەی وێبگەڕدا (LocalStorage)
+        const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+        if (currentTheme) {
+            htmlTag.setAttribute('data-theme', currentTheme);
+            if (currentTheme === 'dark') {
+                toggleSwitch.checked = true;
+            }
+        }
+
+        /* B. لۆژیکی سەرەکی گۆڕینی زمانەکان و ئاڕاستەی پەرەکە (RTL / LTR) */
+        langSwitcher.addEventListener('change', (e) => {
+            const selectedLang = e.target.value;
+            
+            // ١. گۆڕینی ئاڕاستە و زمانی فەرمی تاگی <html>
+            if (selectedLang === 'en') {
+                htmlTag.setAttribute('dir', 'ltr');
+                htmlTag.setAttribute('lang', 'en');
+            } else {
+                htmlTag.setAttribute('dir', 'rtl');
+                htmlTag.setAttribute('lang', selectedLang);
+            }
+
+            // ٢. پیشاندان و شاردنەوەی دەقەکان بەپێی زمانی دیاریکراو
+            const allElements = document.querySelectorAll('.lang-ku, .lang-en, .lang-ar');
+            allElements.forEach(el => {
+                if (el.classList.contains(`lang-${selectedLang}`)) {
+                    el.classList.remove('hidden');
+                } else {
+                    el.classList.add('hidden');
+                }
+            });
+        });
+
+        /* C. ئەنیمەیشنی کلیک لەسەر بەشەکانی سایدیار (Sidebar Active Class) */
+        const sidebarItems = document.querySelectorAll('.sidebar-links li');
+        sidebarItems.forEach(item => {
+            item.addEventListener('click', function() {
+                sidebarItems.forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>
