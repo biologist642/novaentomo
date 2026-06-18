@@ -626,36 +626,40 @@
             const currentTheme = localStorage.getItem('theme') || 'light';
             themeStatusText.innerText = data[currentTheme];
 
-            // دروستکردنەوە و گۆڕینی لایڤی ناوی سەرجەم کارتەکان
             chaptersContainer.innerHTML = '';
-            data.chapters.forEach((ch, index) => {
-                let btnLabel = data.readMore;
-                if(index === 7) btnLabel = data.viewBtn;
-                if(index === 8) btnLabel = data.startBtn;
-                function replaceNumbers(str, lang) 
-
-                function replaceNumbers(str, lang) {
-    if (lang === 'en') return str;
-    const persianNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+        }
+// فەرمانی گۆڕینی ژمارەکان لێرە بە سەربەخۆ دادەنێین تا کۆدەکە تێکنەچێت
+function convertToKurdishNumbers(str, currentLang) {
+    if (currentLang === 'en') return str;
+    const kurdishNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
     return str.replace(/[0-9]/g, function(w) {
-        return persianNumbers[+w];
+        return kurdishNumbers[+w];
     });
 }
 
-                const cardHtml = `
-                    <div class="chapter-card" id="ch${index+1}" style="animation-delay: ${0.1 + (index*0.05)}s;">
-                        <span class="chapter-badge">${data.badgeText} ${replaceNumbers('0' + (index + 1), lang)}</span>
-                        <div class="card-img-bg" style="background-image: url('${images[index]}');"></div>
-                        <div class="chapter-info-box">
-                            <h3>${ch.title}</h3>
-                            <p>${ch.desc}</p>
-                            <a href="#" class="chapter-btn">${btnLabel}</a>
-                        </div>
-                    </div>
-                `;
-                chaptersContainer.insertAdjacentHTML('beforeend', cardHtml);
-            });
-        }
+// لۆپی دروستکردنی کارتەکان
+data.chapters.forEach((ch, index) => {
+    let btnLabel = data.readMore;
+    if(index === 7) btnLabel = data.viewBtn;
+    if(index === 8) btnLabel = data.startBtn;
+
+    // دروستکردنی ژمارەی چاپتەرەکە (01, 02, ...) و گۆڕینی بەپێی زمان
+    let chapterNumber = '0' + (index + 1);
+    let formattedNumber = convertToKurdishNumbers(chapterNumber, lang);
+
+    const cardHtml = `
+        <div class="chapter-card" id="ch${index+1}" style="animation-delay: ${0.1 + (index*0.05)}s;">
+            <span class="chapter-badge">${data.badgeText} ${formattedNumber}</span>
+            <div class="card-img-bg" style="background-image: url('${images[index]}');"></div>
+            <div class="chapter-info-box">
+                <h3>${ch.title}</h3>
+                <p>${ch.desc}</p>
+                <a href="#" class="chapter-btn">${btnLabel}</a>
+            </div>
+        </div>
+    `;
+    chaptersContainer.insertAdjacentHTML('beforeend', cardHtml);
+});
 
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', function() {
