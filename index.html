@@ -119,6 +119,46 @@
         .hero-desc { font-size: 18px; line-height: 1.8; margin-bottom: 35px; color: rgba(255, 255, 255, 0.85); opacity: 0; transform: translateY(30px); animation: heroFadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.4s; }
         .hero-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 34px; background-color: var(--accent-color); color: white; text-decoration: none; font-weight: 600; border-radius: 50px; box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4); font-size: 15px; opacity: 0; transform: translateY(30px); animation: heroFadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.6s; }
         .hero-btn:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(46, 125, 50, 0.6); }
+        /* --- بەشی نوێ بۆ پارچە شووشەییەکانی مێشولەکە --- */
+.glass-artboard {
+  position: relative;
+  width: 45%; /* پانی ڕووبەری شووشەکە */
+  height: 60vh;
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+  z-index: 6;
+}
+
+.glass-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* لێرەدا ناوی وێنە نوێیەکە جێگیر کراوە */
+  background-image: url('1000049148.jpg'); 
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  transition: transform 0.2s ease-out;
+}
+
+/* بڕینی پارچەکان */
+.panel-1 { clip-path: polygon(0 0, 45% 0, 35% 100%, 0% 100%); transform: translateZ(20px); }
+.panel-2 { clip-path: polygon(45% 0, 75% 0, 65% 55%, 38% 50%); transform: translateZ(40px); }
+.panel-3 { clip-path: polygon(38% 50%, 65% 55%, 55% 100%, 35% 100%); transform: translateZ(10px); }
+.panel-4 { clip-path: polygon(75% 0, 100% 0, 100% 100%, 55% 100%, 65% 55%); transform: translateZ(30px); }
+
+.glass-panel::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
+  pointer-events: none;
+}
 
         @keyframes heroFadeInUp { to { opacity: 1; transform: translateY(0); } }
 
@@ -306,6 +346,12 @@
                 <h1 class="hero-main-title" id="hero-title">NovaEntomo<br><span>زانستی مێرووناسی</span></h1>
                 <p class="hero-desc" id="hero-desc">پلاتفۆرمی زانستی و ئەکادیمی پێشکەوتوو بۆ توێژینەوە، پۆلێنکردن و ناسینەوەی خێزانی مێرووەکان بە تەکنەلۆژیای زیرەک.</p>
                 <a href="#chapters" class="hero-btn" id="hero-btn-text">دەستپێکردنی گەشتەکە <i class="ph ph-arrow-down"></i></a>
+            </div>
+    <div class="glass-artboard" id="artboard">
+                <div class="glass-panel panel-1"></div>
+                <div class="glass-panel panel-2"></div>
+                <div class="glass-panel panel-3"></div>
+                <div class="glass-panel panel-4"></div>
             </div>
         </main>
     </div>
@@ -578,5 +624,41 @@
         document.getElementById('close-sidebar').addEventListener('click', closeSidebar);
         overlay.addEventListener('click', closeSidebar);
     </script>
+</script> 
+
+<script>
+    const artboard = document.getElementById('artboard');
+    const panels = document.querySelectorAll('.glass-panel');
+
+    window.addEventListener('mousemove', (e) => {
+      const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+      const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+
+      artboard.style.transform = `rotateY(${xAxis}deg) rotateX(${-yAxis}deg)`;
+      
+      panels.forEach((panel, index) => {
+        const depth = (index + 1) * 5;
+        const moveX = (window.innerWidth / 2 - e.pageX) / (100 - depth);
+        const moveY = (window.innerHeight / 2 - e.pageY) / (100 - depth);
+        
+        const originalZ = panel.className.includes('panel-1') ? 20 : 
+                          panel.className.includes('panel-2') ? 40 :
+                          panel.className.includes('panel-3') ? 10 : 30;
+                          
+        panel.style.transform = `translate3d(${moveX}px, ${moveY}px, ${originalZ}px)`;
+      });
+    });
+
+    window.addEventListener('mouseleave', () => {
+      artboard.style.transform = `rotateY(0deg) rotateX(0deg)`;
+      panels.forEach((panel) => {
+        const originalZ = panel.className.includes('panel-1') ? 20 : 
+                          panel.className.includes('panel-2') ? 40 :
+                          panel.className.includes('panel-3') ? 10 : 30;
+        panel.style.transform = `translate3d(0px, 0px, ${originalZ}px)`;
+      });
+    });
+</script>
+
 </body>
 </html>
