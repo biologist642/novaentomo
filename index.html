@@ -120,46 +120,78 @@
         .hero-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 34px; background-color: var(--accent-color); color: white; text-decoration: none; font-weight: 600; border-radius: 50px; box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4); font-size: 15px; opacity: 0; transform: translateY(30px); animation: heroFadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.6s; }
         .hero-btn:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(46, 125, 50, 0.6); }
         /* --- بەشی نوێ بۆ پارچە شووشەییەکانی مێشولەکە --- */
+        /* ١. گۆڕینی کڵاسی سەرەکی بۆ ئەوەی display: flex نەبێت و وێنە نوێیەکە وەک باکگراوند وەرگرێت */
+        .hero-curved-container {
+            position: relative;
+            width: 100%;
+            min-height: 65vh;
+            border-radius: 32px;
+            overflow: hidden;
+            border: 5px solid rgba(255, 255, 255, 0.75);
+            box-shadow: 0 25px 55px rgba(0, 0, 0, 0.3);
+            display: block; /* لادانی flex بۆ ئەوەی تێکستەکە نەکەوێتە لای چەپ */
+            padding: 80px 40px;
+            perspective: 2000px; /* قووڵی 3D زیاتر */
+        }
+
+        /* ٢. هێنانە پێشەوەی تێکستەکان بۆ سەرەوەی شووشەکان */
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            z-index: 20; /* بەرزتر لە شووشەکان بۆ ئەوەی دیار بێت */
+            color: #ffffff;
+            margin: 0 auto;
+            text-align: center;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+            pointer-events: none; /* بۆ ئەوەی تێکستەکە کارلێکی ماوسەکە نەگرێت */
+        }
+        .glass-artboard
+            .hero-btn {
+            pointer-events: auto; /* ڕێگەپێدان بە کلیک لەسەر دوگمەکە */
+        }
+
+        /* ٣. کۆنتێنەری سەرەکی شووشەیی پاشبنەما */
         .glass-artboard {
-  position: absolute; /* دەبێتە absolute بۆ ئەوەی تەواوی باکگراوندەکە بگرێت */
-  top: 0;
-  left: 0;
-  width: 100%; /* پانیەکە دەکەینە 100% لە جیاتی 45% */
-  height: 100%; /* بەرزیەکە دەکەینە 100% لە جیاتی 60vh */
-  transform-style: preserve-3d;
-  transition: transform 0.1s ease-out;
-  z-index: 10; /* دەکەوێتە پشت تێکستەکان */
-}
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+        }
 
+/* ٤. ستایلی پانێڵە شووشەییەکان و بەستنی بە وێنە نوێیەکەتەوە */
 .glass-panel {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('1000049148.jpg'); /* وێنە نوێیەکەت */
-  background-size: cover;
-  background-position: center;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
-  transition: transform 0.2s ease-out;
-}
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('1000049148.jpg'); /* ناوی وێنە نوێیەکەت */
+            background-size: cover;
+            background-position: center;
+            border: 1.5px solid rgba(255, 255, 255, 0.25); /* هێڵە سپییەکانی نێوانیان */
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(3px); /* لێڵکردنی شووشەیی بۆ دیاربوونی تێکستەکە */
+            -webkit-backdrop-filter: blur(3px);
+            transition: transform 0.2s ease-out;
+        }
 
-/* بڕینی پارچەکان بە شێوازی گەورە بۆ تەواوی شاشەکە */
-.panel-1 { clip-path: polygon(0 0, 32% 0, 26% 100%, 0% 100%); transform: translateZ(15px); }
-.panel-2 { clip-path: polygon(32% 0, 68% 0, 62% 58%, 24% 52%); transform: translateZ(35px); }
-.panel-3 { clip-path: polygon(24% 52%, 62% 58%, 52% 100%, 26% 100%); transform: translateZ(10px); }
-.panel-4 { clip-path: polygon(68% 0, 100% 0, 100% 100%, 52% 100%, 62% 58%); transform: translateZ(25px); }
+/* ٥. بڕینی پارچەکان بە شێوازی تیژ و ناڕێک وەک ئەوەی پێت خۆش بوو */
+.panel-1 { clip-path: polygon(0 0, 28% 0, 38% 100%, 0% 100%); transform: translateZ(30px); }
+        .panel-2 { clip-path: polygon(28% 0, 53% 0, 50% 50%, 33% 45%); transform: translateZ(60px); }
+        .panel-3 { clip-path: polygon(33% 45%, 50% 50%, 42% 100%, 38% 100%); transform: translateZ(15px); }
+        .panel-4 { clip-path: polygon(53% 0, 100% 0, 100% 100%, 42% 100%, 50% 50%); transform: translateZ(45px); }
 
 .glass-panel::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
-  pointer-events: none;
-}
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%);
+            pointer-events: none;
+        }
 
         @keyframes heroFadeInUp { to { opacity: 1; transform: translateY(0); } }
 
@@ -628,37 +660,43 @@
 </script> 
 
 <script>
-    const artboard = document.getElementById('artboard');
-    const panels = document.querySelectorAll('.glass-panel');
+   const artboard = document.getElementById('artboard');
+const panels = document.querySelectorAll('.glass-panel');
 
-    window.addEventListener('mousemove', (e) => {
-      const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-      const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+window.addEventListener('mousemove', (e) => {
+  // زیادکردنی گۆشەی چەمانەوە بۆ ١٥ پلە بۆ جوڵەیەکی زیاتر
+  const xAxis = (window.innerWidth / 2 - e.pageX) / 15;
+  const yAxis = (window.innerHeight / 2 - e.pageY) / 15;
 
-      artboard.style.transform = `rotateY(${xAxis}deg) rotateX(${-yAxis}deg)`;
-      
-      panels.forEach((panel, index) => {
-        const depth = (index + 1) * 5;
-        const moveX = (window.innerWidth / 2 - e.pageX) / (100 - depth);
-        const moveY = (window.innerHeight / 2 - e.pageY) / (100 - depth);
-        
-        const originalZ = panel.className.includes('panel-1') ? 20 : 
-                          panel.className.includes('panel-2') ? 40 :
-                          panel.className.includes('panel-3') ? 10 : 30;
-                          
-        panel.style.transform = `translate3d(${moveX}px, ${moveY}px, ${originalZ}px)`;
-      });
-    });
+  artboard.style.transform = `rotateY(${xAxis}deg) rotateX(${-yAxis}deg)`;
+  
+  panels.forEach((panel) => {
+    // جیاکردنەوەی قووڵی پارچەکان بەپێی کڵاسەکانیان بۆ دروستکردنی لێکجیابوونەوەی ڕاستەقینە
+    let originalZ = 30;
+    if (panel.classList.contains('panel-2')) originalZ = 60;
+    if (panel.classList.contains('panel-3')) originalZ = 15;
+    if (panel.classList.contains('panel-4')) originalZ = 45;
+    
+    // جوڵەی لایەنی X و Y بەپێی قووڵی پارچەکە
+    const moveX = (window.innerWidth / 2 - e.pageX) / (originalZ * 0.5);
+    const moveY = (window.innerHeight / 2 - e.pageY) / (originalZ * 0.5);
+    
+    panel.style.transform = `translate3d(${moveX}px, ${moveY}px, ${originalZ}px)`;
+  });
+});
 
-    window.addEventListener('mouseleave', () => {
-      artboard.style.transform = `rotateY(0deg) rotateX(0deg)`;
-      panels.forEach((panel) => {
-        const originalZ = panel.className.includes('panel-1') ? 20 : 
-                          panel.className.includes('panel-2') ? 40 :
-                          panel.className.includes('panel-3') ? 10 : 30;
-        panel.style.transform = `translate3d(0px, 0px, ${originalZ}px)`;
-      });
-    });
+// گەڕانەوەی نەرم بۆ دۆخی سەرەتایی کاتێک ماوسەکە لادەچێت
+window.addEventListener('mouseleave', () => {
+  artboard.style.transform = `rotateY(0deg) rotateX(0deg)`;
+  panels.forEach((panel) => {
+    let originalZ = 30;
+    if (panel.classList.contains('panel-2')) originalZ = 60;
+    if (panel.classList.contains('panel-3')) originalZ = 15;
+    if (panel.classList.contains('panel-4')) originalZ = 45;
+    
+    panel.style.transform = `translate3d(0px, 0px, ${originalZ}px)`;
+  });
+});
 </script>
 
 </body>
