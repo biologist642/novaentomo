@@ -120,13 +120,15 @@
         .hero-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 34px; background-color: var(--accent-color); color: white; text-decoration: none; font-weight: 600; border-radius: 50px; box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4); font-size: 15px; opacity: 0; transform: translateY(30px); animation: heroFadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.6s; }
         .hero-btn:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(46, 125, 50, 0.6); }
         /* --- بەشی نوێ بۆ پارچە شووشەییەکانی مێشولەکە --- */
-.glass-artboard {
-  position: relative;
-  width: 45%; /* پانی ڕووبەری شووشەکە */
-  height: 60vh;
+        .glass-artboard {
+  position: absolute; /* دەبێتە absolute بۆ ئەوەی تەواوی باکگراوندەکە بگرێت */
+  top: 0;
+  left: 0;
+  width: 100%; /* پانیەکە دەکەینە 100% لە جیاتی 45% */
+  height: 100%; /* بەرزیەکە دەکەینە 100% لە جیاتی 60vh */
   transform-style: preserve-3d;
   transition: transform 0.1s ease-out;
-  z-index: 6;
+  z-index: 10; /* دەکەوێتە پشت تێکستەکان */
 }
 
 .glass-panel {
@@ -135,22 +137,21 @@
   left: 0;
   width: 100%;
   height: 100%;
-  /* لێرەدا ناوی وێنە نوێیەکە جێگیر کراوە */
-  background-image: url('1000049148.jpg'); 
+  background-image: url('1000049148.jpg'); /* وێنە نوێیەکەت */
   background-size: cover;
   background-position: center;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
   transition: transform 0.2s ease-out;
 }
 
-/* بڕینی پارچەکان */
-.panel-1 { clip-path: polygon(0 0, 45% 0, 35% 100%, 0% 100%); transform: translateZ(20px); }
-.panel-2 { clip-path: polygon(45% 0, 75% 0, 65% 55%, 38% 50%); transform: translateZ(40px); }
-.panel-3 { clip-path: polygon(38% 50%, 65% 55%, 55% 100%, 35% 100%); transform: translateZ(10px); }
-.panel-4 { clip-path: polygon(75% 0, 100% 0, 100% 100%, 55% 100%, 65% 55%); transform: translateZ(30px); }
+/* بڕینی پارچەکان بە شێوازی گەورە بۆ تەواوی شاشەکە */
+.panel-1 { clip-path: polygon(0 0, 32% 0, 26% 100%, 0% 100%); transform: translateZ(15px); }
+.panel-2 { clip-path: polygon(32% 0, 68% 0, 62% 58%, 24% 52%); transform: translateZ(35px); }
+.panel-3 { clip-path: polygon(24% 52%, 62% 58%, 52% 100%, 26% 100%); transform: translateZ(10px); }
+.panel-4 { clip-path: polygon(68% 0, 100% 0, 100% 100%, 52% 100%, 62% 58%); transform: translateZ(25px); }
 
 .glass-panel::before {
   content: '';
