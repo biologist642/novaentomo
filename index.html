@@ -625,7 +625,7 @@
 
             const currentTheme = localStorage.getItem('theme') || 'light';
             themeStatusText.innerText = data[currentTheme];
-        }
+        
             chaptersContainer.innerHTML = '';
         
 // فەرمانی گۆڕینی ژمارەکان لێرە بە سەربەخۆ دادەنێین تا کۆدەکە تێکنەچێت
@@ -660,6 +660,7 @@ data.chapters.forEach((ch, index) => {
     `;
     chaptersContainer.insertAdjacentHTML('beforeend', cardHtml);
 });
+        }
 
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', function() {
