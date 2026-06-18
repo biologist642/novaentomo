@@ -289,27 +289,36 @@
         /* ==========================================================================
            6. فووتەری ڕیسپۆنسڤ لەگەڵ مۆشنی پەپوولەکان
            ========================================================================== */
-        .footer-section { 
-            position: relative; background: #0f1f18; padding-top: 100px; padding-bottom: 40px; 
-            text-align: center; color: #ffffff; margin-top: 100px; overflow: hidden;
-        }
-        
-        .footer-insect-layer {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 2;
-        }
-        .footer-moving-bug {
-            position: absolute; color: rgba(255, 255, 255, 0.2); font-size: 22px;
-            animation: verticalBugFly 14s linear infinite;
-        }
-        .f-ins-1 { bottom: 15%; left: 15%; animation-delay: 0.5s; }
-        .f-ins-2 { top: 25%; right: 20%; animation-duration: 19s; animation-direction: reverse; }
+           .footer-section { 
+    position: relative; background: #0f1f18; padding-top: 100px; padding-bottom: 40px; 
+    text-align: center; color: #ffffff; margin-top: 100px; overflow: hidden;
+}
 
-        @keyframes verticalBugFly {
-            0% { transform: translateY(20px) scale(1) rotate(0deg); opacity: 0.1; }
-            50% { transform: translateY(-40px) scale(1.2) rotate(15deg); opacity: 0.5; }
-            100% { transform: translateY(-90px) scale(1) rotate(-15deg); opacity: 0; }
-        }
+.footer-insect-layer {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 2;
+}
+
+/* کلاسی گشتی مێرووەکان - لێرەدا opacity مان ڕێکخستووە تا گەش و دیار بن */
+.footer-moving-bug {
+    position: absolute; 
+    color: rgba(255, 255, 255, 0.45); 
+    font-size: 22px;
+    animation: verticalBugFly 14s linear infinite;
+}
+
+/* دیاریکردنی کات و شوێنی جیاواز بۆ هەر ٤ مێرووەکە */
+.f-ins-1 { bottom: 15%; left: 15%; animation-delay: 0.5s; }
+.f-ins-2 { top: 25%; right: 20%; animation-duration: 19s; animation-direction: reverse; }
+.f-ins-3 { bottom: 40%; right: 45%; animation-duration: 16s; animation-delay: 2s; }
+.f-ins-4 { top: 10%; left: 35%; animation-duration: 22s; animation-direction: reverse; animation-delay: 4s; }
+
+/* ئەنیمەیشنی فڕینی مێروو و پەپوولەکان */
+@keyframes verticalBugFly {
+    0% { transform: translateY(20px) scale(1) rotate(0deg); opacity: 0.1; }
+    50% { transform: translateY(-40px) scale(1.2) rotate(15deg); opacity: 0.6; }
+    100% { transform: translateY(-90px) scale(1) rotate(-15deg); opacity: 0; }
+}
 
         .waves-container { position: absolute; top: -1px; left: 0; width: 100%; height: 110px; margin-bottom: -7px; transform: rotate(180deg); }
         .parallax > use { animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite; }
@@ -565,8 +574,10 @@
         <div class="footer-insect-layer">
             <i class="ph ph-butterfly footer-moving-bug f-ins-1"></i>
             <i class="ph ph-bug footer-moving-bug f-ins-2"></i>
+            <i class="ph ph-butterfly footer-moving-bug f-ins-3"></i>
+            <i class="ph ph-bug footer-moving-bug f-ins-4"></i>
         </div>
-
+    
         <div class="waves-container">
             <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
