@@ -127,7 +127,7 @@
     margin-top: 0 !important; /* لکاندن بە نەڤبار لەسەر کۆمپیوتەر */
     
     /* باکگراوند و وێنەی مێشولەکان */
-    background-image: url(https://i.pinimg.com/736x/e5/ea/78/e5ea781636a5a72f9df08dd59f919013.jpg);
+    background-color: #fff;
     background-size: cover;
     background-position: center;
 }
@@ -479,6 +479,11 @@
                 <p id="f-bionova" class="bionova-mention">ئەم پلاتفۆرمە گەشەی پێدراوە لە لایەن تیمی BioNova</p>
             </div>
 
+            <div style="margin-top: 15px; text-align: center;">
+                <span id="f-link-label" style="font-weight: bold; color: #ffffff; margin-left: 5px;">بەستەر:</span>
+                <a href="https://biologist642.github.io/nova-plant/" target="_blank" style="color: #00bcd4; text-decoration: none; font-weight: 500;">NovaPlant</a>
+            </div>
+
             <div class="footer-visitor-box">
                 <i class="ph ph-eye"></i>
                 <span><span id="f-vtext">بینەری گشتی:</span> <b id="visitor-count">0</b></span>
@@ -678,8 +683,27 @@ function applyLanguage(lang) {
         `;
         chaptersContainerElement.insertAdjacentHTML('beforeend', cardHtml);
     });
-}
 
+    // وەرگێڕانی وشەی بەستەر بەپێی زمانەکە
+    const fLinkLabel = document.getElementById('f-link-label');
+    if (fLinkLabel) {
+        fLinkLabel.innerText = (lang === 'en') ? 'Link: ' : (lang === 'ar' ? 'رابط: ' : 'بەستەر: ');
+    }
+} // 👈 کۆتایی فەرمانی applyLanguage
+
+// سیستمی گۆڕینی زمان کاتێک کلیک لە دوگمەکان دەکرێت
+document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        
+        const selectedLang = this.getAttribute('data-lang');
+        htmlTag.setAttribute('dir', selectedLang === 'en' ? 'ltr' : 'rtl');
+        htmlTag.setAttribute('lang', selectedLang);
+        localStorage.setItem('preferred_lang', selectedLang);
+        applyLanguage(selectedLang);
+    });
+});
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
