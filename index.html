@@ -328,8 +328,10 @@
         .footer-visitor-box i { color: #81c784; }
         .copyright { font-size: 13.5px; opacity: 0.5; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); }
 /* =======================================================
-   ئەنیمەیشنی نەرم بۆ دەرکەوتنی نووسینەکانی فووتەر و ناونیشانەکە
+   ١. ئەنیمەیشنە سەرەکییەکان (Keyframes)
 ======================================================= */
+
+/* ئەنیمەیشنی دەرکەوتنی نەرم لە سەرەتای کردنەوەی پەڕەکە */
 @keyframes textFadeUp {
     from {
         opacity: 0;
@@ -341,37 +343,101 @@
     }
 }
 
-/* بەستنەوەی ئەنیمەیشنەکە بە ناونیشانی چاپتەرەکان */
+/* ئەنیمەیشنی سەر و خوار بوونی بەردەوام (Float) */
+@keyframes floatUpDown {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0); }
+}
+
+/* ئەنیمەیشنی درەوشانەوەی سندوقی بینەران */
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 4px 12px rgba(129, 199, 132, 0.1);
+        border-color: rgba(129, 199, 132, 0.2);
+    }
+    100% {
+        box-shadow: 0 4px 20px rgba(0, 188, 212, 0.25);
+        border-color: rgba(0, 188, 212, 0.5);
+    }
+}
+
+/* ئەنیمەیشنی تروکانی ئایکۆنی چاوەکە */
+@keyframes eyeBlink {
+    0%, 90%, 100% { transform: scaleY(1); }
+    95% { transform: scaleY(0.1); }
+}
+
+/* =======================================================
+   ٢. جێبەجێکردنی ستایل و مۆشنەکان لەسەر بەشەکان
+======================================================= */
+
+/* ناونیشانی سەرەکی چاپتەرەکان لە بەشی سەرەوەی سایتەکە */
 #section-main-title {
     animation: textFadeUp 0.8s ease-out forwards;
 }
 
-/* بەستنەوەی ئەنیمەیشنەکە بە تەواوی بەشەکانی ناو فووتەر */
-.footer-info-block h3, 
+/* ڕێکخستنی سەرەتایی بۆ بەشەکانی فووتەر بۆ ئەوەی یەک لە دوای یەک بە نەرمی دەرکەون */
 .footer-info-block p, 
-.footer-link-animate,
-.footer-visitor-box, 
 .copyright {
     opacity: 0;
     animation: textFadeUp 0.6s ease-out forwards;
 }
 
-/* 🎯 ڕێکخستنی زۆر وردی کاتی جیاواز (Delay) بەپێی ڕیزبەندی ڕاستەقینەی HTML */
-/* ... کۆدەکانی پێشووت وەک کاتی جیاوازی دێڕەکان ... */
-.footer-info-block h3 { animation-delay: 0.15s; }
-.footer-info-block p:nth-child(2) { animation-delay: 0.25s; }
-.footer-info-block p:nth-child(3) { animation-delay: 0.35s; }
-.bionova-mention { animation-delay: 0.45s; }                  
+/* کاتی جیاوازی دەرکەوتن (Delay) بۆ پێشەکییەکان */
+.footer-info-block p:nth-child(2) { animation-delay: 0.2s; }
+.footer-info-block p:nth-child(3) { animation-delay: 0.3s; }
+.bionova-mention { animation-delay: 0.4s; }
+.copyright { animation-delay: 0.7s; }
 
-/* 🛑 ڕێک لێرەدا (لە دوای ئەوان و پێش دەستپێکردنی مۆبایل ئۆپتیمایزەیشن) زیادی بکە: */
-.footer-link-animate {
-    opacity: 0;
-    animation: textFadeUp 0.6s ease-out forwards;
-    animation-delay: 0.55s; /* کاتەکیمان کەمێک گۆڕی تا ڕێک دوای BioNova دەربکەوێت */
+/* ناونیشانی NovaEntomo - مۆشنی سەر و خوار بوونی بەردەوام */
+.footer-info-block h3 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #81c784;
+    margin-bottom: 5px;
+    display: inline-block;
+    animation: floatUpDown 3s ease-in-out infinite;
 }
 
-.footer-visitor-box { animation-delay: 0.65s; }               
-.copyright { animation-delay: 0.75s; }
+/* بەستەری NovaPlant - مۆشنی سەر و خوار بوونی بەردەوام */
+.footer-link-animate {
+    display: block;
+    animation: floatUpDown 3s ease-in-out infinite;
+    animation-delay: 0.5s; /* جیاواز دەستپێدەکات بۆ ئەوەی هاوسەنگ بن */
+}
+
+/* سندوقی نوێ و مۆدێرنی بینەری گشتی */
+.footer-visitor-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, rgba(129, 199, 132, 0.1), rgba(0, 188, 212, 0.1));
+    padding: 10px 28px;
+    border-radius: 50px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: #ffffff;
+    border: 1px solid rgba(129, 199, 132, 0.25);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    animation: pulseGlow 2.5s infinite alternate;
+}
+
+/* هۆڤەری جوان بۆ سندوقی بینەران */
+.footer-visitor-box:hover {
+    border-color: #00bcd4;
+    box-shadow: 0 4px 20px rgba(0, 188, 212, 0.4);
+    transform: scale(1.03);
+}
+
+/* ڕەنگ و ئەنیمەیشنی چاوەکە لە ناو سندوقی بینەران */
+.footer-visitor-box i {
+    color: #00bcd4;
+    animation: eyeBlink 4s infinite;
+}
 
         /* ==========================================================================
            7. سیستمی ڕیسپۆنسڤی مۆبایل (Mobile Optimization)
@@ -526,7 +592,7 @@
 
             <div class="footer-link-animate" style="margin-top: 15px; text-align: center;">
                 <span id="f-link-label" style="font-weight: bold; color: #ffffff; margin-left: 5px;">بەستەر:</span>
-                <a href="https://biologist642.github.io/nova-plant/" target="_blank" style="color: #e4ebf0; text-decoration: none; font-weight: 500;">NovaPlant</a>
+                <a href="https://biologist642.github.io/nova-plant/" target="_blank" style="color: #e4e705; text-decoration: none; font-weight: 500;">NovaPlant</a>
             </div>
 
             <div class="footer-visitor-box">
