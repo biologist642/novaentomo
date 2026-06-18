@@ -112,26 +112,42 @@
     width: 100% !important;
 }
 
-/* ٢. لکاندنی باکگراوندەکە بە نەڤبار و کەمکردنەوەی مۆشن */
+/* --- بەشی هێرۆ - ڕێکخستنی گشتی بۆ کۆمپیوتەر و مۆبایل --- */
 .hero-curved-container {
     position: relative;
     width: 100%;
     min-height: 75vh;
-    border-radius: 0; /* لابردنی چەمانەوە بۆ ئەوەی بۆشایی سپی لە گۆشەکان نەمێنێت */
+    border-radius: 0; 
     overflow: hidden;
     border: none !important;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
     display: block; 
-    padding: 120px 40px;
-    perspective: 3000px; /* جوڵەی زۆر لەسەرخۆ و نەرم */
-    margin-top: 0;
-
+    padding: 140px 20px 80px 20px; /* زیادکردنی پادینگی سەرەوە بۆ ئەوەی نووسین نەچێتە پشت نەڤبار */
+    perspective: 3000px; 
+    margin-top: 0 !important; /* لکاندن بە نەڤبار لەسەر کۆمپیوتەر */
+    
+    /* باکگراوند و وێنەی مێشولەکان */
     background-image: url('https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=1600&auto=format&fit=crop');
     background-size: cover;
     background-position: center;
-    .hero-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 34px; background-color: var(--accent-color); color: white; text-decoration: none; font-weight: 600; border-radius: 50px; box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4); font-size: 15px; opacity: 0; transform: translateY(30px); animation: heroFadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.6s; }
-    .hero-btn:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(46, 125, 50, 0.6); }
+}
 
+/* 📱 تایبەت بە شاشەی مۆبایل (کاتێک شاشە لە 768px بچووکترە) */
+@media (max-width: 768px) {
+    .hero-curved-container {
+        padding-top: 180px; /* لەسەر مۆبایل کەمێک زیاتر دێتە خوارەوە تا نەڤبارەکە نەیقۆزێتەوە */
+        min-height: 85vh; /* بەرزکردنەوەی ڕووبەرەکە لەسەر مۆبایل بۆ جێبوونەوەی نووسینەکان */
+    }
+    
+    .hero-main-title {
+        font-size: 38px !important; /* بچووککردنەوەی قەبارەی فۆنتی ناونیشانەکە لەسەر مۆبایل تا نەشێوێت */
+        line-height: 1.3 !important;
+    }
+    
+    .hero-desc {
+        font-size: 15px !important; /* گونجاندنی دەقی ڕوونکردنەوەکە بۆ مۆبایل */
+        padding: 0 10px;
+    }
 }
 
 /* ٣. هێنانە پێشەوەی تێکستەکان */
