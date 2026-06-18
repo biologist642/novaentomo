@@ -121,101 +121,92 @@
         .hero-btn:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(46, 125, 50, 0.6); }
         /* --- بەشی نوێ بۆ پارچە شووشەییەکانی مێشولەکە --- */
         /* ١. گۆڕینی کڵاسی سەرەکی بۆ ئەوەی display: flex نەبێت و وێنە نوێیەکە وەک باکگراوند وەرگرێت */
-        .hero-curved-container {
-            position: relative;
-            width: 100%;
-            min-height: 65vh;
-            border-radius: 32px;
-            overflow: hidden;
-            border: 5px solid rgba(255, 255, 255, 0.75);
-            box-shadow: 0 25px 55px rgba(0, 0, 0, 0.3);
-            display: block; /* لادانی flex بۆ ئەوەی تێکستەکە نەکەوێتە لای چەپ */
-            padding: 80px 40px;
-            perspective: 2000px; /* قووڵی 3D زیاتر */
-        }
+/* --- بەشی هێرۆ کۆنتێنەر - نوێکراوەتەوە --- */
+.hero-curved-container {
+    position: relative;
+    width: 100%;
+    min-height: 65vh;
+    border-radius: 32px;
+    overflow: hidden;
+    border: 5px solid rgba(255, 255, 255, 0.75);
+    box-shadow: 0 25px 55px rgba(0, 0, 0, 0.3);
+    display: block; /* لادانی flex بۆ ئەوەی شووشەکان گەورە بن */
+    padding: 80px 40px;
+    perspective: 2000px; /* قووڵی بۆ 3D */
+    background: #0b140f; /* ڕەنگێکی تاریک ئەگەر وێنەکە هێشتا بارنەبووبوو */
+}
 
-        /* ٢. هێنانە پێشەوەی تێکستەکان بۆ سەرەوەی شووشەکان */
-        .hero-content {
-            position: relative;
-            max-width: 800px;
-            z-index: 20; /* بەرزتر لە شووشەکان بۆ ئەوەی دیار بێت */
-            color: #ffffff;
-            margin: 0 auto;
-            text-align: center;
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
-            pointer-events: none; /* بۆ ئەوەی تێکستەکە کارلێکی ماوسەکە نەگرێت */
-        }
-        .glass-artboard
-            .hero-btn {
-            pointer-events: auto; /* ڕێگەپێدان بە کلیک لەسەر دوگمەکە */
-        }
+/* ڕێکخستنی نووسینەکان لەسەر شووشەکان */
+.hero-content {
+    position: relative;
+    max-width: 800px;
+    z-index: 20; /* دەچێتە سەروو شووشەکان */
+    color: #ffffff;
+    margin: 0 auto;
+    text-align: center;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
+    pointer-events: none;
+}
 
-        /* ٣. کۆنتێنەری سەرەکی شووشەیی پاشبنەما */
-        .glass-artboard {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            transform-style: preserve-3d;
-            transition: transform 0.1s ease-out;
-        }
+.hero-btn {
+    pointer-events: auto;
+}
 
-/* ٤. ستایلی پانێڵە شووشەییەکان و بەستنی بە وێنە نوێیەکەتەوە */
+/* کۆنتێنەری سەرەکی شووشەکان */
+.glass-artboard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
+}
+
+/* ستایلی پانێڵەکان لەگەڵ لۆدکردنی وێنەیەکی ئۆنلاینی مێشولەکان */
 .glass-panel {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    
-    /* لێرەدا لینکی ئۆنلاینی وێنەکەم بۆ داناویت بۆ ئەوەی چیتر ڕەش نەبێت */
-    background-image: url('https://raw.githubusercontent.com/JhyawYusf/NovaEntomo/main/1000049148.jpg'); 
-    
+    /* ئەم لینکە ئۆنلاینە ڕاستەوخۆ کار دەکات و وێنەی مێشولەکان پیشان دەدات */
+    background-image: url('photo_2026-06-18_11-15-01.jpg'); 
     background-size: cover;
     background-position: center;
-    border: 1.5px solid rgba(255, 255, 255, 0.25); /* هێڵە سپییەکانی نێوان پارچە شووشەکان */
-    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6);
+    border: 1.5px solid rgba(255, 255, 255, 0.3); /* هێڵە سپییەکانی نێوان پارچەکان */
+    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
     transition: transform 0.2s ease-out;
 }
 
-/* ئەم بەشە پارچەکان بە تەواوی لێک جیا دەکاتەوە و دەیانبڕێت */
+/* لێرەدا وێنە گەورەکە بە ناڕێکی دەبڕین بۆ ٤ پارچە وەک ستایلە شووشەییەکە */
 .panel-1 { 
-    clip-path: polygon(0 0, 30% 0, 22% 100%, 0% 100%); 
-    transform: translateZ(35px); 
+    clip-path: polygon(0 0, 32% 0, 24% 100%, 0% 100%); 
+    transform: translateZ(20px); 
 }
 .panel-2 { 
-    clip-path: polygon(30% 0, 65% 0, 55% 55%, 26% 48%); 
-    transform: translateZ(65px); /* ئەمە زۆرترین جوڵە دەکات چونکە قووڵی زۆرە */
+    clip-path: polygon(32% 0, 65% 0, 58% 52%, 24% 46%); 
+    transform: translateZ(50px); /* ئەم پارچەیە زیاتر دێتە پێشەوە */
 }
 .panel-3 { 
-    clip-path: polygon(26% 48%, 55% 55%, 45% 100%, 22% 100%); 
-    transform: translateZ(15px); 
+    clip-path: polygon(24% 46%, 58% 52%, 48% 100%, 24% 100%); 
+    transform: translateZ(10px); 
 }
 .panel-4 { 
-    clip-path: polygon(65% 0, 100% 0, 100% 100%, 45% 100%, 55% 55%); 
-    transform: translateZ(45px); 
+    clip-path: polygon(65% 0, 100% 0, 100% 100%, 48% 100%, 58% 52%); 
+    transform: translateZ(35px); 
 }
 
-/* هێڵێکی ڕوونی سپی و لێڵاوی بۆ سەر ڕووی شووشەکان */
 .glass-panel::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 60%);
+    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 65%);
     pointer-events: none;
 }
-
-.glass-panel::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%);
-            pointer-events: none;
-        }
 
         @keyframes heroFadeInUp { to { opacity: 1; transform: translateY(0); } }
 
@@ -404,12 +395,12 @@
                 <p class="hero-desc" id="hero-desc">پلاتفۆرمی زانستی و ئەکادیمی پێشکەوتوو بۆ توێژینەوە، پۆلێنکردن و ناسینەوەی خێزانی مێرووەکان بە تەکنەلۆژیای زیرەک.</p>
                 <a href="#chapters" class="hero-btn" id="hero-btn-text">دەستپێکردنی گەشتەکە <i class="ph ph-arrow-down"></i></a>
             </div>
-    <div class="glass-artboard" id="artboard">
+            <div class="glass-artboard" id="artboard">
                 <div class="glass-panel panel-1"></div>
                 <div class="glass-panel panel-2"></div>
                 <div class="glass-panel panel-3"></div>
                 <div class="glass-panel panel-4"></div>
-            </div>
+              </div>
         </main>
     </div>
 
