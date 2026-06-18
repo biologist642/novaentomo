@@ -601,66 +601,84 @@
         const themeStatusText = document.getElementById('theme-status-text');
         const chaptersContainer = document.getElementById('chapters-container');
 
-        /* سیستمی وەرگێڕانی تەواو و داینامیکی چاپتەرەکان و کارتەکان */
-        function applyLanguage(lang) {
-            const data = translations[lang];
-            
-            document.getElementById('hero-title').innerHTML = data.title;
-            document.getElementById('hero-desc').innerText = data.desc;
-            document.getElementById('hero-btn-text').innerHTML = `${data.btnText} <i class="ph ph-arrow-down"></i>`;
-            document.getElementById('sb-home').innerText = data.sbHome;
-            document.getElementById('sb-title-ch').innerText = data.sbTitleCh;
-            document.getElementById('section-main-title').innerHTML = data.secTitle;
-            
-            // گۆڕینی لایڤی ناوی چاپتەرەکانی ناو سایدبار
-            for(let i=1; i<=9; i++) {
-                document.getElementById(`sb-ch${i}`).innerText = data.chapters[i-1].title;
-            }
+ /* سیستمی وەرگێڕانی تەواو و داینامیکی چاپتەرەکان و کارتەکان */
+function applyLanguage(lang) {
+    const data = translations[lang];
+    if (!data) return;
+    
+    // Safety helper function to update elements only if they exist on the page
+    const updateElement = (id, property, value) => {
+        const el = document.getElementById(id);
+        if (el) el[property] = value;
+    };
 
-            document.getElementById('f-p1').innerText = data.fP1;
-            document.getElementById('f-p2').innerText = data.fP2;
-            document.getElementById('f-bionova').innerText = data.fBio;
-            document.getElementById('f-vtext').innerText = data.fVtext;
-            document.getElementById('f-copy').innerHTML = data.fCopy;
+    updateElement('hero-title', 'innerHTML', data.title);
+    updateElement('hero-desc', 'innerText', data.desc);
+    
+    if (document.getElementById('hero-btn-text')) {
+        document.getElementById('hero-btn-text').innerHTML = `${data.btnText} <i class="ph ph-arrow-down"></i>`;
+    }
+    
+    updateElement('sb-home', 'innerText', data.sbHome);
+    updateElement('sb-title-ch', 'innerText', data.sbTitleCh);
+    updateElement('section-main-title', 'innerHTML', data.secTitle);
+    
+    // گۆڕینی لایڤی ناوی چاپتەرەکانی ناو سایدبار
+    for(let i=1; i<=9; i++) {
+        updateElement(`sb-ch${i}`, 'innerText', data.chapters[i-1] ? data.chapters[i-1].title : '');
+    }
 
-            const currentTheme = localStorage.getItem('theme') || 'light';
-            themeStatusText.innerText = data[currentTheme];
-        
-            chaptersContainer.innerHTML = '';
-        
-// فەرمانی گۆڕینی ژمارەکان لێرە بە سەربەخۆ دادەنێین تا کۆدەکە تێکنەچێت
-function convertToKurdishNumbers(str, currentLang) {
-    if (currentLang === 'en') return str;
-    const kurdishNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
-    return str.replace(/[0-9]/g, function(w) {
-        return kurdishNumbers[+w];
+    updateElement('f-p1', 'innerText', data.fP1 || data.fp1);
+    updateElement('f-p2', 'innerText', data.fP2 || data.fp2);
+    updateElement('f-bionova', 'innerText', data.fBio);
+    updateElement('f-vtext', 'innerText', data.fVtext || data.fvtext);
+    updateElement('f-copy', 'innerHTML', data.fCopy);
+
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    if (typeof themeStatusText !== 'undefined' && themeStatusText) {
+        themeStatusText.innerText = data[currentTheme];
+    }
+
+    // Checking container before clearing
+    if (!document.getElementById('chapters-container')) return;
+    const chaptersContainerElement = document.getElementById('chapters-container');
+    chaptersContainerElement.innerHTML = '';
+
+    // فەرمانی گۆڕینی ژمارەکان
+    function convertToKurdishNumbers(str, currentLang) {
+        if (currentLang === 'en') return str;
+        const kurdishNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+        return str.replace(/[0-9]/g, function(w) {
+            return kurdishNumbers[+w];
+        });
+    }
+
+    // لۆپی دروستکردنی کارتەکان
+    data.chapters.forEach((ch, index) => {
+        let btnLabel = data.readMore;
+        if(index === 7) btnLabel = data.viewBtn;
+        if(index === 8) btnLabel = data.startBtn;
+
+        let chapterNumber = '0' + (index + 1);
+        let formattedNumber = convertToKurdishNumbers(chapterNumber, lang);
+
+        // fallback to handle either 'badgeText' or 'badgetext' safely
+        const currentBadgeText = data.badgeText || data.badgetext || '';
+
+        const cardHtml = `
+            <div class="chapter-card" id="ch${index+1}" style="animation-delay: ${0.1 + (index*0.05)}s;">
+                <span class="chapter-badge">${currentBadgeText} ${formattedNumber}</span>
+                <div class="card-img-bg" style="background-image: url('${images[index]}');"></div>
+                <div class="chapter-info-box">
+                    <h3>${ch.title}</h3>
+                    <p>${ch.desc}</p>
+                    <a href="#" class="chapter-btn">${btnLabel}</a>
+                </div>
+            </div>
+        `;
+        chaptersContainerElement.insertAdjacentHTML('beforeend', cardHtml);
     });
 }
-
-// لۆپی دروستکردنی کارتەکان
-data.chapters.forEach((ch, index) => {
-    let btnLabel = data.readMore;
-    if(index === 7) btnLabel = data.viewBtn;
-    if(index === 8) btnLabel = data.startBtn;
-
-    // دروستکردنی ژمارەی چاپتەرەکە (01, 02, ...) و گۆڕینی بەپێی زمان
-    let chapterNumber = '0' + (index + 1);
-    let formattedNumber = convertToKurdishNumbers(chapterNumber, lang);
-
-    const cardHtml = `
-        <div class="chapter-card" id="ch${index+1}" style="animation-delay: ${0.1 + (index*0.05)}s;">
-            <span class="chapter-badge">${data.badgeText} ${formattedNumber}</span>
-            <div class="card-img-bg" style="background-image: url('${images[index]}');"></div>
-            <div class="chapter-info-box">
-                <h3>${ch.title}</h3>
-                <p>${ch.desc}</p>
-                <a href="#" class="chapter-btn">${btnLabel}</a>
-            </div>
-        </div>
-    `;
-    chaptersContainer.insertAdjacentHTML('beforeend', cardHtml);
-});
-        }
 
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', function() {
