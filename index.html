@@ -105,13 +105,12 @@
    ✨ ستایلی نیۆن، مۆشنی گشتگیر، و دوگمەی سێرچ لە نەڤبار
    ========================================================================== */
 
-/* 🟢 کاریگەری نیۆنی سەوز بۆ لۆگۆ و ناونیشانی سەرەکی */
+/* ✨ ڕەنگی نیۆنی نوێ و گەش بۆ سەر سەوزی تۆخ */
 .neon-glow-text {
-    color: #ffffff !important;
-    text-shadow: 0 0 7px rgba(186, 199, 129, 0.6),
-                 0 0 15px rgba(235, 231, 14, 0.8),
-                 0 0 25px #99af4c,
-                 0 0 50px #bbda0d !important;
+    color: #00ffaa !important; /* سەوزی کاڵی ماسییەیی کارەبایی */
+    text-shadow: 0 0 8px rgba(0, 255, 170, 0.6), 
+                 0 0 20px rgba(0, 255, 170, 0.4), 
+                 0 0 30px rgba(0, 255, 170, 0.2);
 }
 
 /* 🎬 ئەنیمەیشنەکان */
@@ -351,8 +350,24 @@
         .card-img-bg { position: absolute; top: 0; left: 0; width: 100%; height: 85%; background-size: cover; background-position: center; z-index: 1; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
         .chapter-card:hover .card-img-bg { transform: scale(1.05); }
 
-        .chapter-badge { position: absolute; top: 20px; left: 20px; background: rgba(15, 23, 42, 0.85); color: #81c784; padding: 6px 14px; font-size: 13px; font-weight: 700; border-radius: 20px; backdrop-filter: blur(5px); z-index: 3; }
-        html[dir="ltr"] .chapter-badge { left: auto; right: 20px; }
+        .chapter-badge {
+    position: absolute; 
+    top: 20px; 
+    right: 20px; /* 🌟 بە شێوازی بنەڕەتی دەچێتە لای ڕاست بۆ کوردی و عەرەبی */
+    left: auto;   /* 🌟 لای چەپ پووچەڵ دەکرێتەوە */
+    background: rgba(15, 23, 42, 0.85); 
+    color: #81c784; 
+    padding: 6px 14px; 
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 20px;
+    z-index: 3;
+}
+
+html[dir="ltr"] .chapter-badge {
+    left: 20px;  /* 🌟 تەنها کاتێک زمانەکە بوو بە ئینگلیزی (LTR) دەچێتە لای چەپ */
+    right: auto; /* 🌟 لای ڕاست پووچەڵ دەکرێتەوە */
+}
 
         .chapter-info-box {
     position: relative; 
@@ -565,6 +580,22 @@
     animation-delay: 0.5s; /* جیاواز دەستپێدەکات بۆ ئەوەی هاوسەنگ بن */
 }
 
+/* 🌊 ئەنیمەیشنی جووڵەی نەرمی لێواری فووتەر لە کۆتایی فایلەکە */
+.hero-curved-container { 
+    animation: smoothWave 6s ease-in-out infinite alternate;
+    will-change: transform;
+}
+
+/* ✨ کلیلە جووڵەکانی شەپۆلی هێمن */
+@keyframes smoothWave {
+    0% {
+        clip-path: ellipse(120% 100% at 50% 0%);
+    }
+    100% {
+        clip-path: ellipse(115% 98% at 50% 2%);
+    }
+}
+
 /* سندوقی نوێ و مۆدێرنی بینەری گشتی */
 .footer-visitor-box {
     display: inline-flex;
@@ -600,20 +631,29 @@
         /* ==========================================================================
            7. سیستمی ڕیسپۆنسڤی مۆبایل (Mobile Optimization)
            ========================================================================== */
-        @media (max-width: 1024px) {
-            .chapters-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
-            .hero-main-title { font-size: 48px; }
-        }
+           @media (max-width: 1024px) {
+    .chapters-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+    .hero-main-title { font-size: 48px; }
+}
 
-        @media (max-width: 768px) {
-            .navbar { padding: 0 12px; height: 70px; }
-            .logo h2 { font-size: 16px; }
-            .menu-toggle-btn { font-size: 22px; }
-            
-            /* کۆنتڕۆڵکردنی کێشەی درێژی بەشی زمان و مۆد لەسەر مۆبایل */
-            .controls { gap: 8px; }
-            .lang-links-wrapper { gap: 1px; padding: 2px; }
-            .lang-btn { padding: 2px 4px; font-size: 10.5px; }
+@media (max-width: 768px) {
+    /* 📱 کەمکردنەوەی بەرزی نەڤبار و گونجاندنی بۆ مۆبایل */
+    .navbar {
+        padding: 10px 15px !important; /* کەمکردنەوەی پادینگی سەر و خوار */
+        height: auto !important;       /* لادانی بەرزی نەگۆڕی کۆن */
+        min-height: 60px !important;   /* ڕێگری لە درێژبوونی زیادە */
+    }
+    .logo h2 {
+        font-size: 1.2rem !important;  /* کەمێک بچووککردنەوەی لۆگۆ بۆ گونجان */
+    }
+    .menu-toggle-btn { 
+        font-size: 22px; 
+    }
+    
+    /* 🛠️ کۆنتڕۆڵکردنی کێشەی درێژی بەشی زمان و مۆد لەسەر مۆبایل */
+    .controls { gap: 8px; }
+    .lang-links-wrapper { gap: 1px; padding: 2px; }
+    .lang-btn { padding: 2px 4px; font-size: 10.5px; }
             
             .theme-controller-wrapper { font-size: 10.5px; gap: 3px; }
             .theme-switch { width: 36px; height: 18px; }
@@ -626,8 +666,20 @@
             .hero-desc { font-size: 14px; margin-bottom: 20px; }
             .hero-btn { padding: 11px 24px; font-size: 13px; }
 
-            .chapters-section { padding: 40px 12px; }
-            .section-title { font-size: 24px; margin-bottom: 35px; }
+            .chapters-section {
+        padding: 80px 40px 40px 40px; /* زیادکردنی بۆشایی سەرەوە بۆ هاوسەنگکردن */
+        max-width: 1400px; 
+        margin: 0 auto; 
+    }
+
+    .section-title {
+        font-size: 32px; 
+        font-weight: 700; 
+        text-align: center; 
+        margin-top: 0;      /* لابردنی مارجینی ناڕێکی سەرەوە */
+        margin-bottom: 50px; 
+        width: 100%;
+    }
             .chapters-grid { grid-template-columns: 1fr; gap: 25px; }
             .chapter-card { height: 400px; border-radius: 20px; }
             .chapter-info-box { margin: 0 12px 12px 12px; padding: 18px 12px; }
@@ -701,8 +753,8 @@
                     NovaEntomo<br><span>زانستی مێرووناسی</span>
                 </h1>
                 
-                <p class="hero-desc" id="hero-desc">پلاتفۆرمی زانستی و ئەکادیمی پێشکەوتوو بۆ خوێندکاران، مامۆستایان، توێژەران و جوتیاران بە بەکارهێنانی تازەترین زانیاری سەردەم.</p>
-                
+                <p class="hero-desc" id="hero-description">
+                </p>
                 <a href="#chapters" class="hero-btn" id="hero-btn-text">
                     دەستپێکردنی گەشتەکە <i class="ph ph-arrow-down"></i>
                 </a>
@@ -789,118 +841,121 @@
         </div>
     </footer>
 
-    <script>
-        const translations = {
-            ku: {
-                title: "NovaEntomo<br><span>زانستی مێرووناسی</span>",
-                desc: "پلاتفۆرمی زانستی و ئەکادیمی پێشکەوتوو بۆ توێژینەوە، پۆلێنکردن و ناسینەوەی خێزانی مێرووەکان بە تەکنەلۆژیای زیرەک.",
-                btnText: "دەستپێکردنی گەشتەکە",
-                sbHome: "سەرەکی",
-                sbTitleCh: "چاپتەرەکان",
-                secTitle: "چاپتەرەکانی <span>پڕۆگرامەکە</span>",
-                fP1: "پلاتفۆڕمی زانستی مێرووناسی",
-                fP2: "بەشی بایۆلۆجی - کۆلێژی زانست - زانکۆی ڕاپەڕین",
-                fBio: "ئەم پلاتفۆرمە گەشەی پێدراوە لە لایەن تیمی BioNova",
-                fVtext: "بینەری گشتی:",
-                fCopy: "سەرجەم مافەکانی پارێزراوە 2026 &copy; NovaEntomo",
-                readMore: "خوێندنەوەی زیاتر",
-                viewBtn: "سەیرکردن",
-                startBtn: "دەستپێکردن",
-                light: "ڕووناک",
-                dark: "تاریک",
-                badgeText: "چاپتەری",
-                chapters: [
-                    { title: " زانیاری زیادە", desc: "مێژوو و سەرچاوە زانستییە جیهانییەکانی تایبەت بە زانستی مێرووناسی." },
-                    { title: " دەستپێکێک بۆ مێرووناسی", desc: "تێڕوانینێکی گشتی لەسەر جیهانی مێرووەکان و پێکهاتە بایۆلۆجییەکانیان." },
-                    { title: " پۆلێنکردن و ناسینەوە", desc: "چۆنیەتی جیاکردنەوە، ناسینەوە و پۆلێنکردنی خێزانە جیاوازەکانی مێرووەکان." },
-                    { title: " مێرووە بەسوودەکان", desc: "ڕۆڵی مێرووەکان لە پرۆسەی گەردەپشکنینی ڕووەک و هاوسەنگی سروشت." },
-                    { title: " مێرووە زیانبەخشەکان", desc: "ناسینی ئەو ئافاتانەی زیان بە بەرهەمە کشتوکاڵییەکان دەگەیەنن." },
-                    { title: " ستراتیژیەکانی کۆنتڕۆڵکردن", desc: "شێوازە مۆدێرنەکان بۆ قڕکردن و کۆنتڕۆڵی ئافاتە زیانبەخشەکان." },
-                    { title: " تەکنیکە تاقیگەیەکان", desc: "شیکردنەوەی تاقیگەیی ورد بۆ ناسینەوەی مێرووە جیاوازەکان." },
-                    { title: " ڕوونکردنەوەی ڤیدیۆیی", desc: "مایکرۆسکۆپی دیجیتاڵی و پشکنینی پراکتیکی لەناو تاقیگە بە ڤیدیۆ." },
-                    { title: " کویز", desc: "خۆت هەڵسەنگێنە لە ڕێگەی پرسیار و وەڵامی زانستی مێرووناسی." }
-                ]
-            },
-            en: {
-                title: "NovaEntomo<br><span>Entomology Science</span>",
-                desc: "Advanced scientific and academic platform for entomological research, classification, and smart insect identification.",
-                btnText: "Start the Journey",
-                sbHome: "Home",
-                sbTitleCh: "Chapters",
-                secTitle: "Program <span>Chapters</span>",
-                fP1: "Scientific Platform for Entomology",
-                fP2: "Department of Biology - College of Science - University of Raparin",
-                fBio: "This platform was developed by BioNova Team",
-                fVtext: "Total Views:",
-                fCopy: "All Rights Reserved 2026 &copy; NovaEntomo",
-                readMore: "Read More",
-                viewBtn: "Watch Now",
-                startBtn: "Start Quiz",
-                light: "Light",
-                dark: "Dark",
-                badgeText: "Chapter" ,
-                chapters: [
-                    { title: " Extra Information", desc: "History and global scientific sources for the development of entomology." },
-                    { title: " Introduction to Entomology", desc: "An overview of the insect world and their basic biological structures." },
-                    { title: " Classification & Identification", desc: "How to differentiate, identify, and classify different insect families." },
-                    { title: " Beneficial Insects", desc: "The crucial role of insects in plant pollination and ecological balance." },
-                    { title: " Harmful Insects", desc: "Identifying pests that damage agricultural products and human health." },
-                    { title: " Control Strategies", desc: "Modern, chemical, and biological methods for pest management." },
-                    { title: " Laboratory Techniques", desc: "Detailed laboratory analysis and preservation methods for insects." },
-                    { title: " Video Explanations", desc: "Digital microscopy and practical live laboratory examinations via video." },
-                    { title: " Quiz", desc: "Evaluate your knowledge through scientific questions and answers." }
-                ]
-            },
-            ar: {
-                title: "NovaEntomo<br><span>علم الحشرات</span>",
-                desc: "منصة علمية وأكاديمية متقدمة لأبحاث علم الحشرات، التصنيف، والتعريف الذكي للأنظمة البيئية الحشرية.",
-                btnText: "ابدأ الرحلة",
-                sbHome: "الرئيسية",
-                sbTitleCh: "الفصول",
-                secTitle: "فصول <span>البرنامج</span>",
-                fP1: "المنصة العلمية لعلم الحشرات",
-                fP2: "قسم الأحياء - كلية العلوم - جامعة رابرين",
-                fBio: "تم تطوير هذه المنصة بواسطة فريق BioNova",
-                fVtext: "المشاهدات العامة:",
-                fCopy: "جميع الحقوق محفوظة 2026 &copy; NovaEntomo",
-                readMore: "اقرأ المزيد",
-                viewBtn: "مشاهدة الآن",
-                startBtn: "ابدأ الآن",
-                light: "مضيء",
-                dark: "مظلم",
-                badgeText: "الفصل",
-                chapters: [
-                    { title: " معلومات إضافية", desc: "التاريخ والمصادر العلمية العالمية الخاصة بتطوير علم الحشرات." },
-                    { title: " مقدمة في علم الحشرات", desc: "نظرة عامة على عالم الحشرات وهياكلها البيولوجية الأساسية." },
-                    { title: " التصنيف والتعريف", desc: "كيفية التمييز والتعرف وتصنيف العائلات المختلفة للحشرات." },
-                    { title: " الحشرات المفيدة", desc: "دور الحشرات في عملية تلقيح النباتات والحفاظ على التوازن البيئي." },
-                    { title: " الحشرات الضارة", desc: "التعرف على الآفات التي تضر بالمنتجات الزراعية وصحة الإنسان." },
-                    { title: " استراتيجيات المكافحة", desc: "الطرق الحديثة والكيميائية والبيولوجية لمكافحة الآفات الضارة." },
-                    { title: " التقنيات المختبرية", desc: "التحليل المختبري الدقيق للتعرف على الحشرات المختلفة." },
-                    { title: " شروحات الفيديو", desc: "الفحص المجهري الرقمي والاختبارات العملية المباشرة بالفيديو." },
-                    { title: " الاختبار", desc: "قيم نفسك من خلال الأسئلة والأجوبة العلمية في علم الحشرات." }
-                ]
-            }
-        };
+<script>
+    const translations = {
+        ku: {
+            title: "NovaEntomo<br><span>زانستی مێرووناسی</span>",
+            // 🌟 دەقە نوێیەکەت لێرەدا جێگیر کرا
+            desc: "پلاتفۆرمی زانستی و ئەکادیمی پێشکەوتوو بۆ خوێندکاران، مامۆستایان، توێژەران و جوتیاران بە بەکارهێنانی تازەترین زانیاری سەردەم.",
+            btnText: "دەستپێکردنی گەڕانەکە",
+            sbHome: "سەرەکی",
+            sbTitleCh: "چاپتەرەکان",
+            secTitle: "چاپتەرەکانی <span>پلاتفۆرم</span>",
+            fP1: "پلاتفۆڕمی زانستی مێرووناسی",
+            fP2: "بەشی بایۆلۆجی - کۆلێژی زانست - زانکۆی ڕاپەڕین",
+            fBio: "ئەم پلاتفۆرمە گەشەی پێدراوە لە لایەن تیمی BioNova",
+            fVtext: "بینەری گشتی:",
+            fCopy: "سەرجەم مافەکانی پارێزراوە 2026 &copy; NovaEntomo",
+            readMore: "زیاتر بخوێنەوە...",
+            viewBtn: "بینین",
+            startBtn: "دەستپێکردن",
+            light: "ڕووناک",
+            dark: "تاریک",
+            badgeText: "چاپتەری",
+            chapters: [
+                { title: " زانیاری زیادە", desc: "مێژوو و سەرچاوە زانستییە جیهانییەکانی تایبەت بە زانستی مێرووناسی." },
+                { title: " دەستپێکێک بۆ مێرووناسی", desc: "تێڕوانینێکی گشتی لەسەر جیهانی مێرووەکان و پێکهاتە بایۆلۆجییەکانیان." },
+                { title: " پۆلێنکردن و ناسینەوە", desc: "چۆنیەتی جیاکردنەوە، ناسینەوە و پۆلێنکردنی خێزانە جیاوازەکانی مێرووەکان." },
+                { title: " مێرووە بەسوودەکان", desc: "ڕۆڵی مێرووەکان لە پرۆسەی گەردەپشکنینی ڕووەک و هاوسەنگی سروشت." },
+                { title: " مێرووە زیانبەخشەکان", desc: "ناسینی ئەو ئافاتانەی زیان بە بەرهەمە کشتوکاڵییەکان دەگەیەنن." },
+                { title: " ستراتیژیەکانی کۆنتڕۆڵکردن", desc: "شێوازە مۆدێرنەکان بۆ قڕکردن و کۆنتڕۆڵی ئافاتە زیانبەخشەکان." },
+                { title: " تەکنیکە تاقیگەیەکان", desc: "شیکردنەوەی تاقیگەیی ورد بۆ ناسینەوەی مێرووە جیاوازەکان." },
+                { title: " ڕوونکردنەوەی ڤیدیۆیی", desc: "مایکرۆسکۆپی دیجیتاڵی و پشکنینی پراکتیکی لەناو تاقیگە بە ڤیدیۆ." },
+                { title: " کویز", desc: "خۆت هەڵسەنگێنە لە ڕێگەی پرسیار و وەڵامی زانستی مێرووناسی." }
+            ]
+        },
+        en: {
+            title: "NovaEntomo<br><span>Entomology Science</span>",
+            // 🌟 دەقە نوێیە ئینگلیزییەکەت لێرەدا جێگیر کرا
+            desc: "An advanced scientific and academic platform for students, teachers, researchers, and farmers utilizing the latest modern knowledge.",
+            btnText: "Start Exploring",
+            sbHome: "Home",
+            sbTitleCh: "Chapters",
+            secTitle: "Platform <span>Chapters</span>",
+            fP1: "Scientific Platform for Entomology",
+            fP2: "Department of Biology - College of Science - University of Raparin",
+            fBio: "This platform was developed by BioNova Team",
+            fVtext: "Total Views:",
+            fCopy: "All Rights Reserved 2026 &copy; NovaEntomo",
+            readMore: "Read more...",
+            viewBtn: "View",
+            startBtn: "Start",
+            light: "Light",
+            dark: "Dark",
+            badgeText: "Chapter",
+            chapters: [
+                { title: " Extra Information", desc: "History and global scientific sources for the development of entomology." },
+                { title: " Introduction to Entomology", desc: "An overview of the insect world and their basic biological structures." },
+                { title: " Classification & Identification", desc: "How to differentiate, identify, and classify different insect families." },
+                { title: " Beneficial Insects", desc: "The crucial role of insects in plant pollination and ecological balance." },
+                { title: " Harmful Insects", desc: "Identifying pests that damage agricultural products and human health." },
+                { title: " Control Strategies", desc: "Modern, chemical, and biological methods for pest management." },
+                { title: " Laboratory Techniques", desc: "Detailed laboratory analysis and preservation methods for insects." },
+                { title: " Video Explanations", desc: "Digital microscopy and practical live laboratory examinations via video." },
+                { title: " Quiz", desc: "Evaluate your knowledge through scientific questions and answers." }
+            ]
+        },
+        ar: {
+            title: "NovaEntomo<br><span>علم الحشرات</span>",
+            // 🌟 دەقە نوێیە عەرەبییەکەت لێرەدا جێگیر کرا
+            desc: "منصة علمية وأكاديمية متقدمة للطلاب، المعلمين، الباحثين، والمزارعين باستخدام أحدث المعلومات المعاصرة.",
+            btnText: "ابدأ الاستكشاف",
+            sbHome: "الرئيسية",
+            sbTitleCh: "الفصول",
+            secTitle: "فصول <span>المنصة</span>",
+            fP1: "المنصة العلمية لعلم الحشرات",
+            fP2: "قسم الأحياء - كلية العلوم - جامعة رابرين",
+            fBio: "تم تطوير هذه المنصة بواسطة فريق BioNova",
+            fVtext: "المشاهدات العامة:",
+            fCopy: "جميع الحقوق محفوظة 2026 &copy; NovaEntomo",
+            readMore: "اقرأ المزيد...",
+            viewBtn: "عرض",
+            startBtn: "ابدأ الآن",
+            light: "مضيء",
+            dark: "مظلم",
+            badgeText: "الفصل",
+            chapters: [
+                { title: " معلومات إضافية", desc: "التاريخ والمصادر العلمية العالمية الخاصة بتطوير علم الحشرات." },
+                { title: " مقدمة في علم الحشرات", desc: "نظرة عامة على عالم الحشرات وهياكلها البيولوجية الأساسية." },
+                { title: " التصنيف والتعريف", desc: "كيفية التمييز والتعرف وتصنيف العائلات المختلفة للحشرات." },
+                { title: " الحشرات المفيدة", desc: "دور الحشرات في عملية تلقيح النباتات والحفاظ على التوازن البيئي." },
+                { title: " الحشرات الضارة", desc: "التعرف على الآفات التي تضر بالمنتجات الزراعية وصحة الإنسان." },
+                { title: " استراتيجيات المكافحة", desc: "الطرق الحديثة والكيميائية والبيولوجية لمكافحة الآفات الضارة." },
+                { title: " التقنيات المختبرية", desc: "التحليل المختبري الدقيق للتعرف على الحشرات المختلفة." },
+                { title: " شروحات الفيديو", desc: "الفحص المجهري الرقمي والاختبارات العملية المباشرة بالفيديو." },
+                { title: " الاختبار", desc: "قيم نفسك من خلال الأسئلة والأجوبة العلمية في علم الحشرات." }
+            ]
+        }
+    };
+    
+    const images = [
+        'https://i.pinimg.com/736x/29/74/22/2974222dd9c66210d695e5670ebcf9a4.jpg',
+        'https://i.pinimg.com/736x/f0/9c/0b/f09c0b37b624aeaa8b208d38b313db24.jpg',
+        'https://i.pinimg.com/736x/e5/ea/78/e5ea781636a5a72f9df08dd59f919013.jpg',
+        'https://i.pinimg.com/736x/9d/35/d7/9d35d76d9932f5f3ca2028552fba9441.jpg',
+        'https://i.pinimg.com/736x/78/8f/d9/788fd931fd228943226754a21f4fa047.jpg',
+        'https://i.pinimg.com/736x/7d/23/3f/7d233f4fd331538c9c88a02eef5857e9.jpg',
+        'https://i.pinimg.com/736x/42/49/db/4249db9a5aadf772ba537d304537f9bc.jpg',
+        'https://i.pinimg.com/736x/3f/b4/e6/3fb4e67806fa52cfe51cabe807100a43.jpg',
+        'https://i.pinimg.com/736x/97/be/87/97be876d4e0e521f89dd5440eab12520.jpg'
+    ];
+    
+    const htmlTag = document.getElementById('html-tag');
+    const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+    const themeStatusText = document.getElementById('theme-status-text');
+    const chaptersContainer = document.getElementById('chapters-container');
 
-        const images = [
-            'https://i.pinimg.com/736x/29/74/22/2974222dd9c66210d695e5670ebcf9a4.jpg',
-            'https://i.pinimg.com/736x/f0/9c/0b/f09c0b37b624aeaa8b208d38b313db24.jpg',
-            'https://i.pinimg.com/736x/e5/ea/78/e5ea781636a5a72f9df08dd59f919013.jpg',
-            'https://i.pinimg.com/736x/9d/35/d7/9d35d76d9932f5f3ca2028552fba9441.jpg',
-            'https://i.pinimg.com/736x/78/8f/d9/788fd931fd228943226754a21f4fa047.jpg',
-            'https://i.pinimg.com/736x/7d/23/3f/7d233f4fd331538c9c88a02eef5857e9.jpg',
-            'https://i.pinimg.com/736x/42/49/db/4249db9a5aadf772ba537d304537f9bc.jpg',
-            'https://i.pinimg.com/736x/3f/b4/e6/3fb4e67806fa52cfe51cabe807100a43.jpg',
-            'https://i.pinimg.com/736x/97/be/87/97be876d4e0e521f89dd5440eab12520.jpg'
-        ];
-
-        const htmlTag = document.getElementById('html-tag');
-        const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-        const themeStatusText = document.getElementById('theme-status-text');
-        const chaptersContainer = document.getElementById('chapters-container');
-
- /* سیستمی وەرگێڕانی تەواو و داینامیکی چاپتەرەکان و کارتەکان */
+/* سیستمی وەرگێڕانی تەواو و داینامیکی چاپتەرەکان و کارتەکان */
 function applyLanguage(lang) {
     const data = translations[lang];
     if (!data) return;
@@ -921,7 +976,7 @@ function applyLanguage(lang) {
     updateElement('sb-home', 'innerText', data.sbHome);
     updateElement('sb-title-ch', 'innerText', data.sbTitleCh);
     updateElement('section-main-title', 'innerHTML', data.secTitle);
-    
+}
     // گۆڕینی لایڤی ناوی چاپتەرەکانی ناو سایدبار
     for(let i=1; i<=9; i++) {
         updateElement(`sb-ch${i}`, 'innerText', data.chapters[i-1] ? data.chapters[i-1].title : '');
@@ -952,32 +1007,33 @@ function applyLanguage(lang) {
         });
     }
 
-// 🟢 لۆپی دروستکردنی کارتەکان (ڕاستکراوەتەوە)
-data.chapters.forEach((ch, index) => {
-        let btnLabel = data.readMore;
-        if(index === 7) btnLabel = data.viewBtn;
-        if(index === 8) btnLabel = data.startBtn;
+    data.chapters.forEach((ch, index) => {
+    let btnLabel = data.readMore;
+    if(index === 7) btnLabel = data.viewBtn;
+    if(index === 8) btnLabel = data.startBtn;
 
-        let chapterNumber = '0' + (index + 1);
-        let formattedNumber = convertToKurdishNumbers(chapterNumber, lang);
+    let chapterNumber = '0' + (index + 1);
+    let formattedNumber = convertToKurdishNumbers(chapterNumber, lang);
 
-        // fallback to handle either 'badgeText' or 'badgetext' safely
-        const currentBadgeText = data.badgeText || data.badgetext || '';
+    const currentBadgeText = data.badgeText || data.badgetext || '';
 
-        const cardHtml = `
-            <div class="chapter-card" id="ch${index+1}" style="animation-delay: ${0.1 + (index*0.05)}s;">
-                <span class="chapter-badge">${currentBadgeText} ${formattedNumber}</span>
-                <div class="card-img-bg" style="background-image: url('${images[index]}');"></div>
-                <div class="chapter-info-box">
-                    <h3 class="chapter-card-title">${ch.title}</h3>
-                    <p>${ch.desc}</p>
-                    <a href="#" class="chapter-btn">${btnLabel}</a>
-                </div>
+    // 🌟 لێرەدا بە ڕوونی باک-تیکەکە دەستپێدەکات بێ هیچ نیشانەیەکی زیادە
+    const cardHtml = `
+        <div class="chapter-card" id="ch${index+1}" style="animation-delay: ${0.1 + (index*0.05)}s;">
+            <span class="chapter-badge">${currentBadgeText} ${formattedNumber}</span>
+            <div class="card-img-bg" style="background-image: url('${images[index]}');"></div>
+            <div class="chapter-info-box">
+                <h3 class="chapter-card-title">${ch.title}</h3>
+                <p>${ch.desc}</p>
+                <a href="#" class="chapter-btn">${btnLabel}</a>
             </div>
-        `; // 🎯 لێرەدا نیشانەی `;` و باک-تیکەکە ڕێکخرایەوە کە هۆکاری هێڵە سوورەکە بوو
+        </div>
+    `; // 🌟 لێرەدا باک-تیکەکە لە دێڕێکی سەربەخۆدا داخراوە پێش کۆمێنتەکە
+
+    chaptersContainerElement.insertAdjacentHTML('beforeend', cardHtml);
+});
 
         chaptersContainerElement.insertAdjacentHTML('beforeend', cardHtml);
-    });
 // 📚 وەرگێڕانی داینامیکی نوێکراوە بۆ ناونیشانی بەشەکە
 const headingElement = document.getElementById('section-platform-title');
     if (headingElement) {
@@ -989,7 +1045,7 @@ const headingElement = document.getElementById('section-platform-title');
             headingElement.innerHTML = "چاپتەرەکانی <span>پلاتفۆرم</span>";
         }
     }
-} // 🔚 لێرەدا فەنکشنی applyLanguage بە تەواوی کۆتایی دێت (دێڕی ٩٢٧)
+ // 🔚 لێرەدا فەنکشنی applyLanguage بە تەواوی کۆتایی دێت (دێڕی ٩٢٧)
 
 
 // 🔍 لۆژیکی سەربەخۆ بۆ چالاککردنی دوگمەی سێرچ لە نەڤباردا:
