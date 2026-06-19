@@ -355,17 +355,85 @@
         html[dir="ltr"] .chapter-badge { left: auto; right: 20px; }
 
         .chapter-info-box {
-            position: relative; background: var(--bg-card); border-radius: 22px; padding: 24px 20px; margin: 0 16px 16px 16px; z-index: 2;
-            box-shadow: 0 -5px 25px rgba(0,0,0,0.03); text-align: center; border: 1px solid var(--card-border);
-            transform: translateY(10px); transition: transform 0.4s ease;
-        }
-        .chapter-card:hover .chapter-info-box { transform: translateY(0px); }
-        .chapter-info-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--text-primary); }
-        .chapter-info-box p { font-size: 13.5px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 18px; }
-        .chapter-btn { display: inline-flex; align-items: center; background: none; border: 1px solid var(--card-border); padding: 7px 22px; border-radius: 30px; color: var(--accent-color); font-weight: 700; font-size: 13px; text-decoration: none; }
-        .chapter-btn:hover { background: var(--accent-color); color: white; }
+    position: relative; 
+    background: var(--bg-card); 
+    border-radius: 22px; 
+    padding: 24px 20px; 
+    margin: 0 16px 16px 16px; 
+    z-index: 2;
+    box-shadow: 0 -5px 25px rgba(0,0,0,0.03); 
+    text-align: center; 
+    border: 1px solid var(--card-border);
+    transform: translateY(10px); 
+    transition: transform 0.4s ease;
+}
 
-        @keyframes cardScrollIn { to { opacity: 1; transform: translateY(0); } }
+.chapter-card:hover .chapter-info-box { 
+    transform: translateY(0px); 
+}
+
+.chapter-info-box h3 { 
+    font-size: 18px; 
+    font-weight: 700; 
+    margin-bottom: 12px; 
+    color: var(--text-primary); 
+}
+
+.chapter-info-box p { 
+    font-size: 13.5px; 
+    color: var(--text-secondary); 
+    line-height: 1.6; 
+    margin-bottom: 18px; 
+}
+
+.chapter-btn { 
+    display: inline-flex; 
+    align-items: center; 
+    background: none; 
+    border: 1px solid var(--card-border); 
+    padding: 7px 22px; 
+    border-radius: 30px; 
+    color: var(--accent-color); 
+    font-weight: 700; 
+    font-size: 13px; 
+    text-decoration: none; 
+}
+
+.chapter-btn:hover { 
+    background: var(--accent-color); 
+    color: white; 
+}
+
+@keyframes cardScrollIn { 
+    to { opacity: 1; transform: translateY(0); } 
+}
+
+/* 🟢 سەوزکردنی ناوی سەرەکی چاپتەرەکان لە ناو کارتەکاندا */
+.chapter-info-box .chapter-card-title {
+    color: #81c784 !important; /* ڕەنگی سەوزی تایبەت بە پڵاتفۆرمەکە */
+    text-shadow: 0 0 5px rgba(129, 199, 132, 0.2);
+    display: inline-block; 
+    will-change: transform; /* یارمەتی وێبگەڕ دەدات ئەنیمەیشنەکە بە نەرمی لۆد بکات */
+    animation: titleUpDown 3.5s ease-in-out infinite alternate;
+}
+
+/* 🔄 ئەنیمەیشنی سەر و خوار بۆ باجی چاپتەرەکان */
+.chapter-badge {
+    display: inline-block;
+    will-change: transform;
+    animation: badgeUpDown 3s ease-in-out infinite alternate;
+}
+
+/* ✨ دروستکردنی کلیلە جووڵەکانی ئەپ-داون */
+@keyframes badgeUpDown {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-6px); }
+}
+
+@keyframes titleUpDown {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-4px); }
+}
 
         /* ==========================================================================
            6. فووتەری ڕیسپۆنسڤ لەگەڵ مۆشنی پەپوولەکان
@@ -670,7 +738,7 @@
     </aside>
 
     <section class="chapters-section" id="chapters">
-        <h2 class="section-title" id="section-platform-title">بەشەکانی پلاتفۆرم</h2>
+        <h2 class="section-title" id="section-platform-title">چاپتەرەکانی <span>پلاتفۆرم</span></h2>
         <div class="chapters-grid" id="chapters-container"></div>
     </section>
 
@@ -884,8 +952,8 @@ function applyLanguage(lang) {
         });
     }
 
-    // لۆپی دروستکردنی کارتەکان
-    data.chapters.forEach((ch, index) => {
+// 🟢 لۆپی دروستکردنی کارتەکان (ڕاستکراوەتەوە)
+data.chapters.forEach((ch, index) => {
         let btnLabel = data.readMore;
         if(index === 7) btnLabel = data.viewBtn;
         if(index === 8) btnLabel = data.startBtn;
@@ -901,27 +969,26 @@ function applyLanguage(lang) {
                 <span class="chapter-badge">${currentBadgeText} ${formattedNumber}</span>
                 <div class="card-img-bg" style="background-image: url('${images[index]}');"></div>
                 <div class="chapter-info-box">
-                    <h3>${ch.title}</h3>
+                    <h3 class="chapter-card-title">${ch.title}</h3>
                     <p>${ch.desc}</p>
-                    <a href="#" class="chapter-btn">${btnLabel}</a>ction title
+                    <a href="#" class="chapter-btn">${btnLabel}</a>
                 </div>
             </div>
-        `;
+        `; // 🎯 لێرەدا نیشانەی `;` و باک-تیکەکە ڕێکخرایەوە کە هۆکاری هێڵە سوورەکە بوو
+
         chaptersContainerElement.insertAdjacentHTML('beforeend', cardHtml);
     });
-
-// 📚 وەرگێڕانی داینامیکی بۆ ناونیشانی بەشی چاپتەرەکان
+// 📚 وەرگێڕانی داینامیکی نوێکراوە بۆ ناونیشانی بەشەکە
 const headingElement = document.getElementById('section-platform-title');
     if (headingElement) {
         if (lang === 'en') {
-            headingElement.textContent = "Program Chapters";
+            headingElement.innerHTML = "Platform <span>Chapters</span>";
         } else if (lang === 'ar') {
-            headingElement.textContent = "فصول البرنامج";
+            headingElement.innerHTML = "فصول <span>المنصة</span>";
         } else {
-            headingElement.textContent = "چاپتەرەکانی پڕۆگرامەکە";
+            headingElement.innerHTML = "چاپتەرەکانی <span>پلاتفۆرم</span>";
         }
     }
-
 } // 🔚 لێرەدا فەنکشنی applyLanguage بە تەواوی کۆتایی دێت (دێڕی ٩٢٧)
 
 
