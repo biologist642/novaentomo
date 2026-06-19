@@ -102,77 +102,123 @@
         input:checked + .slider:before { transform: translateX(20px); }
 
 /* ==========================================================================
-   3. بەشی هێرۆ (Hero Section) - ستایلی سەوزی شاهانە لەگەڵ مۆشنی 3D
+   3. بەشی هێرۆ (Hero Section) - فۆنتی ڕەق + سلایدشۆ + درێژکردنەوە بۆ مۆبایل
    ========================================================================== */
 
    .hero-section-wrapper {
+    position: relative;
     padding: 0 !important;
     margin: 0 !important;
     max-width: 100% !important;
     width: 100% !important;
+    overflow: hidden;
 }
 
-/* ڕێکخستنی باکگراوندی سەوز و بەرزکردنەوەی بۆ داپۆشینی بەشی سپی */
+/* 🖼️ سیستەمی سلایدشۆی باکگراوند */
+.hero-slideshow {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1;
+}
+
+.hero-slideshow .slide {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out; /* گۆڕینی نەرم لە نێوان وێنەکاندا */
+}
+
+.hero-slideshow .slide.active {
+    opacity: 1;
+}
+
 .hero-curved-container {
     position: relative;
     width: 100%;
-    min-height: 92vh; /* 👈 درێژتر کراوە بۆ ئەوەی بەشی سپی خوارەوە بشارێتەوە */
-    border-radius: 0; 
-    overflow: hidden;
-    border: none !important;
+    min-height: 85vh; 
+    z-index: 5;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 140px 20px 120px 20px;
-    margin-top: 0 !important;
-    
-    /* 🎨 باکگراوندێکی سەوزی تاریکی دەوڵەمەند و گەشاوە وەک باسی بایۆلۆجی */
-    background: radial-gradient(circle at center, #0f2c1f 0%, #07150f 100%);
+    padding: 140px 20px 100px 20px;
+    background: transparent; /* باکگراوندەکە لێرەدا ڕوونە تا وێنەکان دەرکەون */
 }
 
-/* ڕێکخستنی دەقەکان */
+/* ⚡ فۆنتی ڕەق و بەهێز وەک ستایلی مۆدێرنی وێنە بازنە سوورەکە */
+.hero-bold-impact {
+    font-family: 'Montserrat', 'Arial Black', sans-serif;
+    font-size: 72px !important; /* زۆر گەورە و دیار */
+    font-weight: 900 !important; /* زۆر قڵف و ڕەق */
+    text-transform: uppercase;
+    letter-spacing: -2px; /* نزیککردنەوەی پیتەکان وەک ستایلە نوێیەکە */
+    color: #ffffff;
+    line-height: 0.95;
+}
+
+.hero-bold-impact span {
+    font-family: inherit;
+    font-size: 36px !important;
+    letter-spacing: 0px;
+    font-weight: 700;
+    color: #81c784;
+}
+
+/* 📱 🚀 تایبەت بە مۆبایل: درێژتر کردنی هێرۆ بۆ شاردنەوەی تەواوی سپیاییەکە */
+@media (max-width: 768px) {
+    .hero-curved-container {
+        min-height: 102vh !important; /* 👈 زۆر درێژتر کراوە تا خەتە سپییەکە و دەستپێکی چاپتەرەکان کامڵ دابپۆشێت */
+        padding-top: 190px;
+        padding-bottom: 140px;
+    }
+    .hero-bold-impact { 
+        font-size: 46px !important; /* قەبارەی گەورە و گونجاو بۆ شاشەی مۆبایل */
+        letter-spacing: -1px;
+    }
+    .hero-bold-impact span {
+        font-size: 24px !important;
+    }
+    .hero-3d-insects-container {
+        bottom: 65px !important; /* هێنانە سەرەوەی ئایکۆنەکان تا نەکەونە ژێر ڕووبەری سپی */
+    }
+}
+
 .hero-content {
     position: relative;
     max-width: 850px;
     z-index: 20; 
     color: #ffffff;
-    margin: 0 auto;
     text-align: center;
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.85);
 }
 
-.hero-main-title {
-    font-size: 56px;
-    font-weight: 800;
-    color: #81c784;
-    margin-bottom: 10px;
+/* 🐜🦋 گەورەکردنی ئایکۆنە ۳D یەکان لە ناوەڕاستی خوارەوە */
+.hero-3d-insects-container {
+    position: absolute;
+    bottom: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 65px; 
+    z-index: 25;
+    perspective: 1000px;
 }
 
-.hero-sub-title {
-    font-size: 32px;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 20px;
+.insect-3d-box {
+    font-size: 52px; /* 👈 ئایکۆنەکان گەورەتر کراون تا بە تەواوی زەق و دیار بن */
+    filter: drop-shadow(0 12px 20px rgba(0,0,0,0.6));
+    display: inline-block;
 }
 
-.hero-desc {
-    font-size: 18px;
-    line-height: 1.8;
-    max-width: 700px;
-    margin: 0 auto 30px auto;
-    opacity: 0.9;
-}
+.butterfly-3d { animation: rotate3DInsect 7s linear infinite; }
+.ant-3d { animation: rotate3DInsect 7s linear infinite; animation-delay: -3.5s; }
 
-/* 📱 ڕێکخستنی مۆبایل */
-@media (max-width: 768px) {
-    .hero-curved-container {
-        min-height: 95vh;
-        padding-top: 160px;
-    }
-    .hero-main-title { font-size: 38px !important; }
-    .hero-sub-title { font-size: 24px !important; }
-    .hero-desc { font-size: 15px !important; }
+@keyframes rotate3DInsect {
+    0% { transform: rotateY(0deg) rotateX(12deg) translateY(0px); }
+    50% { transform: rotateY(180deg) rotateX(-12deg) translateY(-10px); }
+    100% { transform: rotateY(360deg) rotateX(12deg) translateY(0px); }
 }
 
 /* =======================================================
@@ -515,10 +561,21 @@
     </header>
 
     <section class="hero-section-wrapper">
+        <div class="hero-slideshow">
+            <div class="slide active" style="background-image: linear-gradient(rgba(11, 26, 18, 0.85), rgba(7, 18, 12, 0.75)), url('${images[0]}');"></div>
+            <div class="slide" style="background-image: linear-gradient(rgba(11, 26, 18, 0.85), rgba(7, 18, 12, 0.75)), url('${images[1]}');"></div>
+            <div class="slide" style="background-image: linear-gradient(rgba(11, 26, 18, 0.85), rgba(7, 18, 12, 0.75)), url('${images[2]}');"></div>
+            <div class="slide" style="background-image: linear-gradient(rgba(11, 26, 18, 0.85), rgba(7, 18, 12, 0.75)), url('${images[3]}');"></div>
+            <div class="slide" style="background-image: linear-gradient(rgba(11, 26, 18, 0.85), rgba(7, 18, 12, 0.75)), url('${images[4]}');"></div>
+            <div class="slide" style="background-image: linear-gradient(rgba(11, 26, 18, 0.85), rgba(7, 18, 12, 0.75)), url('${images[5]}');"></div>
+            <div class="slide" style="background-image: linear-gradient(rgba(11, 26, 18, 0.85), rgba(7, 18, 12, 0.75)), url('${images[6]}');"></div>
+            <div class="slide" style="background-image: linear-gradient(rgba(11, 26, 18, 0.85), rgba(7, 18, 12, 0.75)), url('${images[7]}');"></div>
+            <div class="slide" style="background-image: linear-gradient(rgba(11, 26, 18, 0.85), rgba(7, 18, 12, 0.75)), url('${images[8]}');"></div>
+        </div>
+    
         <main class="hero-curved-container">
-            
             <div class="hero-content">
-                <h1 class="hero-main-title" id="hero-title">NovaEntomo<br><span>زانستی مێرووناسی</span></h1>
+                <h1 class="hero-main-title hero-bold-impact" id="hero-title">NovaEntomo<br><span>زانستی مێرووناسی</span></h1>
                 <p class="hero-desc" id="hero-desc">پلاتفۆرمی زانستی و ئەکادیمی پێشکەوتوو بۆ توێژینەوە، پۆلێنکردن و ناسینەوەی خێزانی مێرووەکان بە تەکنەلۆژیای ژیرەک.</p>
                 <a href="#chapters" class="hero-btn" id="hero-btn-text">دەستپێکردنی گەشتەکە <i class="ph ph-arrow-down"></i></a>
             </div>
@@ -527,7 +584,6 @@
                 <div class="insect-3d-box butterfly-3d">🦋</div>
                 <div class="insect-3d-box ant-3d">🐜</div>
             </div>
-    
         </main>
     </section>
 
@@ -887,17 +943,28 @@ window.addEventListener('mousemove', (e) => {
   });
 });
 
-window.addEventListener('mouseleave', () => {
-  artboard.style.transform = `rotateY(0deg) rotateX(0deg)`;
-  panels.forEach((panel) => {
-    let originalZ = 8;
-    if (panel.classList.contains('panel-2')) originalZ = 20;
-    if (panel.classList.contains('panel-3')) originalZ = 4;
-    if (panel.classList.contains('panel-4')) originalZ = 14;
-    panel.style.transform = `translate3d(0px, 0px, ${originalZ}px)`;
-  });
-});
-</script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const slides = document.querySelectorAll(".hero-slideshow .slide");
+            let currentSlideIndex = 0;
+
+            function changeSlide() {
+                if (slides.length === 0) return; // پاراستنی کۆدەکە ئەگەر لایەرەکان لۆد نەبووبن
+                
+                // لادانی کلاسی ئەکتیڤ لە وێنەی کۆن
+                slides[currentSlideIndex].classList.remove("active");
+                
+                // چوونە سەر وێنەی داهاتوو (لۆپکردنەوە لە نێوان ٩ چاپتەرەکەدا)
+                currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+                
+                // پێدانی کلاسی ئەکتیڤ بە وێنە نوێیەکە
+                slides[currentSlideIndex].classList.add("active");
+            }
+
+            // گۆڕینی ئۆتۆماتیکی وێنەکان ڕێک ٣ چرکە (٣٠٠٠ میلی چرکە) جارێک
+            setInterval(changeSlide, 3000);
+        });
+    </script>
 
 </body>
 </html>
