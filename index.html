@@ -586,21 +586,17 @@
             <button class="menu-toggle-btn" id="open-sidebar">
                 <i class="ph ph-list"></i>
             </button>
-            
             <div class="logo neon-glow-text">
                 <h2>Nova<span>Entomo</span></h2>
             </div>
-    
-            <button class="nav-search-btn" title="Search">
-                <i class="ph ph-magnifying-glass"></i>
-            </button>
         </div>
     
         <div class="controls">
-            </div>
-    </header>
+            
+            <button class="nav-search-btn" id="nav-search-trigger" title="Search">
+                <i class="ph ph-magnifying-glass"></i>
+            </button>
     
-        <div class="controls">
             <div class="lang-links-wrapper">
                 <button class="lang-btn active" data-lang="ku">Kurdî</button>
                 <button class="lang-btn" data-lang="en">English</button>
@@ -614,6 +610,7 @@
                     <div class="slider"></div>
                 </label>
             </div>
+    
         </div>
     </header>
 
@@ -913,7 +910,7 @@ function applyLanguage(lang) {
         chaptersContainerElement.insertAdjacentHTML('beforeend', cardHtml);
     });
 
-// وەرگێڕانی داینامیکی بۆ ناونیشانی بەشی چاپتەرەکان
+// 📚 وەرگێڕانی داینامیکی بۆ ناونیشانی بەشی چاپتەرەکان
 const headingElement = document.getElementById('section-platform-title');
     if (headingElement) {
         if (lang === 'en') {
@@ -924,6 +921,23 @@ const headingElement = document.getElementById('section-platform-title');
             headingElement.textContent = "چاپتەرەکانی پڕۆگرامەکە";
         }
     }
+
+} // 🔚 لێرەدا فەنکشنی applyLanguage بە تەواوی کۆتایی دێت (دێڕی ٩٢٧)
+
+
+// 🔍 لۆژیکی سەربەخۆ بۆ چالاککردنی دوگمەی سێرچ لە نەڤباردا:
+const searchBtn = document.getElementById('nav-search-trigger');
+if (searchBtn) {
+    searchBtn.addEventListener('click', function() {
+        // ئەگەر ئایدی سندوقی سێرچەکەت (search-input) بێت، فۆکەسی دەخاتە سەر
+        const searchInput = document.getElementById('search-input');
+        if (searchInput) {
+            searchInput.focus();
+        } else {
+            // ئەگەر هێشتا سندوقی سێرچت دروست نەکردووە، ئەم ئاگادارییە کاتییە پیشان دەدات
+            alert("سیستەمی گەڕان بەم زووانە بەردەست دەبێت!");
+        }
+    });
 } // 👈 کۆتایی فەرمانی applyLanguage
 
 // سیستمی گۆڕینی زمان کاتێک کلیک لە دوگمەکان دەکرێت
