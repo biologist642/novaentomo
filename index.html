@@ -308,8 +308,8 @@
     .hero-bold-impact span { font-size: 22px !important; }
     .hero-desc { font-size: 14px !important; margin-bottom: 30px !important; }
     .section-title {
-    font-size: 26px !important;   /* 🌟 قەبارەیەکی گەورە و گونجاو بۆ مۆبایل */
-    margin-top: 45px !important;   /* کەمێک بۆشایی سەرەوەی کەم دەکاتەوە لە مۆبایلدا */
+    font-size: 40px !important;   /* 🌟 قەبارەیەکی گەورە و گونجاو بۆ مۆبایل */
+    margin-top: 50px !important;   /* کەمێک بۆشایی سەرەوەی کەم دەکاتەوە لە مۆبایلدا */
     margin-bottom: 25px !important;
 }
     .hero-3d-insects-container { bottom: 25px !important; gap: 50px !important; }
@@ -1050,10 +1050,17 @@ html[dir="ltr"] .chapter-badge {
                     if(index === 7) btnLabel = data.viewBtn;
                     if(index === 8) btnLabel = data.startBtn;
 
-                    let chapterNumber = '0' + (index + 1);
-                    let formattedNumber = convertToKurdishNumbers(chapterNumber, lang);
-                    const currentBadgeText = data.badgeText || '';
+// 🌟 ١. لابردنی سفرەکە لە پێش ژمارەکە بۆ ئەوەی سادە بێت
+let chapterNumber = (index + 1).toString();
 
+// ٢. وەرگێڕانی ژمارەکە بۆ کوردی ئەگەر زمانەکە کوردی بوو
+let formattedNumber = convertToKurdishNumbers(chapterNumber, lang);
+
+// 🌟 ٣. گۆڕینی وشەی باجەکە بۆ "بەشی" تەنها بۆ زمانی کوردی
+let currentBadgeText = data.badgeText || '';
+if (lang === 'ku') {
+    currentBadgeText = 'بەشی';
+}
                     const cardHtml = `
                         <div class="chapter-card" id="ch${index+1}" style="animation-delay: ${0.1 + (index*0.05)}s;">
                             <span class="chapter-badge">${currentBadgeText} ${formattedNumber}</span>
