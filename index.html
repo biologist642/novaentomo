@@ -133,19 +133,19 @@ h1.neon-glow-text span {
     display: inline-block;
 }
 
-/* 🎯 پێناسی هێرۆ - کورتکردنەوەی مەوداکان */
+/* 🎯 پێناسی هێرۆ - چاککردنی ئۆپاسیتی و کورتکردنەوەی قەبارە */
 .hero-desc {
     font-size: 16px !important;
     line-height: 1.6 !important;
     max-width: 680px;
-    margin: 0 auto 20px auto !important; /* کەمکردنەوەی مەودای ژێری بۆ ٢٠ پیکسڵ */
-    color: #ffffff !important; /* ڕەنگی سپی تەواو */
-    opacity: 1; /* هەمیشە دیار بێت بۆ ئەوەی شوێنەکە تێکنەدات */
+    margin: 0 auto 20px auto !important;
+    color: #ffffff !important;
+    opacity: 1; /* گۆڕینی لە 0 بۆ 1 تا دەقەکە بە جوانی دەرکەوێت */
 }
 
-/* 🎯 کۆنتێنەری دوگمەکە بۆ ڕێگری لە درێژبوونی سێکشنەکە */
+/* 🎯 کۆنتێنەری نوێی دوگمەکە بۆ ڕێکخستنی مەودا */
 .hero-btn-wrapper {
-    margin-top: 15px; /* مەودایەکی کورت و گونجاو لەگەڵ دەقەکە */
+    margin-top: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -156,8 +156,8 @@ h1.neon-glow-text span {
 .hero-btn-modern {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px 28px !important; /* کەمێک بچووکتر کەرەوە تا سێکشنەکە کورت بێتەوە */
+    gap: 10px;
+    padding: 12px 28px !important;
     font-size: 15px !important;
     font-weight: 600;
     color: #ffffff !important;
@@ -165,19 +165,19 @@ h1.neon-glow-text span {
     background: linear-gradient(135deg, #2e7d32, #1b5e20);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50px !important;
-    box-shadow: 0 4px 15px rgba(27, 94, 32, 0.3);
+    box-shadow: 0 6px 20px rgba(27, 94, 32, 0.3);
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
 }
 
-/* مۆوشنی سەر لێبڕینی ماوس (Hover) */
+/* مۆوشنی Hover */
 .hero-btn-modern:hover {
-    transform: translateY(-3px) scale(1.02);
+    transform: translateY(-4px) scale(1.03) !important;
     background: linear-gradient(135deg, #388e3c, #2e7d32);
-    box-shadow: 0 6px 20px rgba(56, 142, 60, 0.5);
+    box-shadow: 0 10px 25px rgba(56, 142, 60, 0.5), 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
-/* مۆوشنی ئایکۆنەکە */
+/* مۆوشنی ئایکۆنی تیرەکە */
 .hero-btn-modern i {
     font-size: 16px;
     display: inline-block;
@@ -185,7 +185,7 @@ h1.neon-glow-text span {
 }
 
 .hero-btn-modern:hover i {
-    transform: translateY(3px); /* تیرەکە کەمێک دەچێتە خوارەوە */
+    transform: translateY(4px);
 }
 
 /* 📱 بۆ ئەوەی دیزاینەکە لە مۆبایلدا تێکنەچێت (Responsive) */
@@ -866,11 +866,11 @@ html[dir="ltr"] .chapter-badge {
                 <h1 class="neon-glow-text" id="hero-title">
                     NovaEntomo<br><span>زانستی مێرووناسی</span>
                 </h1>
-                
+        
                 <p class="hero-desc" id="hero-desc">
                     پلاتفۆرمی زانستی و ئەکادیمی پێشکەوتوو بۆ خوێندکاران، مامۆستایان، توێژەران و جوتیاران بە بەکارهێنانی تازەترین زانیاری سەردەم.
                 </p>
-                
+        
                 <div class="hero-btn-wrapper">
                     <a href="#chapters-section" class="hero-btn-modern" id="hero-btn">
                         <span id="hero-btn-text">دەستپێکردنی گەڕانەکە</span>
@@ -1098,10 +1098,10 @@ html[dir="ltr"] .chapter-badge {
                 descElement.style.animation = 'fadeInUpHero 1s ease-out 0.2s forwards';
             }
             
-            const heroBtn = document.getElementById('hero-btn-text');
-            if (heroBtn) {
-                heroBtn.innerHTML = `${data.btnText} <i class="ph ph-arrow-down"></i>`;
-            }
+            const heroBtnText = document.getElementById('hero-btn-text');
+if (heroBtnText) {
+    heroBtnText.innerText = data.btnText; // بەم شێوەیە تەنها دەقەکە دەگۆڕێت و ئایکۆنەکە بە ساغی دەمێنێتەوە
+}
             
             updateElement('sb-home', 'innerText', data.sbHome);
             updateElement('sb-title-ch', 'innerText', data.sbTitleCh);
