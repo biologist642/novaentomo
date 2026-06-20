@@ -133,64 +133,59 @@ h1.neon-glow-text span {
     display: inline-block;
 }
 
-/* 📝 چاککردنی نووسینی وەسفی خوارەوە */
+/* 🎯 پێناسی هێرۆ - کورتکردنەوەی مەوداکان */
 .hero-desc {
-    font-family: 'Noto Kufi Arabic', 'Poppins', sans-serif !important;
-    font-size: 18px !important;
-    line-height: 1.8 !important;
-    max-width: 700px;
-    margin: 0 auto 30px auto !important;
-    color: #e0e0e0 !important;
-    display: block !important;
-    
-    /* ئەنیمەیشنەکەی دوای لۆگۆکە کەمێک بە نەرمی دێتە سەرەوە */
-    animation: fadeInUpDesc 1s ease-out 0.5s forwards;
-    opacity: 0;
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+    max-width: 680px;
+    margin: 0 auto 20px auto !important; /* کەمکردنەوەی مەودای ژێری بۆ ٢٠ پیکسڵ */
+    color: #ffffff !important; /* ڕەنگی سپی تەواو */
+    opacity: 1; /* هەمیشە دیار بێت بۆ ئەوەی شوێنەکە تێکنەدات */
 }
 
-/* 🌌 ڕێکخستنی کۆنتێنەری سەرەکی هێرۆ */
-.hero-content {
-    position: relative;
-    max-width: 850px;
-    z-index: 20; 
-    color: #ffffff;
-    text-align: center;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.85);
-    /* لادانی مۆوشنی گشتی سەروخوار لێرە بۆ ئەوەی کڵاش لەگەڵ نیۆنەکە نەکات */
+/* 🎯 کۆنتێنەری دوگمەکە بۆ ڕێگری لە درێژبوونی سێکشنەکە */
+.hero-btn-wrapper {
+    margin-top: 15px; /* مەودایەکی کورت و گونجاو لەگەڵ دەقەکە */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
-/* 🎬 ئەنیمەیشنەکان */
-@keyframes novaLogoEntrance {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px);
-        filter: blur(4px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
-    }
+/* 🎯 دیزاینی یەکگرتووی دوگمە مۆدێرنەکە */
+.hero-btn-modern {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px !important; /* کەمێک بچووکتر کەرەوە تا سێکشنەکە کورت بێتەوە */
+    font-size: 15px !important;
+    font-weight: 600;
+    color: #ffffff !important;
+    text-decoration: none;
+    background: linear-gradient(135deg, #2e7d32, #1b5e20);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px !important;
+    box-shadow: 0 4px 15px rgba(27, 94, 32, 0.3);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
-@keyframes neonFlicker {
-    0%, 100% {
-        text-shadow: 0 0 7px #ffffff, 0 0 15px #2e7d32, 0 0 25px #2e7d32, 0 0 40px #2e7d32 !important;
-    }
-    50% {
-        text-shadow: 0 0 4px #ffffff, 0 0 10px #2e7d32, 0 0 18px #2e7d32, 0 0 30px #2e7d32 !important;
-    }
+/* مۆوشنی سەر لێبڕینی ماوس (Hover) */
+.hero-btn-modern:hover {
+    transform: translateY(-3px) scale(1.02);
+    background: linear-gradient(135deg, #388e3c, #2e7d32);
+    box-shadow: 0 6px 20px rgba(56, 142, 60, 0.5);
 }
 
-@keyframes fadeInUpDesc {
-    0% {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* مۆوشنی ئایکۆنەکە */
+.hero-btn-modern i {
+    font-size: 16px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.hero-btn-modern:hover i {
+    transform: translateY(3px); /* تیرەکە کەمێک دەچێتە خوارەوە */
 }
 
 /* 📱 بۆ ئەوەی دیزاینەکە لە مۆبایلدا تێکنەچێت (Responsive) */
