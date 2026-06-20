@@ -231,16 +231,10 @@ h1.neon-glow-text span {
 }
 
 .hero-curved-container {
+    min-height: 70vh !important; /* لە جیاتی 100vh بیکە بە 70vh تا کورت ببێتەوە */
+    padding: 100px 0 60px 0 !important; /* پادینگی سەرەوە و خوارەوە کەم کەرەوە */
     position: relative;
-    width: 100%;
-    min-height: 85vh; 
-    z-index: 5;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 140px 20px 100px 20px;
-    background: transparent;
+    overflow: hidden;
 }
 
 /* کۆنتێنەری دەقەکان (تەنها کارتەکان و پێناسەکە لێرەدا مۆوشنی گشتی سەروخوار وەردەگرن) */
@@ -286,7 +280,7 @@ h1.neon-glow-text span {
     font-size: 16px !important;
     line-height: 1.7 !important;
     max-width: 680px;
-    margin: 0 auto 35px auto !important;
+    margin: 0 auto 15px auto !important;
     color: #e0e0e0;
     animation: fadeInUpHero 1s ease-out 0.2s forwards;
     opacity: 0;
@@ -305,7 +299,7 @@ h1.neon-glow-text span {
 
 /* 1. کۆنتێنەری دوگمەکە بۆ دروستکردنی مەودای تەواو لە ژێر دەقە سپییەکە */
 .hero-btn-wrapper {
-    margin-top: 35px;
+    margin-top: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
