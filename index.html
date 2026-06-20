@@ -85,8 +85,23 @@
         .nav-right-group, .controls { position: relative; z-index: 5; }
         .nav-right-group { display: flex; align-items: center; gap: 15px; }
         .menu-toggle-btn { background: none; border: none; font-size: 26px; color: var(--navbar-text); cursor: pointer; }
-        .logo h2 { font-size: 22px; font-weight: 700; color: var(--navbar-text); }
-        .logo h2 span { color: var(--accent-color); }
+        .logo h2 { 
+    font-size: 22px; 
+    font-weight: 700; 
+    color: var(--navbar-text); 
+    
+    /* 🌟 زیادکردنی سێبەری نیۆنی گەش بۆ بەشی یەکەمی لۆگۆکە (Nova) */
+    text-shadow: 0 0 10px rgba(0, 255, 170, 0.85),
+                 0 0 20px rgba(0, 255, 170, 0.4) !important;
+}
+
+.logo h2 span { 
+    color: var(--accent-color); 
+    
+    /* 🌟 زیادکردنی سێبەرێکی تایبەت بۆ بەشی دووەمی لۆگۆکە (Entomo) بۆ ئەوەی ڕەنگە سەوزەکەی گەشتر بێتەوە */
+    text-shadow: 0 0 12px rgba(0, 255, 170, 0.9),
+                 0 0 25px rgba(0, 255, 170, 0.6) !important;
+}
 
         .controls { display: flex; align-items: center; gap: 20px; }
         .lang-links-wrapper { display: flex; gap: 4px; background: rgba(255, 255, 255, 0.08); padding: 4px; border-radius: 30px; }
