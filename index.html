@@ -631,12 +631,12 @@ html[dir="ltr"] .chapter-badge {
 @media (max-width: 768px) {
     /* 📱 کورتکردنەوەی بەرزی نەڤبار و هاوسەنگکردنی بۆ یەک دێڕ */
     .navbar {
-        padding: 0 12px !important;
-        height: 55px !important;       /* بەرزییەکی کورت و جێگیر بۆ مۆبایل */
-        min-height: 55px !important;
-        display: flex !important;
-        align-items: center !important;
-    }
+    padding: 0 12px !important;
+    height: 48px !important;       /* لە 55 لایببە و بیکە بە 48 */
+    min-height: 48px !important;   /* ئەمەش بگۆڕە بۆ 48 */
+    display: flex !important;
+    align-items: center !important;
+}
 
     /* دڵنیابوونەوە لە ڕێکی کۆنتێنەری ناوەکی */
     .nav-container {
@@ -679,10 +679,14 @@ html[dir="ltr"] .chapter-badge {
     }
 
     /* 🖼️ بەشی هێرۆ سەکشن بۆ مۆبایل */
-    .hero-section-wrapper { padding: 85px 12px 20px 12px; }
+    .hero-section-wrapper { padding: 65px 12px 20px 12px; }
     .hero-curved-container { padding: 25px 15px; min-height: 50vh; border-radius: 20px; }
     h1.neon-glow-text { font-size: 38px !important; }
-    .hero-desc { font-size: 14px !important; margin-bottom: 20px !important; padding: 0 10px; }
+    .hero-desc { 
+    font-size: 14px !important; 
+    margin-bottom: 12px !important; /* لە 20ـەوە کەمکراوەتەوە بۆ 12 */
+    padding: 0 10px; 
+}
     .hero-btn, .hero-btn-modern { padding: 11px 24px; font-size: 13px; }
 
     .chapters-section {
