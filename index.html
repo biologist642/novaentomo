@@ -628,69 +628,93 @@ html[dir="ltr"] .chapter-badge {
     animation: eyeBlink 4s infinite;
 }
 
-        /* ==========================================================================
-           7. سیستمی ڕیسپۆنسڤی مۆبایل (Mobile Optimization)
-           ========================================================================== */
-           @media (max-width: 1024px) {
-    .chapters-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
-    .hero-main-title { font-size: 48px; }
-}
-
 @media (max-width: 768px) {
-    /* 📱 کەمکردنەوەی بەرزی نەڤبار و گونجاندنی بۆ مۆبایل */
+    /* 📱 کورتکردنەوەی بەرزی نەڤبار و هاوسەنگکردنی بۆ یەک دێڕ */
     .navbar {
-        padding: 10px 15px !important; /* کەمکردنەوەی پادینگی سەر و خوار */
-        height: auto !important;       /* لادانی بەرزی نەگۆڕی کۆن */
-        min-height: 60px !important;   /* ڕێگری لە درێژبوونی زیادە */
+        padding: 0 12px !important;
+        height: 55px !important;       /* بەرزییەکی کورت و جێگیر بۆ مۆبایل */
+        min-height: 55px !important;
+        display: flex !important;
+        align-items: center !important;
     }
-    .logo h2 {
-        font-size: 1.2rem !important;  /* کەمێک بچووککردنەوەی لۆگۆ بۆ گونجان */
+
+    /* دڵنیابوونەوە لە ڕێکی کۆنتێنەری ناوەکی */
+    .nav-container {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        height: 100% !important;
+        width: 100% !important;
     }
-    .menu-toggle-btn { 
-        font-size: 22px; 
+
+    /* بچووککردنەوەی لۆگۆ بۆ ئەوەی دێڕەکە نەشێوێنێت */
+    .nav-logo, .logo h2 {
+        font-size: 17px !important;
+        white-space: nowrap !important; /* ڕێگری لە دابەزینی دەق بۆ دێڕی نوێ */
     }
     
-    /* 🛠️ کۆنتڕۆڵکردنی کێشەی درێژی بەشی زمان و مۆد لەسەر مۆبایل */
-    .controls { gap: 8px; }
+    /* 🛠️ کۆنتڕۆڵکردنی کۆنتێنەری دوگمەکان لە لای ڕاست */
+    .nav-actions, .controls { 
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 6px !important; /* کەمکردنەوەی بۆشایی نێوانیان */
+    }
+
+    /* بەشی زمانەکان */
     .lang-links-wrapper { gap: 1px; padding: 2px; }
-    .lang-btn { padding: 2px 4px; font-size: 10.5px; }
+    .lang-btn { padding: 2px 4px; font-size: 10px; }
             
-            .theme-controller-wrapper { font-size: 10.5px; gap: 3px; }
-            .theme-switch { width: 36px; height: 18px; }
-            .slider:before { height: 12px; width: 12px; bottom: 3px; left: 3px; }
-            input:checked + .slider:before { transform: translateX(18px); }
+/* بەشی سویچی مۆدی تاریک و ڕووناک */
+    .theme-controller-wrapper { font-size: 10px; gap: 2px; }
+    .theme-switch { width: 32px; height: 16px; }
+    .slider:before { height: 10px; width: 10px; bottom: 3px; left: 3px; }
+    input:checked + .slider:before { transform: translateX(16px); }
 
-            .hero-section-wrapper { padding: 95px 12px 20px 12px; }
-            .hero-curved-container { padding: 25px 15px; min-height: 50vh; border-radius: 20px; }
-            .hero-main-title { font-size: 30px; }
-            .hero-desc { font-size: 14px; margin-bottom: 20px; }
-            .hero-btn { padding: 11px 24px; font-size: 13px; }
-
-            .chapters-section {
-        padding: 80px 40px 40px 40px; /* زیادکردنی بۆشایی سەرەوە بۆ هاوسەنگکردن */
-        max-width: 1400px; 
-        margin: 0 auto; 
+    /* دوگمەی هەمبەرگەر / مینیو */
+    .menu-toggle-btn { 
+        font-size: 20px !important; 
+        padding: 4px !important;
     }
 
-    .section-title {
-        font-size: 32px; 
-        font-weight: 700; 
-        text-align: center; 
-        margin-top: 0;      /* لابردنی مارجینی ناڕێکی سەرەوە */
-        margin-bottom: 50px; 
-        width: 100%;
+    /* 🖼️ بەشی هێرۆ سەکشن بۆ مۆبایل */
+    .hero-section-wrapper { padding: 85px 12px 20px 12px; }
+    .hero-curved-container { padding: 25px 15px; min-height: 50vh; border-radius: 20px; }
+    h1.neon-glow-text { font-size: 38px !important; }
+    .hero-desc { font-size: 14px !important; margin-bottom: 20px !important; padding: 0 10px; }
+    .hero-btn, .hero-btn-modern { padding: 11px 24px; font-size: 13px; }
+
+    .chapters-section {
+        padding: 80px 20px 40px 20px; 
     }
-            .chapters-grid { grid-template-columns: 1fr; gap: 25px; }
-            .chapter-card { height: 400px; border-radius: 20px; }
-            .chapter-info-box { margin: 0 12px 12px 12px; padding: 18px 12px; }
-            
-            .waves-container { height: 60px; }
-            .footer-section { padding-top: 50px; padding-bottom: 25px; }
-            .footer-info-block h3 { font-size: 20px; }
-            .footer-info-block p { font-size: 13px; }
-        }
-    </style>
-</head>
+    .chapters-grid { grid-template-columns: 1fr !important; gap: 20px; }
+} /* 👈 لێرەدا میدیا کوێری مۆبایل بە ڕاستی داخرا */
+
+/* 🌟 ستایلی ناونیشانی بەشەکان (دەرەوەی مۆبایل و بە شێوازی سەربەخۆ) */
+.section-title {
+    font-size: 32px; 
+    font-weight: 700; 
+    text-align: center; 
+    margin-top: 0;
+    margin-bottom: 50px; 
+    width: 100%;
+}
+
+/* 📱 ڕێکخستنی کارتەکان و فووتەر تەنها بۆ سەر مۆبایل */
+@media (max-width: 768px) {
+    .chapters-grid { grid-template-columns: 1fr; gap: 25px; }
+    .chapter-card { height: 400px; border-radius: 20px; }
+    .chapter-info-box { margin: 0 12px 12px 12px; padding: 18px 12px; }
+    
+    .waves-container { height: 60px; }
+    .footer-section { padding-top: 50px; padding-bottom: 25px; }
+    .footer-info-block h3 { font-size: 20px; }
+    .footer-info-block p { font-size: 13px; }
+}
+</style>
+<head>
+    
 <body>
 
     <div class="sidebar-overlay" id="overlay"></div>
