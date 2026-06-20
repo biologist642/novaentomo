@@ -102,9 +102,7 @@
         input:checked + .slider:before { transform: translateX(20px); }
 
 
-/* ==========================================================================
-   ناونیشانی گەورەی NovaEntomo (فۆنتی ڕووداو، ڕەنگی سپی و مۆوشنی جیاواز)
-   ========================================================================== */
+/* 🟢 ستایلی لۆگۆی گەورەی NovaEntomo - نیۆنی سەوزی گەش */
 h1.neon-glow-text {
     font-family: 'Rudaw', 'Noto Kufi Arabic', sans-serif !important;
     font-size: 72px !important;
@@ -112,14 +110,17 @@ h1.neon-glow-text {
     text-transform: uppercase;
     letter-spacing: 1px;
     line-height: 1.1;
-    margin-bottom: 15px !important;
+    margin-bottom: 20px !important;
     color: #ffffff !important;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2), 
-                 0 0 20px rgba(46, 125, 50, 0.4) !important;
     
-    /* لێرەدا هەردوو ئەنیمەیشنە جیاوازەکەی پێدەدەین */
-    animation: novaLogoEntrance 1.2s ease-out forwards, 
-               logoPulse 3s ease-in-out infinite alternate 1.2s;
+    /* شەدۆوی نیۆنی سەوزی بەهێز بۆ سەرنجڕاکێشان */
+    text-shadow: 0 0 7px #ffffff,
+                 0 0 15px #2e7d32,
+                 0 0 30px #2e7d32,
+                 0 0 45px #2e7d32 !important;
+    
+    /* مۆوشنی هاتنە ناوەوەی تایبەت و لێدانی نیۆنەکە */
+    animation: novaLogoEntrance 1.2s ease-out forwards, neonFlicker 3s infinite alternate;
     opacity: 0;
 }
 
@@ -129,28 +130,53 @@ h1.neon-glow-text span {
     display: inline-block;
 }
 
-/* 🎬 ئەنیمەیشنە تایبەتەکان بۆ ناونیشانەکە */
+/* 📝 ستایلی نووسینەکەی خوارەوە (وەسفەکە) لەگەڵ مۆوشنی دەرکەوتن */
+.hero-desc {
+    font-family: 'Noto Kufi Arabic', 'Poppins', sans-serif;
+    font-size: 18px;
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 0 auto 30px auto;
+    color: #e0e0e0;
+    opacity: 0;
+    
+    /* مۆوشنی fadeInUp کە دوای لۆگۆکە بە نەرمی دەردەکەوێت */
+    animation: fadeInUpDesc 1s ease-out 0.6s forwards;
+}
+
+/* 🎬 ئەنیمەیشنەکان */
 @keyframes novaLogoEntrance {
     0% {
         opacity: 0;
-        transform: translateY(-30px) scale(0.9);
-        filter: blur(5px);
+        transform: translateY(-25px);
+        filter: blur(4px);
     }
     100% {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0);
         filter: blur(0);
     }
 }
 
-@keyframes logoPulse {
+/* لێدانی ڕووناکی نیۆنەکە */
+@keyframes neonFlicker {
+    0%, 100% {
+        text-shadow: 0 0 7px #ffffff, 0 0 15px #2e7d32, 0 0 30px #2e7d32, 0 0 45px #2e7d32 !important;
+    }
+    50% {
+        text-shadow: 0 0 5px #ffffff, 0 0 10px #2e7d32, 0 0 20px #2e7d32, 0 0 35px #2e7d32 !important;
+    }
+}
+
+/* دەرکەوتنی نەرمی نووسینەکەی خوارەوە */
+@keyframes fadeInUpDesc {
     0% {
-        transform: scale(1);
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.2), 0 0 20px rgba(46, 125, 50, 0.4);
+        opacity: 0;
+        transform: translateY(20px);
     }
     100% {
-        transform: scale(1.03);
-        text-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 0 0 30px rgba(46, 125, 50, 0.7);
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
@@ -787,12 +813,11 @@ html[dir="ltr"] .chapter-badge {
                 <h1 class="hero-main-title hero-bold-impact neon-glow-text" id="hero-title">
                     NovaEntomo<br><span>زانستی مێرووناسی</span>
                 </h1>
-                
                 <p class="hero-desc" id="hero-desc">
                     پلاتفۆرمی زانستی و ئەکادیمی پێشکەوتوو بۆ خوێندکاران، مامۆستایان، توێژەران و جوتیاران بە بەکارهێنانی تازەترین زانیاری سەردەم.
                 </p>
-                <a href="#chapters" class="hero-btn" id="hero-btn-text">
-                    دەستپێکردنی گەشتەکە <i class="ph ph-arrow-down"></i>
+                <a href="#chapters-section" class="hero-btn-modern">
+                    <span id="hero-btn-text">دەستپێکردنی گەڕانەکە <i class="ph ph-arrow-down"></i></span>
                 </a>
             </div>
     
