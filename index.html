@@ -629,15 +629,13 @@ html[dir="ltr"] .chapter-badge {
 }
 
 @media (max-width: 768px) {
-    /* 📱 ناچارکردنی نەڤبار بۆ کورتکردنەوەی تەواو و توند */
+    /* 📱 کورتکردنەوەی بەرزی نەڤبار و هاوسەنگکردنی بۆ یەک دێڕ */
     .navbar {
-        padding: 0 10px !important;
-        height: 50px !important;       /* کورتکردنەوەی بەرزی بۆ تەنها ٥٠ پێکسڵ */
-        min-height: 50px !important;
-        max-height: 50px !important;
+        padding: 0 12px !important;
+        height: 55px !important;       /* بەرزییەکی کورت و جێگیر بۆ مۆبایل */
+        min-height: 55px !important;
         display: flex !important;
         align-items: center !important;
-        overflow: hidden !important;   /* ڕێگری لە درێژبوونی زانیارییەکان بۆ خوارەوە */
     }
 
     /* دڵنیابوونەوە لە ڕێکی کۆنتێنەری ناوەکی */
@@ -652,10 +650,8 @@ html[dir="ltr"] .chapter-badge {
 
     /* بچووککردنەوەی لۆگۆ بۆ ئەوەی دێڕەکە نەشێوێنێت */
     .nav-logo, .logo h2 {
-        font-size: 15px !important;    /* کەمێک بچووکتر بۆ جێبوونەوەی باشتر */
+        font-size: 17px !important;
         white-space: nowrap !important; /* ڕێگری لە دابەزینی دەق بۆ دێڕی نوێ */
-        margin: 0 !important;
-        padding: 0 !important;
     }
     
     /* 🛠️ کۆنتڕۆڵکردنی کۆنتێنەری دوگمەکان لە لای ڕاست */
@@ -663,25 +659,19 @@ html[dir="ltr"] .chapter-badge {
         display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
-        gap: 4px !important;            /* کەمکردنەوەی بۆشایی نێوانیان */
+        gap: 6px !important; /* کەمکردنەوەی بۆشایی نێوانیان */
     }
 
     /* بەشی زمانەکان */
-    .lang-links-wrapper { gap: 1px !important; padding: 1px !important; }
-    .lang-btn { padding: 1px 3px !important; font-size: 9px !important; }
+    .lang-links-wrapper { gap: 1px; padding: 2px; }
+    .lang-btn { padding: 2px 4px; font-size: 10px; }
             
-    /* بەشی سویچی مۆدی تاریک و ڕووناک */
-    .theme-controller-wrapper { font-size: 9px !important; gap: 2px !important; }
-    .theme-switch { width: 30px !important; height: 14px !important; }
-    .slider:before { height: 8px !important; width: 8px !important; bottom: 3px !important; left: 3px !important; }
-    input:checked + .slider:before { transform: translateX(16px) !important; }
-    
-    /* دوگمەی مینیو (ئەگەر هەیە) */
-    .menu-toggle-btn {
-        font-size: 18px !important;
-        padding: 2px !important;
-    }
-} /* 👈 ئەسپەرە! ئەم کەوانەیە کێشە سەرەکییەکە بوو کە داخرانی میدیا کوێریەکەیە */
+/* بەشی سویچی مۆدی تاریک و ڕووناک */
+    .theme-controller-wrapper { font-size: 10px; gap: 2px; }
+    .theme-switch { width: 32px; height: 16px; }
+    .slider:before { height: 10px; width: 10px; bottom: 3px; left: 3px; }
+    input:checked + .slider:before { transform: translateX(16px); }
+
     /* دوگمەی هەمبەرگەر / مینیو */
     .menu-toggle-btn { 
         font-size: 20px !important; 
@@ -699,7 +689,7 @@ html[dir="ltr"] .chapter-badge {
         padding: 80px 20px 40px 20px; 
     }
     .chapters-grid { grid-template-columns: 1fr !important; gap: 20px; }
-/* 👈 لێرەدا میدیا کوێری مۆبایل بە ڕاستی داخرا */
+} /* 👈 لێرەدا میدیا کوێری مۆبایل بە ڕاستی داخرا */
 
 /* 🌟 ستایلی ناونیشانی بەشەکان (دەرەوەی مۆبایل و بە شێوازی سەربەخۆ) */
 .section-title {
@@ -724,7 +714,7 @@ html[dir="ltr"] .chapter-badge {
 }
 </style>
 <head>
-
+    
 <body>
 
     <div class="sidebar-overlay" id="overlay"></div>
