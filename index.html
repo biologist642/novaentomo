@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NovaEntomo</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;600;700&family=Poppins:wght@300;400;600;700&family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
     <style>
@@ -46,7 +46,7 @@
         }
 
         body {
-            font-family: 'Poppins', 'Noto Kufi Arabic', sans-serif;
+            font-family: 'Rudaw', 'Noto Kufi Arabic', sans-serif !important;
             background-color: var(--bg-main);
             color: var(--text-primary);
             overflow-x: hidden;
@@ -105,25 +105,49 @@
    ✨ ستایلی نیۆن، مۆشنی گشتگیر، و دوگمەی سێرچ لە نەڤبار
    ========================================================================== */
 
-/* ✨ ڕەنگی نیۆنی نوێ و گەش بۆ سەر سەوزی تۆخ */
+/* 🌟 ستایلی تایبەت بۆ ناونیشانی لۆگۆی NovaEntomo */
 .neon-glow-text {
-    color: #00ffaa !important; /* سەوزی کاڵی ماسییەیی کارەبایی */
-    text-shadow: 0 0 8px rgba(0, 255, 170, 0.6), 
-                 0 0 20px rgba(0, 255, 170, 0.4), 
-                 0 0 30px rgba(0, 255, 170, 0.2);
+    font-family: 'Rudaw', 'Noto Kufi Arabic', sans-serif !important;
+    color: #ffffff !important; /* ڕەنگی ناوەوەی دەقەکە دەبێتە سپی */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2), 
+                 0 0 20px rgba(46, 125, 50, 0.4) !important; /* تەنها شەدۆوێکی نەرمی سەوز/سپی */
+    letter-spacing: 1px;
+    
+    /* مۆوشنی تایبەت و جیاواز: دەرکەوتنی داینامیکی لێدانی دڵ */
+    animation: novaLogoEntrance 1.2s ease-out forwards, logoPulse 3s ease-in-out infinite alternate 1.2s;
+    opacity: 0;
 }
 
-/* 🎬 ئەنیمەیشنەکان */
-@keyframes fadeInUpHero {
-    0% { opacity: 0; transform: translateY(25px); }
-    100% { opacity: 1; transform: translateY(0); }
+.neon-glow-text span {
+    font-family: 'Rudaw', 'Noto Kufi Arabic', sans-serif !important;
+    color: #ffffff !important; /* بەشی کوردییەکەش دەبێتە سپی */
+    display: inline-block;
 }
 
-/* مۆشنی سەروخواری زۆر نەرم بۆ سەرنجڕاکێشانی زیاتر */
-@keyframes softUpDownEffect {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
+/* 🎬 ئەنیمەیشنی یەکەم: دەرکەوتنی سەرەتایی لە سەرەوە بۆ خوارەوە بە گەورەبوونەوە */
+@keyframes novaLogoEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.9);
+        filter: blur(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+/* 🎬 ئەنیمەیشنی دووەم: لێدان و درەوشانەوەی بەردەوام کە تەواو جیاوازی دەکات لە دەقەکانی تر */
+@keyframes logoPulse {
+    0% {
+        transform: scale(1);
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.2), 0 0 20px rgba(46, 125, 50, 0.4);
+    }
+    100% {
+        transform: scale(1.03); /* کەمێک گەورەبوونەوەی نەرم */
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 0 0 30px rgba(46, 125, 50, 0.7); /* گۆڕانی شەدۆوەکە */
+    }
 }
 
 .hero-section-wrapper {
