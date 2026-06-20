@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NovaEntomo</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;600;700&family=Poppins:wght@300;400;600;700&family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
     <style>
@@ -46,7 +46,7 @@
         }
 
         body {
-            font-family: 'Rudaw', 'Noto Kufi Arabic', sans-serif !important;
+            font-family: 'Poppins', 'Noto Kufi Arabic', sans-serif;
             background-color: var(--bg-main);
             color: var(--text-primary);
             overflow-x: hidden;
@@ -101,42 +101,32 @@
         input:checked + .slider { background-color: var(--accent-color); }
         input:checked + .slider:before { transform: translateX(20px); }
 
-
 /* ==========================================================================
-   🟢 چاککردنی کۆتایی لۆگۆی نیۆنی NovaEntomo
+   ✨ ستایلی نیۆن، مۆشنی گشتگیر، و دوگمەی سێرچ لە نەڤبار
    ========================================================================== */
-   h1.neon-glow-text {
-    font-family: 'Rudaw', 'Noto Kufi Arabic', sans-serif !important;
-    font-size: 64px !important; /* قەبارەیەکی گونجاو بۆ مۆبایل و دێسکتۆپ */
-    font-weight: 900 !important;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    line-height: 1.2;
-    margin-bottom: 20px !important;
-    color: #ffffff !important;
-    display: block !important;
-    
-    /* شەدۆوی نیۆنی سەوزی گەش و بەهێز */
-    text-shadow: 0 0 7px #ffffff,
-                 0 0 15px #2e7d32,
-                 0 0 25px #2e7d32,
-                 0 0 40px #2e7d32 !important;
-    
-    /* ئەنیمەیشنی هاتنە ناوەوە و درەوشانەوەی بەردەوام */
-    animation: novaLogoEntrance 1s ease-out forwards, neonFlicker 3s infinite alternate 1s;
-    opacity: 0;
+
+/* ✨ ڕەنگی نیۆنی نوێ و گەش بۆ سەر سەوزی تۆخ */
+.neon-glow-text {
+    color: #00ffaa !important; /* سەوزی کاڵی ماسییەیی کارەبایی */
+    text-shadow: 0 0 8px rgba(0, 255, 170, 0.6), 
+                 0 0 20px rgba(0, 255, 170, 0.4), 
+                 0 0 30px rgba(0, 255, 170, 0.2);
 }
 
-h1.neon-glow-text span {
-    font-family: 'Rudaw', 'Noto Kufi Arabic', sans-serif !important;
-    color: #ffffff !important;
-    display: inline-block;
+/* 🎬 ئەنیمەیشنەکان */
+@keyframes fadeInUpHero {
+    0% { opacity: 0; transform: translateY(25px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
-/* ==========================================================================
-   🎯 ستایلی سەرەکی هێرۆ (Hero Section) - یەکگرتوو و پاک
-   ========================================================================== */
-   .hero-section-wrapper {
+/* مۆشنی سەروخواری زۆر نەرم بۆ سەرنجڕاکێشانی زیاتر */
+@keyframes softUpDownEffect {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.hero-section-wrapper {
     position: relative;
     padding: 0 !important;
     margin: 0 !important;
@@ -145,6 +135,7 @@ h1.neon-glow-text span {
     overflow: hidden;
 }
 
+/* 🖼️ سیستەمی سلایدشۆ */
 .hero-slideshow {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -164,19 +155,20 @@ h1.neon-glow-text span {
     opacity: 1;
 }
 
-/* 🎯 کۆنتێنەری سەرەکی - کورتکراوەتەوە بۆ 65vh ڕێک وەک نۆڤاپلانت */
 .hero-curved-container {
-    min-height: 65vh !important; 
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 50px 0 !important;
     position: relative;
-    overflow: hidden;
+    width: 100%;
+    min-height: 85vh; 
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 140px 20px 100px 20px;
+    background: transparent;
 }
 
-/* کۆنتێنەری ناوەڕۆک */
+/* 🌌 کۆنتێنەری سەرەکی دەقەکانی هێرۆ - مۆشنی سەروخوار لێرەدا جێگیر کراوە */
 .hero-content {
     position: relative;
     max-width: 850px;
@@ -184,86 +176,21 @@ h1.neon-glow-text span {
     color: #ffffff;
     text-align: center;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.85);
+    animation: softUpDownEffect 6s ease-in-out infinite; /* 🎬 مۆشنی بەردەوامی سەروخوار بۆ هەموو دەقەکان */
 }
 
-/* 🎯 دەقی وەسفی هێرۆ - جێگیر کراوە بۆ ئەوەی چیتر ون نەبێت */
-.hero-desc {
-    font-size: 16px !important;
-    line-height: 1.6 !important;
-    max-width: 680px;
-    margin: 0 auto 15px auto !important; /* مەودای کەم لەگەڵ دوگمەکە */
-    color: #ffffff !important;
-    opacity: 1 !important; /* هەمیشە دیارە */
-    display: block !important;
+/* ⚡ ناونیشانی سەرەکی */
+.hero-bold-impact {
+    font-family: 'Montserrat', 'Arial Black', sans-serif;
+    font-size: 72px !important;
+    font-weight: 900 !important;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 15px !important;
+    animation: fadeInUpHero 0.8s ease-out forwards;
 }
 
-/* 📱 ڕێکخستنی قەبارە بۆ مۆبایل تا تێکنەچێت */
-@media (max-width: 768px) {
-    h1.neon-glow-text {
-        font-size: 38px !important;
-    }
-    .hero-desc {
-        font-size: 14px !important;
-        padding: 0 15px;
-    }
-    .hero-curved-container {
-        min-height: 60vh !important;
-    }
-}
-
-/* ==========================================================================
-   🎯 دوگمەی مۆدێرنی گەشتەکە (Hero Button Wrapper & Button)
-   ========================================================================== */
-.hero-btn-wrapper {
-    margin-top: 10px !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-.hero-btn-modern {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 11px 26px !important; /* قەبارەی کۆمپاکت */
-    font-size: 15px !important;
-    font-weight: 600;
-    color: #ffffff !important;
-    text-decoration: none;
-    background: linear-gradient(135deg, #2e7d32, #1b5e20);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50px !important;
-    box-shadow: 0 4px 12px rgba(27, 94, 32, 0.3);
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-}
-
-.hero-btn-modern:hover {
-    transform: translateY(-3px) scale(1.02) !important;
-    background: linear-gradient(135deg, #388e3c, #2e7d32);
-    box-shadow: 0 8px 20px rgba(56, 142, 60, 0.5);
-}
-
-/* ستایلی ئایکۆنی ناو دوگمەکە */
-.hero-btn-modern i {
-    font-size: 16px;
-    display: inline-block;
-    transition: transform 0.3s ease;
-}
-
-.hero-btn-modern:hover i {
-    transform: translateY(3px); /* جوڵەی نەرمی تیرەکە بەرەو خوارەوە */
-}
-
-/* لۆگۆی نەڤبار (هەمیشە جێگیر و سپی) */
-.nav-logo {
-    font-family: 'Poppins', 'Noto Kufi Arabic', sans-serif;
-    color: #ffffff !important;
-    font-size: 24px;
-    font-weight: 700;
-    text-decoration: none;
-}
 .hero-bold-impact span {
     display: block;
     font-family: inherit;
@@ -274,73 +201,41 @@ h1.neon-glow-text span {
     margin-top: 12px;
 }
 
+/* 📝 پێناسەی هێرۆ */
 .hero-desc {
     font-size: 16px !important;
-    line-height: 1.6 !important;
+    line-height: 1.7 !important;
     max-width: 680px;
-    margin: 0 auto 15px auto !important; /* مەودای کەم بۆ ئەوەی زۆر درێژ نەبێت */
-    color: #ffffff !important;
-    opacity: 1 !important; /* 🎯 لێرەدا بیکە بە 1 تا نووسینەکە بگەڕێتەوە و دیار بێت */
+    margin: 0 auto 35px auto !important;
+    color: #e0e0e0;
+    animation: fadeInUpHero 1s ease-out 0.2s forwards;
+    opacity: 0;
 }
 
-@keyframes fadeInUpHero {
-    from {
-        opacity: 0;
-        transform: translateY(20px); /* لە ٢٠ پیکسڵ خوارترەوە دەست پێدەکات */
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);    /* دەگەڕێتەوە شوێنی سەرەکی خۆی */
-    }
-}
-
-/* 1. کۆنتێنەری دوگمەکە بۆ دروستکردنی مەودای تەواو لە ژێر دەقە سپییەکە */
-.hero-btn-wrapper {
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-/* 2. دیزاینی یەکگرتوو و مۆدێرنی دوگمەکە */
-.hero-btn-modern {
+/* 🎯 دوگمەی مۆدێرنی گەشتەکە */
+.hero-btn {
     display: inline-flex;
     align-items: center;
     gap: 10px;
     padding: 14px 32px !important;
-    font-size: 16px !important;
+    font-size: 15px !important;
     font-weight: 600;
     color: #ffffff !important;
-    text-decoration: none;
-    background: linear-gradient(135deg, #2e7d32, #1b5e20); /* سەوزی سروشتی زانستی */
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: linear-gradient(135deg, #2e7d32, #1b5e20);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 50px !important;
+    text-decoration: none;
     box-shadow: 0 6px 20px rgba(27, 94, 32, 0.4);
-    cursor: pointer;
-    
-    /* مۆوشنی هاتنە ناوەوەی نەرم */
-    opacity: 0;
-    animation: fadeInUpHero 1s ease-out 0.5s forwards;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    animation: fadeInUpHero 1s ease-out 0.4s forwards;
+    opacity: 0;
+    cursor: pointer;
 }
 
-/* مۆوشنی کاتی بردنی ماوس بۆ سەر دوگمەکە (Hover) */
-.hero-btn-modern:hover {
+.hero-btn:hover {
     transform: translateY(-4px) scale(1.03) !important;
     background: linear-gradient(135deg, #388e3c, #2e7d32);
-    box-shadow: 0 10px 25px rgba(56, 142, 60, 0.6), 0 0 15px rgba(255, 255, 255, 0.2);
-}
-
-/* 3. مۆوشنی تایبەت بە ئایکۆنی تیرەکە */
-.hero-btn-modern i {
-    font-size: 18px;
-    display: inline-block;
-    transition: transform 0.3s ease;
-}
-
-.hero-btn-modern:hover i {
-    transform: translateY(4px); /* تیرەکە بە نەرمی دەجوڵێتە خوارەوە */
+    box-shadow: 0 10px 25px rgba(56, 142, 60, 0.6);
 }
 
 /* 📚 بەشی پلاتفۆرم (جێگرەوەی ناونیشانی چاپتەرەکان) */
@@ -854,27 +749,24 @@ html[dir="ltr"] .chapter-badge {
     
         <main class="hero-curved-container">
             <div class="hero-content">
-                <h1 class="neon-glow-text" id="hero-title">
+                <h1 class="hero-main-title hero-bold-impact neon-glow-text" id="hero-title">
                     NovaEntomo<br><span>زانستی مێرووناسی</span>
                 </h1>
-        
+                
                 <p class="hero-desc" id="hero-desc">
-                    پلاتفۆرمی زانستی و ئەکادیمی پێشکەوتوو بۆ خوێندکاران, مامۆستایان, توێژەران و جوتیاران بە بەکارهێنانی تازەترین زانیاری سەردەم.
+                    پلاتفۆرمی زانستی و ئەکادیمی پێشکەوتوو بۆ خوێندکاران، مامۆستایان، توێژەران و جوتیاران بە بەکارهێنانی تازەترین زانیاری سەردەم.
                 </p>
-        
-                <div class="hero-btn-wrapper">
-                    <a href="#chapters-section" class="hero-btn-modern" id="hero-btn">
-                        <span id="hero-btn-text">دەستپێکردنی گەڕانەکە</span>
-                        <i class="ph ph-arrow-down"></i>
-                    </a>
-                </div>
+                <a href="#chapters" class="hero-btn" id="hero-btn-text">
+                    دەستپێکردنی گەشتەکە <i class="ph ph-arrow-down"></i>
+                </a>
             </div>
-        
+    
             <div class="hero-3d-insects-container">
                 <div class="insect-3d-box butterfly-3d">🦋</div>
                 <div class="insect-3d-box ant-3d">🐜</div>
             </div>
         </main>
+    </section>
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
@@ -984,7 +876,7 @@ html[dir="ltr"] .chapter-badge {
             },
             en: {
                 title: "NovaEntomo<br><span>Entomology Science</span>",
-                desc: "Advanced scientific and academic platform for students, teachers, researchers, and farmers, using the latest modern information.",
+                desc: "An advanced scientific and academic platform for students, teachers, researchers, and farmers utilizing the latest modern knowledge.",
                 btnText: "Start Exploring",
                 sbHome: "Home",
                 sbTitleCh: "Chapters",
@@ -1014,7 +906,7 @@ html[dir="ltr"] .chapter-badge {
             },
             ar: {
                 title: "NovaEntomo<br><span>علم الحشرات</span>",
-                desc: "منصة علمية وأكاديمية متقدمة للطلاب والمعلمين والباحثين والمزارعين باستخدام أحدث المعلومات المعاصرة.",
+                desc: "منصة علمية وأكاديمية متقدمة للطلاب، المعلمين، الباحثين، والمزارعين باستخدام أحدث المعلومات المعاصرة.",
                 btnText: "ابدأ الاستكشاف",
                 sbHome: "الرئيسية",
                 sbTitleCh: "الفصول",
@@ -1060,12 +952,12 @@ html[dir="ltr"] .chapter-badge {
         const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
         const themeStatusText = document.getElementById('theme-status-text');
         const chaptersContainer = document.getElementById('chapters-container');
-    
+
         const updateElement = (id, property, value) => {
             const el = document.getElementById(id);
             if (el) el[property] = value;
         };
-    
+
         function convertToKurdishNumbers(str, currentLang) {
             if (currentLang === 'en') return str;
             const kurdishNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
@@ -1073,40 +965,31 @@ html[dir="ltr"] .chapter-badge {
                 return kurdishNumbers[+w];
             });
         }
-    
+
         function applyLanguage(lang) {
             const data = translations[lang];
             if (!data) return;
-    
+
             updateElement('hero-title', 'innerHTML', data.title);
+            updateElement('hero-desc', 'innerText', data.desc);
             
-// 🎯 جێبەجێکردنی وەرگێڕان، هێشتنەوەی ئۆپاسیتی لەسەر 1، و دووبارە دەستپێکردنەوەی ئەنیمەیشنەکە
-const descElement = document.getElementById('hero-desc');
-if (descElement) {
-    descElement.innerText = data.desc;
-    descElement.style.animation = 'none';
-    descElement.offsetHeight; /* trigger reflow */
-    
-    // لێرەدا بە هێشتنەوەی ستایلی ئۆپاسیتی لەسەر 1، ڕێگا نادەین دەقەکە ون ببێت و هێرۆکە درێژ ببێت
-    descElement.style.opacity = "1"; 
-    descElement.style.animation = 'fadeInUpHero 1s ease-out 0.2s forwards';
-}
-            
-            const heroBtnText = document.getElementById('hero-btn-text');
-if (heroBtnText) {
-    heroBtnText.innerText = data.btnText; // بەم شێوەیە تەنها دەقەکە دەگۆڕێت و ئایکۆنەکە بە ساغی دەمێنێتەوە
-}
+            const heroBtn = document.getElementById('hero-btn-text');
+            if (heroBtn) {
+                heroBtn.innerHTML = `${data.btnText} <i class="ph ph-arrow-down"></i>`;
+            }
             
             updateElement('sb-home', 'innerText', data.sbHome);
             updateElement('sb-title-ch', 'innerText', data.sbTitleCh);
             
+            // پشتگیری هەردوو جۆری ئایدی بەشەکە دەکات بۆ دڵنیایی
             updateElement('section-main-title', 'innerHTML', data.secTitle);
             updateElement('section-platform-title', 'innerHTML', data.secTitle);
-    
+
             for(let i = 1; i <= 9; i++) {
                 updateElement(`sb-ch${i}`, 'innerText', data.chapters[i-1] ? `${convertToKurdishNumbers(String(i), lang)}. ${data.chapters[i-1].title}` : '');
             }
-    
+
+            // پشتگیری ئایدیەکانی ناو فۆتەرەکەت دەکات
             updateElement('f-p1', 'innerText', data.fP1);
             updateElement('f-title', 'innerText', data.fP1);
             updateElement('f-p2', 'innerText', data.fP2);
@@ -1114,23 +997,23 @@ if (heroBtnText) {
             updateElement('f-bionova', 'innerText', data.fBio);
             updateElement('f-vtext', 'innerText', data.fVtext);
             updateElement('f-copy', 'innerHTML', data.fCopy);
-    
+
             const currentTheme = localStorage.getItem('theme') || 'light';
             if (themeStatusText) {
                 themeStatusText.innerText = data[currentTheme];
             }
-    
+
             if (chaptersContainer) {
                 chaptersContainer.innerHTML = '';
                 data.chapters.forEach((ch, index) => {
                     let btnLabel = data.readMore;
                     if(index === 7) btnLabel = data.viewBtn;
                     if(index === 8) btnLabel = data.startBtn;
-    
+
                     let chapterNumber = '0' + (index + 1);
                     let formattedNumber = convertToKurdishNumbers(chapterNumber, lang);
                     const currentBadgeText = data.badgeText || '';
-    
+
                     const cardHtml = `
                         <div class="chapter-card" id="ch${index+1}" style="animation-delay: ${0.1 + (index*0.05)}s;">
                             <span class="chapter-badge">${currentBadgeText} ${formattedNumber}</span>
