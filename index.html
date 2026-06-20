@@ -240,12 +240,16 @@
 
 /* 📚 بەشی پلاتفۆرم (جێگرەوەی ناونیشانی چاپتەرەکان) */
 .section-title {
-    font-size: 28px !important;
+    font-size: 38px !important; /* 🌟 گەورەکردنی سایزەکە لە 28px بۆ 38px */
     font-weight: 800 !important;
     text-align: center;
-    margin-top: 75px !important; /* 👈 هێنانەخوارەوەی زیاتر بۆ ئەوەی تێکەڵی هێرۆ نەبێت */
+    display: flex;
+    justify-content: center;   /* 🌟 هێنانە ناوەڕاستی تەواو بۆ دەقەکە */
+    align-items: center;
+    gap: 8px;
+    margin-top: 75px !important; /* 👈 وەک خۆی هێڵدراوەتەوە بۆ ئەوەی تێکەڵی هێرۆ نەبێت */
     margin-bottom: 35px !important;
-    animation: softUpDownEffect 4s ease-in-out infinite; /* 🎬 مۆشنی بەردەوامی سەروخوار */
+    animation: softUpDownEffect 4s ease-in-out infinite; /* 🎬 مۆشنی بەردەوامی سەروخوار وەک خۆیەتی */
 }
 
 /* 🔍 ستایلی دوگمەی سێرچ لە نەڤبار */
@@ -305,7 +309,11 @@
     .hero-bold-impact { font-size: 44px !important; }
     .hero-bold-impact span { font-size: 22px !important; }
     .hero-desc { font-size: 14px !important; margin-bottom: 30px !important; }
-    .section-title { font-size: 22px !important; margin-top: 45px !important; }
+    .section-title {
+    font-size: 26px !important;   /* 🌟 قەبارەیەکی گەورە و گونجاو بۆ مۆبایل */
+    margin-top: 45px !important;   /* کەمێک بۆشایی سەرەوەی کەم دەکاتەوە لە مۆبایلدا */
+    margin-bottom: 25px !important;
+}
     .hero-3d-insects-container { bottom: 25px !important; gap: 50px !important; }
     .insect-3d-box { font-size: 40px !important; }
 }
@@ -825,7 +833,7 @@ html[dir="ltr"] .chapter-badge {
     </aside>
 
     <section class="chapters-section" id="chapters">
-        <h2 class="section-title" id="section-platform-title">چاپتەرەکانی <span>پلاتفۆرم</span></h2>
+        <h2 class="section-title" id="section-platform-title">بەشەکانی <span>پلاتفۆرم</span></h2>
         <div class="chapters-grid" id="chapters-container"></div>
     </section>
 
