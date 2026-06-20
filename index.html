@@ -231,10 +231,12 @@ h1.neon-glow-text span {
 }
 
 .hero-curved-container {
-    min-height: 70vh !important; /* لە جیاتی 100vh بیکە بە 70vh تا کورت ببێتەوە */
-    padding: 100px 0 60px 0 !important; /* پادینگی سەرەوە و خوارەوە کەم کەرەوە */
-    position: relative;
-    overflow: hidden;
+    min-height: 75vh !important; /* 🎯 بەرزییەکەی کەم بکەرەوە بۆ 75vh وەک نوڤاپلانت */
+    padding: 80px 0 40px 0 !important; /* پادینگی سەرەوە و خوارەوە کەم بکەرەوە */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* کۆنتێنەری دەقەکان (تەنها کارتەکان و پێناسەکە لێرەدا مۆوشنی گشتی سەروخوار وەردەگرن) */
@@ -275,15 +277,13 @@ h1.neon-glow-text span {
     margin-top: 12px;
 }
 
-/* 📝 پێناسەی هێرۆ */
 .hero-desc {
     font-size: 16px !important;
-    line-height: 1.7 !important;
+    line-height: 1.6 !important;
     max-width: 680px;
-    margin: 0 auto 15px auto !important;
-    color: #e0e0e0;
-    animation: fadeInUpHero 1s ease-out 0.2s forwards;
-    opacity: 0;
+    margin: 0 auto 15px auto !important; /* مەودای کەم بۆ ئەوەی زۆر درێژ نەبێت */
+    color: #ffffff !important;
+    opacity: 1 !important; /* 🎯 لێرەدا بیکە بە 1 تا نووسینەکە بگەڕێتەوە و دیار بێت */
 }
 
 @keyframes fadeInUpHero {
@@ -871,7 +871,6 @@ html[dir="ltr"] .chapter-badge {
                         <i class="ph ph-arrow-down"></i>
                     </a>
                 </div>
-            </div>
         
             <div class="hero-3d-insects-container">
                 <div class="insect-3d-box butterfly-3d">🦋</div>
@@ -1083,14 +1082,17 @@ html[dir="ltr"] .chapter-badge {
     
             updateElement('hero-title', 'innerHTML', data.title);
             
-            // جێبەجێکردنی وەرگێڕان و دووبارە دەستپێکردنەوەی ئەنیمەیشنەکە بە کاتی دروستی CSSەکەت
-            const descElement = document.getElementById('hero-desc');
-            if (descElement) {
-                descElement.innerText = data.desc;
-                descElement.style.animation = 'none';
-                descElement.offsetHeight; /* trigger reflow */
-                descElement.style.animation = 'fadeInUpHero 1s ease-out 0.2s forwards';
-            }
+// 🎯 جێبەجێکردنی وەرگێڕان، هێشتنەوەی ئۆپاسیتی لەسەر 1، و دووبارە دەستپێکردنەوەی ئەنیمەیشنەکە
+const descElement = document.getElementById('hero-desc');
+if (descElement) {
+    descElement.innerText = data.desc;
+    descElement.style.animation = 'none';
+    descElement.offsetHeight; /* trigger reflow */
+    
+    // لێرەدا بە هێشتنەوەی ستایلی ئۆپاسیتی لەسەر 1، ڕێگا نادەین دەقەکە ون ببێت و هێرۆکە درێژ ببێت
+    descElement.style.opacity = "1"; 
+    descElement.style.animation = 'fadeInUpHero 1s ease-out 0.2s forwards';
+}
             
             const heroBtnText = document.getElementById('hero-btn-text');
 if (heroBtnText) {
