@@ -133,76 +133,10 @@ h1.neon-glow-text span {
     display: inline-block;
 }
 
-/* 🎯 پێناسی هێرۆ - چاککردنی ئۆپاسیتی و کورتکردنەوەی قەبارە */
-.hero-desc {
-    font-size: 16px !important;
-    line-height: 1.6 !important;
-    max-width: 680px;
-    margin: 0 auto 20px auto !important;
-    color: #ffffff !important;
-    opacity: 1; /* گۆڕینی لە 0 بۆ 1 تا دەقەکە بە جوانی دەرکەوێت */
-}
-
-/* 🎯 کۆنتێنەری نوێی دوگمەکە بۆ ڕێکخستنی مەودا */
-.hero-btn-wrapper {
-    margin-top: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-/* 🎯 دیزاینی یەکگرتووی دوگمە مۆدێرنەکە */
-.hero-btn-modern {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 28px !important;
-    font-size: 15px !important;
-    font-weight: 600;
-    color: #ffffff !important;
-    text-decoration: none;
-    background: linear-gradient(135deg, #2e7d32, #1b5e20);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50px !important;
-    box-shadow: 0 6px 20px rgba(27, 94, 32, 0.3);
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-}
-
-/* مۆوشنی Hover */
-.hero-btn-modern:hover {
-    transform: translateY(-4px) scale(1.03) !important;
-    background: linear-gradient(135deg, #388e3c, #2e7d32);
-    box-shadow: 0 10px 25px rgba(56, 142, 60, 0.5), 0 0 15px rgba(255, 255, 255, 0.2);
-}
-
-/* مۆوشنی ئایکۆنی تیرەکە */
-.hero-btn-modern i {
-    font-size: 16px;
-    display: inline-block;
-    transition: transform 0.3s ease;
-}
-
-.hero-btn-modern:hover i {
-    transform: translateY(4px);
-}
-
-/* 📱 بۆ ئەوەی دیزاینەکە لە مۆبایلدا تێکنەچێت (Responsive) */
-@media (max-width: 768px) {
-    h1.neon-glow-text {
-        font-size: 42px !important;
-    }
-    .hero-desc {
-        font-size: 15px !important;
-        padding: 0 15px;
-    }
-}
-
 /* ==========================================================================
-   ستایلی بەشی هێرۆ (Hero Section) و پارچەکانی تر
+   🎯 ستایلی سەرەکی هێرۆ (Hero Section) - یەکگرتوو و پاک
    ========================================================================== */
-.hero-section-wrapper {
+   .hero-section-wrapper {
     position: relative;
     padding: 0 !important;
     margin: 0 !important;
@@ -230,16 +164,19 @@ h1.neon-glow-text span {
     opacity: 1;
 }
 
+/* 🎯 کۆنتێنەری سەرەکی - کورتکراوەتەوە بۆ 65vh ڕێک وەک نۆڤاپلانت */
 .hero-curved-container {
-    min-height: 75vh !important; /* 🎯 بەرزییەکەی کەم بکەرەوە بۆ 75vh وەک نوڤاپلانت */
-    padding: 80px 0 40px 0 !important; /* پادینگی سەرەوە و خوارەوە کەم بکەرەوە */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    min-height: 65vh !important; 
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 50px 0 !important;
+    position: relative;
+    overflow: hidden;
 }
 
-/* کۆنتێنەری دەقەکان (تەنها کارتەکان و پێناسەکە لێرەدا مۆوشنی گشتی سەروخوار وەردەگرن) */
+/* کۆنتێنەری ناوەڕۆک */
 .hero-content {
     position: relative;
     max-width: 850px;
@@ -249,14 +186,74 @@ h1.neon-glow-text span {
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.85);
 }
 
-/* وەسفی هێرۆ (Description) کەمێک مۆوشنی نەرمی سەروخوار لۆکاڵی پێدەدەین */
+/* 🎯 دەقی وەسفی هێرۆ - جێگیر کراوە بۆ ئەوەی چیتر ون نەبێت */
 .hero-desc {
-    animation: softUpDownEffect 6s ease-in-out infinite;
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+    max-width: 680px;
+    margin: 0 auto 15px auto !important; /* مەودای کەم لەگەڵ دوگمەکە */
+    color: #ffffff !important;
+    opacity: 1 !important; /* هەمیشە دیارە */
+    display: block !important;
 }
 
-@keyframes softUpDownEffect {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
+/* 📱 ڕێکخستنی قەبارە بۆ مۆبایل تا تێکنەچێت */
+@media (max-width: 768px) {
+    h1.neon-glow-text {
+        font-size: 38px !important;
+    }
+    .hero-desc {
+        font-size: 14px !important;
+        padding: 0 15px;
+    }
+    .hero-curved-container {
+        min-height: 60vh !important;
+    }
+}
+
+/* ==========================================================================
+   🎯 دوگمەی مۆدێرنی گەشتەکە (Hero Button Wrapper & Button)
+   ========================================================================== */
+.hero-btn-wrapper {
+    margin-top: 10px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.hero-btn-modern {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 26px !important; /* قەبارەی کۆمپاکت */
+    font-size: 15px !important;
+    font-weight: 600;
+    color: #ffffff !important;
+    text-decoration: none;
+    background: linear-gradient(135deg, #2e7d32, #1b5e20);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px !important;
+    box-shadow: 0 4px 12px rgba(27, 94, 32, 0.3);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.hero-btn-modern:hover {
+    transform: translateY(-3px) scale(1.02) !important;
+    background: linear-gradient(135deg, #388e3c, #2e7d32);
+    box-shadow: 0 8px 20px rgba(56, 142, 60, 0.5);
+}
+
+/* ستایلی ئایکۆنی ناو دوگمەکە */
+.hero-btn-modern i {
+    font-size: 16px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.hero-btn-modern:hover i {
+    transform: translateY(3px); /* جوڵەی نەرمی تیرەکە بەرەو خوارەوە */
 }
 
 /* لۆگۆی نەڤبار (هەمیشە جێگیر و سپی) */
@@ -862,7 +859,7 @@ html[dir="ltr"] .chapter-badge {
                 </h1>
         
                 <p class="hero-desc" id="hero-desc">
-                    پلاتفۆرمی زانستی و ئەکادیمی پێشکەوتوو بۆ خوێندکاران، مامۆستایان، توێژەران و جوتیاران بە بەکارهێنانی تازەترین زانیاری سەردەم.
+                    پلاتفۆرمی زانستی و ئەکادیمی پێشکەوتوو بۆ خوێندکاران, مامۆستایان, توێژەران و جوتیاران بە بەکارهێنانی تازەترین زانیاری سەردەم.
                 </p>
         
                 <div class="hero-btn-wrapper">
@@ -871,6 +868,7 @@ html[dir="ltr"] .chapter-badge {
                         <i class="ph ph-arrow-down"></i>
                     </a>
                 </div>
+            </div>
         
             <div class="hero-3d-insects-container">
                 <div class="insect-3d-box butterfly-3d">🦋</div>
