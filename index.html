@@ -102,25 +102,28 @@
         input:checked + .slider:before { transform: translateX(20px); }
 
 
-/* 🟢 ستایلی لۆگۆی گەورەی NovaEntomo - نیۆنی سەوزی گەش */
-h1.neon-glow-text {
+/* ==========================================================================
+   🟢 چاککردنی کۆتایی لۆگۆی نیۆنی NovaEntomo
+   ========================================================================== */
+   h1.neon-glow-text {
     font-family: 'Rudaw', 'Noto Kufi Arabic', sans-serif !important;
-    font-size: 72px !important;
+    font-size: 64px !important; /* قەبارەیەکی گونجاو بۆ مۆبایل و دێسکتۆپ */
     font-weight: 900 !important;
     text-transform: uppercase;
     letter-spacing: 1px;
-    line-height: 1.1;
+    line-height: 1.2;
     margin-bottom: 20px !important;
     color: #ffffff !important;
+    display: block !important;
     
-    /* شەدۆوی نیۆنی سەوزی بەهێز بۆ سەرنجڕاکێشان */
+    /* شەدۆوی نیۆنی سەوزی گەش و بەهێز */
     text-shadow: 0 0 7px #ffffff,
                  0 0 15px #2e7d32,
-                 0 0 30px #2e7d32,
-                 0 0 45px #2e7d32 !important;
+                 0 0 25px #2e7d32,
+                 0 0 40px #2e7d32 !important;
     
-    /* مۆوشنی هاتنە ناوەوەی تایبەت و لێدانی نیۆنەکە */
-    animation: novaLogoEntrance 1.2s ease-out forwards, neonFlicker 3s infinite alternate;
+    /* ئەنیمەیشنی هاتنە ناوەوە و درەوشانەوەی بەردەوام */
+    animation: novaLogoEntrance 1s ease-out forwards, neonFlicker 3s infinite alternate 1s;
     opacity: 0;
 }
 
@@ -130,25 +133,37 @@ h1.neon-glow-text span {
     display: inline-block;
 }
 
-/* 📝 ستایلی نووسینەکەی خوارەوە (وەسفەکە) لەگەڵ مۆوشنی دەرکەوتن */
+/* 📝 چاککردنی نووسینی وەسفی خوارەوە */
 .hero-desc {
-    font-family: 'Noto Kufi Arabic', 'Poppins', sans-serif;
-    font-size: 18px;
-    line-height: 1.8;
+    font-family: 'Noto Kufi Arabic', 'Poppins', sans-serif !important;
+    font-size: 18px !important;
+    line-height: 1.8 !important;
     max-width: 700px;
-    margin: 0 auto 30px auto;
-    color: #e0e0e0;
-    opacity: 0;
+    margin: 0 auto 30px auto !important;
+    color: #e0e0e0 !important;
+    display: block !important;
     
-    /* مۆوشنی fadeInUp کە دوای لۆگۆکە بە نەرمی دەردەکەوێت */
-    animation: fadeInUpDesc 1s ease-out 0.6s forwards;
+    /* ئەنیمەیشنەکەی دوای لۆگۆکە کەمێک بە نەرمی دێتە سەرەوە */
+    animation: fadeInUpDesc 1s ease-out 0.5s forwards;
+    opacity: 0;
+}
+
+/* 🌌 ڕێکخستنی کۆنتێنەری سەرەکی هێرۆ */
+.hero-content {
+    position: relative;
+    max-width: 850px;
+    z-index: 20; 
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.85);
+    /* لادانی مۆوشنی گشتی سەروخوار لێرە بۆ ئەوەی کڵاش لەگەڵ نیۆنەکە نەکات */
 }
 
 /* 🎬 ئەنیمەیشنەکان */
 @keyframes novaLogoEntrance {
     0% {
         opacity: 0;
-        transform: translateY(-25px);
+        transform: translateY(-20px);
         filter: blur(4px);
     }
     100% {
@@ -158,25 +173,34 @@ h1.neon-glow-text span {
     }
 }
 
-/* لێدانی ڕووناکی نیۆنەکە */
 @keyframes neonFlicker {
     0%, 100% {
-        text-shadow: 0 0 7px #ffffff, 0 0 15px #2e7d32, 0 0 30px #2e7d32, 0 0 45px #2e7d32 !important;
+        text-shadow: 0 0 7px #ffffff, 0 0 15px #2e7d32, 0 0 25px #2e7d32, 0 0 40px #2e7d32 !important;
     }
     50% {
-        text-shadow: 0 0 5px #ffffff, 0 0 10px #2e7d32, 0 0 20px #2e7d32, 0 0 35px #2e7d32 !important;
+        text-shadow: 0 0 4px #ffffff, 0 0 10px #2e7d32, 0 0 18px #2e7d32, 0 0 30px #2e7d32 !important;
     }
 }
 
-/* دەرکەوتنی نەرمی نووسینەکەی خوارەوە */
 @keyframes fadeInUpDesc {
     0% {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(15px);
     }
     100% {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* 📱 بۆ ئەوەی دیزاینەکە لە مۆبایلدا تێکنەچێت (Responsive) */
+@media (max-width: 768px) {
+    h1.neon-glow-text {
+        font-size: 42px !important;
+    }
+    .hero-desc {
+        font-size: 15px !important;
+        padding: 0 15px;
     }
 }
 
@@ -810,12 +834,14 @@ html[dir="ltr"] .chapter-badge {
     
         <main class="hero-curved-container">
             <div class="hero-content">
-                <h1 class="hero-main-title hero-bold-impact neon-glow-text" id="hero-title">
+                <h1 class="neon-glow-text" id="hero-title">
                     NovaEntomo<br><span>زانستی مێرووناسی</span>
                 </h1>
+                
                 <p class="hero-desc" id="hero-desc">
                     پلاتفۆرمی زانستی و ئەکادیمی پێشکەوتوو بۆ خوێندکاران، مامۆستایان، توێژەران و جوتیاران بە بەکارهێنانی تازەترین زانیاری سەردەم.
                 </p>
+                
                 <a href="#chapters-section" class="hero-btn-modern">
                     <span id="hero-btn-text">دەستپێکردنی گەڕانەکە <i class="ph ph-arrow-down"></i></span>
                 </a>
