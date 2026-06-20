@@ -297,6 +297,17 @@ h1.neon-glow-text span {
     opacity: 0;
 }
 
+@keyframes fadeInUpHero {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* لە ٢٠ پیکسڵ خوارترەوە دەست پێدەکات */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);    /* دەگەڕێتەوە شوێنی سەرەکی خۆی */
+    }
+}
+
 /* 🎯 دوگمەی مۆدێرنی گەشتەکە */
 .hero-btn {
     display: inline-flex;
@@ -962,7 +973,7 @@ html[dir="ltr"] .chapter-badge {
             },
             en: {
                 title: "NovaEntomo<br><span>Entomology Science</span>",
-                desc: "An advanced scientific and academic platform for students, teachers, researchers, and farmers utilizing the latest modern knowledge.",
+                desc: "Advanced scientific and academic platform for students, teachers, researchers, and farmers, using the latest modern information.",
                 btnText: "Start Exploring",
                 sbHome: "Home",
                 sbTitleCh: "Chapters",
@@ -992,7 +1003,7 @@ html[dir="ltr"] .chapter-badge {
             },
             ar: {
                 title: "NovaEntomo<br><span>علم الحشرات</span>",
-                desc: "منصة علمية وأكاديمية متقدمة للطلاب، المعلمين، الباحثين، والمزارعين باستخدام أحدث المعلومات المعاصرة.",
+                desc: "منصة علمية وأكاديمية متقدمة للطلاب والمعلمين والباحثين والمزارعين باستخدام أحدث المعلومات المعاصرة.",
                 btnText: "ابدأ الاستكشاف",
                 sbHome: "الرئيسية",
                 sbTitleCh: "الفصول",
@@ -1038,12 +1049,12 @@ html[dir="ltr"] .chapter-badge {
         const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
         const themeStatusText = document.getElementById('theme-status-text');
         const chaptersContainer = document.getElementById('chapters-container');
-
+    
         const updateElement = (id, property, value) => {
             const el = document.getElementById(id);
             if (el) el[property] = value;
         };
-
+    
         function convertToKurdishNumbers(str, currentLang) {
             if (currentLang === 'en') return str;
             const kurdishNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
@@ -1051,13 +1062,21 @@ html[dir="ltr"] .chapter-badge {
                 return kurdishNumbers[+w];
             });
         }
-
+    
         function applyLanguage(lang) {
             const data = translations[lang];
             if (!data) return;
-
+    
             updateElement('hero-title', 'innerHTML', data.title);
-            updateElement('hero-desc', 'innerText', data.desc);
+            
+            // جێبەجێکردنی وەرگێڕان و دووبارە دەستپێکردنەوەی ئەنیمەیشنەکە بە کاتی دروستی CSSەکەت
+            const descElement = document.getElementById('hero-desc');
+            if (descElement) {
+                descElement.innerText = data.desc;
+                descElement.style.animation = 'none';
+                descElement.offsetHeight; /* trigger reflow */
+                descElement.style.animation = 'fadeInUpHero 1s ease-out 0.2s forwards';
+            }
             
             const heroBtn = document.getElementById('hero-btn-text');
             if (heroBtn) {
@@ -1067,15 +1086,13 @@ html[dir="ltr"] .chapter-badge {
             updateElement('sb-home', 'innerText', data.sbHome);
             updateElement('sb-title-ch', 'innerText', data.sbTitleCh);
             
-            // پشتگیری هەردوو جۆری ئایدی بەشەکە دەکات بۆ دڵنیایی
             updateElement('section-main-title', 'innerHTML', data.secTitle);
             updateElement('section-platform-title', 'innerHTML', data.secTitle);
-
+    
             for(let i = 1; i <= 9; i++) {
                 updateElement(`sb-ch${i}`, 'innerText', data.chapters[i-1] ? `${convertToKurdishNumbers(String(i), lang)}. ${data.chapters[i-1].title}` : '');
             }
-
-            // پشتگیری ئایدیەکانی ناو فۆتەرەکەت دەکات
+    
             updateElement('f-p1', 'innerText', data.fP1);
             updateElement('f-title', 'innerText', data.fP1);
             updateElement('f-p2', 'innerText', data.fP2);
@@ -1083,23 +1100,23 @@ html[dir="ltr"] .chapter-badge {
             updateElement('f-bionova', 'innerText', data.fBio);
             updateElement('f-vtext', 'innerText', data.fVtext);
             updateElement('f-copy', 'innerHTML', data.fCopy);
-
+    
             const currentTheme = localStorage.getItem('theme') || 'light';
             if (themeStatusText) {
                 themeStatusText.innerText = data[currentTheme];
             }
-
+    
             if (chaptersContainer) {
                 chaptersContainer.innerHTML = '';
                 data.chapters.forEach((ch, index) => {
                     let btnLabel = data.readMore;
                     if(index === 7) btnLabel = data.viewBtn;
                     if(index === 8) btnLabel = data.startBtn;
-
+    
                     let chapterNumber = '0' + (index + 1);
                     let formattedNumber = convertToKurdishNumbers(chapterNumber, lang);
                     const currentBadgeText = data.badgeText || '';
-
+    
                     const cardHtml = `
                         <div class="chapter-card" id="ch${index+1}" style="animation-delay: ${0.1 + (index*0.05)}s;">
                             <span class="chapter-badge">${currentBadgeText} ${formattedNumber}</span>
